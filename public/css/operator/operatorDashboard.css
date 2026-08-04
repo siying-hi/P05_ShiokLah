@@ -1,0 +1,294 @@
+/* Root variables */
+:root {
+  --primary-orange: #FF8C3A;
+}
+
+/* Nav bar */
+.navrectangle {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Ensure page content starts below nav */
+body {
+  margin: 0;
+  padding-top: 100px;
+}
+
+/* Inner layout */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Logo */
+.Logo img {
+  height: 55px;
+  width: auto;
+}
+
+/* Page title */
+.nav-center h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--primary-orange);
+}
+
+/* Top nav active link */
+.nav-links a.active {
+  color: var(--primary-orange) !important;
+  border-bottom: 2px solid var(--primary-orange);
+  font-weight: 700;
+}
+
+/* Side nav */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: min(80vw, 280px);
+  background: #fff;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.side-nav.show {
+  transform: translateX(0);
+}
+
+/* Side menu links */
+.side-menu {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  flex: 1;
+}
+
+.side-menu li {
+  margin-bottom: 1rem;
+}
+
+.side-menu li a {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.side-menu li a:hover {
+  background: rgba(255, 140, 58, 0.1);
+  color: var(--primary-orange);
+}
+
+/* Side nav active link */
+.side-menu a.active {
+  background: var(--primary-orange) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* Overlay behind side nav */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 2500;
+}
+
+.nav-overlay.show {
+  display: block;
+}
+
+/* Logout button */
+.logout-btn {
+  background: var(--primary-orange);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+}
+
+.logout-btn:hover {
+  background: #e6762f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Responsive hamburger */
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin: 1rem;
+    z-index: 3500;
+  }
+  .hamburger div {
+    width: 24px;
+    height: 2px;
+    background: #111;
+  }
+
+  /* Hide top nav links on mobile */
+  .nav-links {
+    display: none;
+  }
+
+  /* Hide top nav logout button when hamburger is shown */
+  .nav-right .logout-btn {
+    display: none;
+  }
+
+  #logoutBtnMobile {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+  }
+}
+
+/* Desktop logout button */
+#logoutBtnDesktop {
+  display: inline-block;
+}
+
+/* Dashboard layout */
+.dash-wrap {
+  padding: 2rem;
+}
+
+.queue-section, .card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.queue-table, .hygiene-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.queue-table th, .queue-table td,
+.hygiene-table th, .hygiene-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.queue-table th, .hygiene-table th {
+  background-color: #f4f4f4;
+}
+
+/* .grade-A { color: green; font-weight: bold; }
+.grade-B { color: orange; font-weight: bold; }
+.grade-C { color: red; font-weight: bold; } */
+
+/* Chart sizing */
+.chart-box canvas {
+  width: 100%;
+  height: 320px;
+}
+
+.chart-box--donut {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-box--donut canvas {
+  width: 100%;
+  height: 320px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: space-between;
+}
+
+.card {
+  flex: 1;
+  min-width: 300px;
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Filter buttons */
+.chart-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-btn {
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #357ABD;
+}
+
+.filter-btn.active {
+  background-color: #2C5AA0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/patron/payment-failed.css"/>
+    <link rel="stylesheet" href="css/patron/main.css"/>
+    <title>Payment Failed</title>
+  </head>
+  <body>
+    <main class="card">
+      <nav class="navrectangle">
+        <div class="container">
+          <div class="top-nav">
+            <div class="nav-left">
+              <div class="Logo">
+                <img src="/images/ShiokLah(cropped).jpeg" alt="Logo" />
+              </div>
+            </div>
+
+            <div class="nav-center">
+              <ul class="menu" id="menu">
+                <li class="menu-item">
+                  <a href="#">Home</a>
+                  <ul class="dropdown">
+                    <li><a href="/patron-homepage">Start Order</a></li>
+                  </ul>
+                </li>
+
+                <li class="menu-item">
+                  <a href="#">Order History</a>
+                  <ul class="dropdown">
+                    <li><a href="/order-history">Past Orders</a></li>
+                  </ul>
+                </li>
+
+                <li class="menu-item">
+                  <a href="#">Profile</a>
+                  <ul class="dropdown">
+                    <li><a href="/patron-profile">Overview</a></li>
+                    <li><a href="/analytics">Analytics & Reporting</a></li>
+                    <li><a href="/feedback">Customer Feedback</a></li>
+                    <li>
+                      <a href="Regulatory&Complianceinfo.html"
+                        >Regulatory & Compliance Info</a
+                      >
+                    </li>
+                    <li><a href="/favourites">Favourites</a></li>
+                    <li><a href="#">Rewards</a></li>
+                  </ul>
+                </li>
+
+                <li class="menu-item">
+                  <a href="/select-role">Log Out</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="nav-right">
+              <button class="reserve-btn">Reserve A Table</button>
+              <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <hr class="Nav-line" />
+
+      <h1>Payment Failed</h1>
+
+      <!-- Red X icon -->
+      <div class="check-wrap" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="100%" height="100%">
+          <circle cx="60" cy="60" r="52" fill="#E00000" />
+          <path
+            d="M40 40 L80 80"
+            stroke="#fff"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+          <path
+            d="M80 40 L40 80"
+            stroke="#fff"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
+
+      <p class="msg" id="orderMsg"></p>
+
+      <div class="btns">
+        <button class="btn btn-primary" id="tryBtn">
+          Try other payment methods
+        </button>
+      </div>
+    </main>
+    <script type="module" src="js/patron/payment-failed.js"></script>
+    <script type="module" src="js/patron/index.js"></script>
+    <script type ="module" src="js/utility/logout.js"></script>
+  </body>
+</html>

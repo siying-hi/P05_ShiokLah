@@ -1,0 +1,90 @@
+:root {
+    --shiok-green:#2f5d50;
+    --shiok-light-green:#e8f3ee;
+    --shiok-orange:#f28c28;
+    --shiok-cream:#fff8ed;
+    --shiok-text:#333;
+    --shiok-border:#eadfce;
+}
+
+/* Page background */
+body {
+    background:var(--shiok-cream);
+}
+
+.title-block h1{
+    font-size:25px;
+    margin-left:0;
+}
+
+/* Credit card */
+.credit-section {
+    background:#ffffff;
+    border:1px solid var(--shiok-border);
+    border-radius:20px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:0 8px 20px rgba(47,93,80,0.08);
+}
+
+/* Section titles */
+.credit-section h2 {
+    margin:0 0 16px;
+    font-size:22px;
+    font-weight:600;
+    color:var(--shiok-orange);
+}
+
+/* Remove orange accent line */
+.credit-section h2::before {
+    display:none;
+}
+
+/* Lists */
+.credit-section ul,
+.credit-section ol {
+    margin:0;
+    padding-left:24px;
+}
+
+.credit-section li {
+    margin-bottom:10px;
+    line-height:1.7;
+    word-break:break-word;
+    color:var(--shiok-text);
+}
+
+/* Links */
+.credit-section a {
+    color: #4f4f4f;
+    text-decoration:none;
+}
+
+.credit-section a:hover {
+    color:var(--shiok-orange);
+    text-decoration:underline;
+}
+
+/* Header description */
+.title-block p {
+    margin-top:8px;
+    color:#666;
+}
+
+/* Remove AI section highlight */
+.credit-section:nth-of-type(3) {
+    background:#ffffff;
+    border-color:var(--shiok-border);
+}
+
+/* Mobile */
+@media(max-width:768px) {
+    .credit-section {
+        padding:18px;
+        border-radius:16px;
+    }
+
+    .credit-section h2 {
+        font-size:18px;
+    }
+}

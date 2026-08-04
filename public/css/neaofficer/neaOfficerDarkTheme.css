@@ -1,0 +1,474 @@
+/* Shared NEA dark-theme overrides for all officer pages. */
+/* Shared dark-gradient treatment for every NEA officer page. */
+html[data-nea-theme="light"] body {
+  color: #3f250f;
+  background:
+    radial-gradient(circle at 5% 9%, rgba(244, 90, 20, .22), transparent 29%),
+    radial-gradient(circle at 91% 28%, rgba(108, 151, 106, .16), transparent 34%),
+    radial-gradient(circle at 38% 72%, rgba(255, 135, 56, .22), transparent 38%),
+    radial-gradient(circle at 78% 92%, rgba(166, 91, 49, .17), transparent 30%),
+    linear-gradient(128deg, #fffaf6 0%, #f8ddc3 23%, #eef4e9 48%, #f4d5bd 74%, #fff9f3 100%);
+  background-attachment: fixed;
+}
+
+/* Home uses higher-specificity :root theme rules; force the shared gradient through them. */
+html:root[data-nea-theme="light"] body {
+  background:
+    radial-gradient(circle at 5% 9%, rgba(244, 90, 20, .22), transparent 29%),
+    radial-gradient(circle at 91% 28%, rgba(108, 151, 106, .16), transparent 34%),
+    radial-gradient(circle at 38% 72%, rgba(255, 135, 56, .22), transparent 38%),
+    radial-gradient(circle at 78% 92%, rgba(166, 91, 49, .17), transparent 30%),
+    linear-gradient(128deg, #fffaf6 0%, #f8ddc3 23%, #eef4e9 48%, #f4d5bd 74%, #fff9f3 100%) !important;
+  background-attachment: fixed !important;
+}
+
+html:root[data-nea-theme="light"] body .site-header,
+html:root[data-nea-theme="light"] body .hero,
+html:root[data-nea-theme="light"] body .page-hero,
+html:root[data-nea-theme="light"] body .page-header,
+html:root[data-nea-theme="light"] body .report-hero {
+  background: transparent !important;
+}
+
+html[data-nea-theme="light"] .site-header,
+html[data-nea-theme="light"] .page-hero,
+html[data-nea-theme="light"] .hero,
+html[data-nea-theme="light"] .report-hero,
+html[data-nea-theme="light"] .page-header,
+html[data-nea-theme="light"] main,
+html[data-nea-theme="light"] .dashboard,
+html[data-nea-theme="light"] .profile-page,
+html[data-nea-theme="light"] .hygiene-shell,
+html[data-nea-theme="light"] .complaints-main,
+html[data-nea-theme="light"] .certificates-shell,
+html[data-nea-theme="light"] .report-page {
+  background: transparent;
+}
+
+/* Reveal one continuous gradient instead of white Home page bands. */
+html[data-nea-theme="light"] body .dashboard,
+html[data-nea-theme="light"] body .welcome-panel,
+html[data-nea-theme="light"] body .actions-section,
+html[data-nea-theme="light"] body .task-panel {
+  background: transparent !important;
+  box-shadow: none;
+}
+
+html[data-nea-theme="light"] body .stat-card {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 135, 56, .18), transparent 38%),
+    linear-gradient(135deg, rgba(255, 250, 245, .76), rgba(255, 225, 200, .58)) !important;
+  backdrop-filter: blur(5px);
+}
+
+html[data-nea-theme="light"] body .task-item {
+  background: rgba(255, 250, 245, .68);
+  backdrop-filter: blur(5px);
+}
+
+html[data-nea-theme="dark"] body {
+  color: #f5eee8;
+  background:
+    radial-gradient(circle at 5% 9%, rgba(244, 90, 20, .30), transparent 29%),
+    radial-gradient(circle at 91% 28%, rgba(78, 112, 84, .28), transparent 34%),
+    radial-gradient(circle at 38% 72%, rgba(255, 135, 56, .20), transparent 38%),
+    radial-gradient(circle at 78% 92%, rgba(122, 55, 20, .20), transparent 30%),
+    linear-gradient(128deg, #030303 0%, #24150c 23%, #0d1510 48%, #211209 74%, #050505 100%);
+  background-attachment: fixed;
+}
+
+html[data-nea-theme="dark"] .site-header,
+html[data-nea-theme="dark"] .page-hero,
+html[data-nea-theme="dark"] .hero,
+html[data-nea-theme="dark"] .report-hero,
+html[data-nea-theme="dark"] .page-header {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+html[data-nea-theme="dark"] .site-header,
+html[data-nea-theme="dark"] .page-hero,
+html[data-nea-theme="dark"] .hero,
+html[data-nea-theme="dark"] .report-hero {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+html[data-nea-theme="dark"] .welcome-panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+html[data-nea-theme="dark"] main,
+html[data-nea-theme="dark"] .dashboard,
+html[data-nea-theme="dark"] .profile-page,
+html[data-nea-theme="dark"] .hygiene-shell,
+html[data-nea-theme="dark"] .complaints-main,
+html[data-nea-theme="dark"] .certificates-shell,
+html[data-nea-theme="dark"] .report-page {
+  background: transparent;
+}
+
+html[data-nea-theme="dark"] .welcome-panel,
+html[data-nea-theme="dark"] .stat-card,
+html[data-nea-theme="dark"] .actions-section,
+html[data-nea-theme="dark"] .task-panel,
+html[data-nea-theme="dark"] .hygiene-group-panel,
+html[data-nea-theme="dark"] .complaints-panel,
+html[data-nea-theme="dark"] .certificates-panel,
+html[data-nea-theme="dark"] .certificate-group-panel,
+html[data-nea-theme="dark"] .report-shell,
+html[data-nea-theme="dark"] .report-summary,
+html[data-nea-theme="dark"] .report-form,
+html[data-nea-theme="dark"] .credential-card,
+html[data-nea-theme="dark"] .overview-grid article,
+html[data-nea-theme="dark"] .details-panel,
+html[data-nea-theme="dark"] .work-panel,
+html[data-nea-theme="dark"] .settings-panel,
+html[data-nea-theme="dark"] .settings-form-panel {
+  color: #f7f0ea;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(255, 135, 56, .13), transparent 28%),
+    radial-gradient(circle at 12% 92%, rgba(71, 88, 73, .12), transparent 30%),
+    linear-gradient(140deg, #24231f 0%, #171714 48%, #0b0b0a 100%);
+  border-color: #443a31;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, .34);
+}
+
+html[data-nea-theme="dark"] .card,
+html[data-nea-theme="dark"] .task-item,
+html[data-nea-theme="dark"] .inspection-work-item,
+html[data-nea-theme="dark"] .info-card,
+html[data-nea-theme="dark"] .summary-item,
+html[data-nea-theme="dark"] .evidence-box,
+html[data-nea-theme="dark"] .checkbox-row {
+  color: #f2e9e1;
+  background:
+    linear-gradient(135deg, #292722 0%, #191815 56%, #10100f 100%);
+  border-color: #494038;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .24);
+}
+
+html[data-nea-theme="dark"] .group-heading,
+html[data-nea-theme="dark"] .certificates-panel-header,
+html[data-nea-theme="dark"] .complaints-panel-header {
+  background:
+    linear-gradient(110deg, rgba(244, 90, 20, .11), rgba(19, 19, 17, .95) 48%, rgba(65, 78, 65, .10));
+  border-color: #514236;
+}
+
+html[data-nea-theme="dark"] .modal-box,
+html[data-nea-theme="dark"] .photo-modal-box,
+html[data-nea-theme="dark"] .review-modal-box,
+html[data-nea-theme="dark"] .certificate-modal-box {
+  color: #f5eee8;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 135, 56, .14), transparent 32%),
+    linear-gradient(145deg, #24231f, #11110f 72%);
+  border-color: #ff8738;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .58);
+}
+
+html[data-nea-theme="dark"] input,
+html[data-nea-theme="dark"] select,
+html[data-nea-theme="dark"] textarea {
+  color: #f5eee8;
+  background: linear-gradient(135deg, #272622, #171715);
+  border-color: #55483d;
+}
+
+html[data-nea-theme="dark"] input::placeholder,
+html[data-nea-theme="dark"] textarea::placeholder {
+  color: #b9aca1;
+}
+
+html[data-nea-theme="dark"] .hygiene-table tbody td,
+html[data-nea-theme="dark"] .complaints-table tbody td,
+html[data-nea-theme="dark"] .certificates-table tbody td,
+html[data-nea-theme="dark"] .task-item p,
+html[data-nea-theme="dark"] .inspection-work-item p,
+html[data-nea-theme="dark"] .inspection-work-item small {
+  color: #e0d5cb;
+}
+
+html[data-nea-theme="dark"] .hygiene-table tbody tr:hover,
+html[data-nea-theme="dark"] .complaints-table tbody tr:hover,
+html[data-nea-theme="dark"] .certificates-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(255, 135, 56, .14), rgba(71, 88, 73, .08));
+}
+
+html[data-nea-theme="dark"] .profile-heading h1,
+html[data-nea-theme="dark"] .modal-header h2,
+html[data-nea-theme="dark"] .welcome-panel h2 {
+  color: #ffffff;
+}
+
+html[data-nea-theme="dark"] .overview-grid span,
+html[data-nea-theme="dark"] .status-message,
+html[data-nea-theme="dark"] .profile-heading p {
+  color: #d9c9bd;
+}
+
+html[data-nea-theme="dark"] .info-card span,
+html[data-nea-theme="dark"] .credential-meta span {
+  color: #ffbd8f;
+}
+
+html[data-nea-theme="dark"] .info-card strong,
+html[data-nea-theme="dark"] .credential-meta strong,
+html[data-nea-theme="dark"] .work-list span,
+html[data-nea-theme="dark"] .work-list strong,
+html[data-nea-theme="dark"] .settings-form label,
+html[data-nea-theme="dark"] .settings-form-panel p {
+  color: #fff8f2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .45);
+}
+
+html[data-nea-theme="dark"] .info-card {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 135, 56, .13), transparent 34%),
+    linear-gradient(135deg, #25241f, #11110f 78%);
+  border: 1px solid #4b4037;
+}
+
+html[data-nea-theme="dark"] input:disabled {
+  color: #e8ddd4;
+  background: linear-gradient(135deg, #24231f, #151513);
+  opacity: 1;
+}
+
+/* High-specificity control overrides for pages whose light styles use IDs. */
+html[data-nea-theme="dark"] #searchInput,
+html[data-nea-theme="dark"] #gradeFilter,
+html[data-nea-theme="dark"] .form-row input,
+html[data-nea-theme="dark"] .form-row select,
+html[data-nea-theme="dark"] .form-row textarea {
+  color: #fff8f2;
+  background: #1d1d1a;
+  border-color: #665445;
+}
+
+html[data-nea-theme="dark"] #searchInput::placeholder,
+html[data-nea-theme="dark"] .form-row input::placeholder,
+html[data-nea-theme="dark"] .form-row textarea::placeholder {
+  color: #cbbcaf;
+  opacity: 1;
+}
+
+html[data-nea-theme="dark"] #gradeFilter option,
+html[data-nea-theme="dark"] .form-row select option {
+  color: #fff8f2;
+  background: #20201d;
+}
+
+html[data-nea-theme="dark"] .form-row label,
+html[data-nea-theme="dark"] .filter-wrap label {
+  color: #f2e7de;
+}
+
+html[data-nea-theme="dark"] .form-row input:disabled {
+  color: #d9cfc6;
+  background: #2b2925;
+  border-color: #665445;
+  opacity: 1;
+  -webkit-text-fill-color: #d9cfc6;
+}
+
+html[data-nea-theme="dark"] .btn-outline {
+  color: #fff8f2;
+  background: linear-gradient(135deg, #292722, #171715);
+  border-color: #ff8738;
+}
+
+html[data-nea-theme="dark"] .btn-outline:hover {
+  color: #ffffff;
+  background: #b94700;
+}
+
+html[data-nea-theme="dark"] .modal-close {
+  color: #fff8f2;
+}
+
+html[data-nea-theme="dark"] .settings-menu {
+  background: #10100f;
+  border-color: #ff8738;
+}
+
+html[data-nea-theme="dark"] .settings-link,
+html[data-nea-theme="dark"] .settings-link.primary {
+  color: #ffbd8f;
+  background: linear-gradient(135deg, #292722, #171715);
+  border-color: #ff8738;
+  box-shadow: none;
+  transform: none;
+}
+
+html[data-nea-theme="dark"] .settings-link:hover,
+html[data-nea-theme="dark"] .settings-link:focus,
+html[data-nea-theme="dark"] .settings-link.primary:hover,
+html[data-nea-theme="dark"] .settings-link.primary:focus {
+  color: #17120e;
+  background: #ff8738;
+  border-color: #ffad70;
+  transform: translateY(-2px);
+}
+
+/* Seamless home transition: expose the continuous page gradient through the welcome block. */
+html[data-nea-theme="dark"] body .welcome-panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Profile light polish: keeps the warm theme, but reduces the orange-heavy wash. */
+html[data-nea-theme="light"] body .profile-page {
+  background: transparent;
+}
+
+html[data-nea-theme="light"] body .credential-card,
+html[data-nea-theme="light"] body .overview-grid article,
+html[data-nea-theme="light"] body .details-panel,
+html[data-nea-theme="light"] body .work-panel {
+  color: #3f250f;
+  background:
+    radial-gradient(circle at 96% 8%, rgba(108, 151, 106, .12), transparent 30%),
+    linear-gradient(135deg, rgba(255, 250, 245, .94), rgba(255, 239, 224, .64)) !important;
+  border-color: rgba(255, 135, 56, .48);
+  box-shadow: 0 18px 34px rgba(79, 50, 24, .1);
+}
+
+html[data-nea-theme="light"] body .credential-card {
+  background:
+    radial-gradient(circle at 92% 18%, rgba(108, 151, 106, .14), transparent 32%),
+    linear-gradient(135deg, rgba(255, 250, 245, .95), rgba(255, 235, 214, .62)) !important;
+}
+
+html[data-nea-theme="light"] body .info-card {
+  color: #3f250f;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .72), rgba(255, 241, 227, .68)) !important;
+  border-color: rgba(255, 176, 110, .46);
+}
+
+html[data-nea-theme="light"] body .work-list div {
+  border-color: rgba(95, 58, 24, .24);
+}
+
+html[data-nea-theme="light"] body .overview-grid article strong,
+html[data-nea-theme="light"] body .details-panel h2,
+html[data-nea-theme="light"] body .work-panel h2 {
+  color: #e14d10;
+}
+
+/* Shared light polish for the rest of the NEA officer pages. */
+html[data-nea-theme="light"] body {
+  background:
+    radial-gradient(circle at 5% 9%, rgba(244, 90, 20, .11), transparent 28%),
+    radial-gradient(circle at 92% 26%, rgba(108, 151, 106, .12), transparent 34%),
+    linear-gradient(135deg, #fffaf5 0%, #fff3e9 46%, #f7f3e8 100%) !important;
+}
+
+html[data-nea-theme="light"] body .site-header,
+html[data-nea-theme="light"] body .hero,
+html[data-nea-theme="light"] body .page-hero,
+html[data-nea-theme="light"] body .page-header,
+html[data-nea-theme="light"] body .report-hero {
+  background:
+    linear-gradient(135deg, rgba(255, 250, 245, .88), rgba(255, 241, 227, .52)) !important;
+}
+
+html[data-nea-theme="light"] body .stat-card,
+html[data-nea-theme="light"] body .action-card,
+html[data-nea-theme="light"] body .task-panel,
+html[data-nea-theme="light"] body .task-item,
+html[data-nea-theme="light"] body .complaints-panel,
+html[data-nea-theme="light"] body .certificates-panel,
+html[data-nea-theme="light"] body .certificate-group-panel,
+html[data-nea-theme="light"] body .summary-grid article,
+html[data-nea-theme="light"] body .hygiene-group-panel,
+html[data-nea-theme="light"] body .group-heading,
+html[data-nea-theme="light"] body .table-panel,
+html[data-nea-theme="light"] body .report-summary,
+html[data-nea-theme="light"] body .report-form,
+html[data-nea-theme="light"] body .evidence-box,
+html[data-nea-theme="light"] body .card,
+html[data-nea-theme="light"] body .modal-card,
+html[data-nea-theme="light"] body .certificate-modal-box,
+html[data-nea-theme="light"] body .certificate-detail-list div,
+html[data-nea-theme="light"] body .certificate-missing {
+  color: #3f250f;
+  background:
+    radial-gradient(circle at 98% 2%, rgba(108, 151, 106, .1), transparent 30%),
+    linear-gradient(135deg, rgba(255, 250, 245, .94), rgba(255, 240, 225, .58)) !important;
+  border-color: rgba(255, 135, 56, .42) !important;
+  box-shadow: 0 16px 30px rgba(79, 50, 24, .09);
+}
+
+html[data-nea-theme="light"] body .task-item,
+html[data-nea-theme="light"] body .certificate-detail-list div,
+html[data-nea-theme="light"] body .certificate-missing,
+html[data-nea-theme="light"] body .summary-item,
+html[data-nea-theme="light"] body .checkbox-row {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .76), rgba(255, 244, 234, .62)) !important;
+}
+
+html[data-nea-theme="light"] body .hygiene-table tbody tr,
+html[data-nea-theme="light"] body .certificates-table tbody tr,
+html[data-nea-theme="light"] body .complaints-table tbody tr {
+  background: transparent !important;
+}
+
+html[data-nea-theme="light"] body .hygiene-table tbody tr:hover,
+html[data-nea-theme="light"] body .certificates-table tbody tr:hover,
+html[data-nea-theme="light"] body .complaints-table tbody tr:hover,
+html[data-nea-theme="light"] body .card:hover,
+html[data-nea-theme="light"] body .action-card:hover,
+html[data-nea-theme="light"] body .task-item:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 250, 245, .98), rgba(255, 232, 211, .68)) !important;
+  border-color: rgba(255, 135, 56, .7) !important;
+}
+
+html[data-nea-theme="light"] body .group-heading h2,
+html[data-nea-theme="light"] body .complaints-panel h2,
+html[data-nea-theme="light"] body .certificates-panel h2,
+html[data-nea-theme="light"] body .report-summary h2,
+html[data-nea-theme="light"] body .report-form h2,
+html[data-nea-theme="light"] body .evidence-box h2,
+html[data-nea-theme="light"] body .card h2,
+html[data-nea-theme="light"] body .card h3,
+html[data-nea-theme="light"] body .action-card h3,
+html[data-nea-theme="light"] body .task-panel h2 {
+  color: #d94b08;
+}
+
+html[data-nea-theme="light"] body .hygiene-table th,
+html[data-nea-theme="light"] body .certificates-table th,
+html[data-nea-theme="light"] body .complaints-table th {
+  color: #9f3d08;
+  border-bottom-color: rgba(255, 135, 56, .64) !important;
+}
+
+html[data-nea-theme="light"] body .hygiene-table td,
+html[data-nea-theme="light"] body .certificates-table td,
+html[data-nea-theme="light"] body .complaints-table td {
+  color: #3f250f;
+  border-bottom-color: rgba(143, 111, 82, .18) !important;
+}
+
+html[data-nea-theme="light"] body button,
+html[data-nea-theme="light"] body .btn,
+html[data-nea-theme="light"] body .btn-outline,
+html[data-nea-theme="light"] body .action-btn,
+html[data-nea-theme="light"] body .filter-btn,
+html[data-nea-theme="light"] body .settings-link {
+  background:
+    linear-gradient(135deg, rgba(255, 250, 245, .84), rgba(255, 232, 211, .64));
+  border-color: rgba(255, 135, 56, .62);
+}

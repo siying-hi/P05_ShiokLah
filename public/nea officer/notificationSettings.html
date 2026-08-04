@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- NEA notification settings: controls the officer's preferred alert options. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Settings | NEA Officer</title>
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficer.css">
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficerDarkTheme.css?v=20260725-14">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/nea-officer/home">
+      <img src="/images/ShiokLah_cropped_-removebg-preview.png" alt="ShiokLah!">
+      <span class="brand-sub">Singaporean Hawker Favourites</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/nea-officer/home">Home</a>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/cleaning">Inspections</a>
+        <div class="dropdown">
+          <a href="/nea-officer/hygiene-grades">Hygiene Grades</a>
+          <a href="/nea-officer/cleaning">Cleaning</a>
+        </div>
+      </div>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/complaints">Reports</a>
+        <div class="dropdown">
+          <a href="/nea-officer/complaints">Complaints</a>
+          <a href="/nea-officer/certificates">Certificate Expiries</a>
+        </div>
+      </div>
+
+      <a class="active" href="/nea-officer/profile">Profile</a>
+      <a href="/logout">Log Out</a>
+    </nav>
+  </header>
+
+  <main class="profile-page">
+    <section class="profile-heading">
+      <p>Officer Alerts</p>
+      <h1>Notification Settings</h1>
+    </section>
+
+    <section class="settings-form-panel">
+      <h2>Notification Preferences</h2>
+      <p>Choose which updates the NEA officer should receive while managing vendors and reports.</p>
+
+      <form class="settings-form">
+        <label class="checkbox-row">
+          <input type="checkbox" checked>
+          Certificate expiry alerts
+        </label>
+
+        <label class="checkbox-row">
+          <input type="checkbox" checked>
+          New complaint reports
+        </label>
+
+        <label class="checkbox-row">
+          <input type="checkbox">
+          Hygiene grade update reminders
+        </label>
+
+        <label class="checkbox-row">
+          <input type="checkbox" checked>
+          Vendor approval requests
+        </label>
+
+        <div class="form-actions">
+          <a href="/nea-officer/profile">Cancel</a>
+          <button type="button">Save Preferences</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="/js/nea officer/theme.js"></script>
+</body>
+</html>
+
+

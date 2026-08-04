@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShiokLah Dashboard</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Open+Sans:wght@300..800&family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/jpeg" href="/images/ShiokLah(cropped).jpeg" />
+    <link rel="stylesheet" href="../css/patron/main.css" />
+    <link rel="stylesheet" href="../css/patron/orderHistory.css" />
+  </head>
+  <body>
+    <nav class="navrectangle">
+      <div class="container">
+        <div class="top-nav">
+          <div class="nav-left">
+            <div class="Logo">
+              <img src="../images/ShiokLah(cropped).jpeg" alt="Logo" />
+            </div>
+          </div>
+
+          <div class="nav-center">
+            <ul class="menu" id="menu">
+              <li class="menu-item">
+                <a href="#">Home</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-homepage">Start Order</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Order History</a>
+                <ul class="dropdown">
+                  <li><a href="/order-history">Past Orders</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Profile</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-profile">Overview</a></li>
+                  <li><a href="/analytics">Analytics & Reporting</a></li>
+                  <li>
+                    <a href="Customer_ReviewPage.html">Customer Feedback</a>
+                  </li>
+                  <li><a href="Customer_Favourties.html">Favourites</a></li>
+                  <li>
+                    <a href="Customer Vouchers and Rewards.html">Rewards</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="/select-role" id="logoutBtn">Log Out</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-right">
+            <button class="reserve-btn">Reserve A Table</button>
+            <div class="hamburger" id="hamburger">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+    <!-- <hr class="Nav-line" /> -->
+    <!-- end nav -->
+
+    <!-- MAIN -->
+    <main class="main-content">
+      <!-- FIRST TIME REGISTERED USER -->
+      <div class="order-box first-time">
+        <h2>🛒 No orders yet</h2>
+        <p>Place your first order to see it here.</p>
+
+        <div class="teaser">
+          <img src="images/Malay Cuisine Picture.jpg" alt="Teaser Dish" />
+          <p>Try our bestselling Nasi Lemak today!</p>
+        </div>
+
+        <small class="tagline">Your hawker favourites are just a click away!</small>
+        <br />
+        <a href="/patron-homepage" class="order-btn">Start Ordering</a>
+      </div>
+
+      <!-- GUEST USER
+      <div class="order-box guest">
+        <h2>👤 Guest User</h2>
+        <p>
+          You’re browsing as a guest. Sign up or log in to start ordering and
+          track your history.
+        </p>
+
+        <div class="teaser">
+          <img src="images/Chinese Cuisine Picture.jpg" alt="Guest Teaser" />
+          <p>Join ShiokLah to unlock rewards!</p>
+        </div>
+
+        <small class="tagline">Create an account to enjoy hawker favourites anytime.</small>
+        <br />
+        <a href="login.html" class="order-btn">Sign Up / Log In</a>
+      </div> -->
+
+      <!-- REGISTERED USER WITH MULTIPLE ORDERS -->
+      <div id="orderSection" class="order-box registered">
+        <h2>📦 Your Order History</h2>
+        <p>Here are your recent orders:</p>
+
+        <!-- Expandable Filter Box -->
+        <div class="filter-container">
+          <button id="toggleFilter" class="filter-toggle">🔍 Filter Orders</button>
+          <div id="filterBox" class="filter-box hidden">
+            <div class="filter-group">
+              <label for="filterDate">Date Range:</label>
+              <select id="filterDate">
+                <option value="">All</option>
+                <option value="today">Today</option>
+                <option value="month">This Month</option>
+                <option value="year">This Year</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filterStatus">Status:</label>
+              <select id="filterStatus">
+                <option value="">All</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <div class="filter-actions">
+              <button id="applyFilter" class="apply-btn">Apply Filters</button>
+              <button id="clearFilter" class="apply-btn">Clear Filters</button>
+            </div>
+          </div>
+          <button id="viewFavouriteBtn" class="order-btn">View Favourite Orders</button>
+
+        </div>
+        <div id="pagination" class="pagination">
+          <button id="prevPage" class="page-btn">Previous</button>
+          <button class="page-number active">1</button>
+          <button class="page-number">2</button>
+          <button class="page-number">3</button>
+          <button id="nextPage" class="page-btn">Next</button>
+        </div>
+        <!-- Order History List -->
+        <ul id="orderList" class="order-list"></ul>
+
+        <!-- <button id="toggleOrdersBtn" class="see-more-btn">
+          <span class="see-more-text">See More Orders</span>
+          <span class="see-more-icon">▾</span>
+        </button> -->
+
+        <small class="tagline">Keep enjoying your favourites – we’ll save them here!</small>
+        <br />
+         <!-- Reorder button integrated with checkout flow -->
+        <a href="/patron-homepage" class="order-btn">Order Again</a>
+      </div>
+
+      
+
+
+
+
+
+        <!-- Favourite Orders Section -->
+        <!-- <div class="favourites-box">
+          <h2>💖 Favourite Orders</h2>
+          <div id="favOrderList" class="fav-list"></div>
+        </div> -->
+
+
+      <!-- ==========================
+      Favourite Order History
+      ========================== -->
+      <section id="favouriteSection" class="favourite-section hidden">
+        <button  id="backToOrdersBtn" class="back-btn">← Back to Order History</button>
+
+          <div class="fav-header">
+              <h2>❤️ Favourite Order History</h2>
+              <p>Your saved orders for quick reordering.</p>
+          </div>
+
+          <div class="fav-empty" id="favEmpty">
+              <p>No favourite orders yet.</p>
+              <small>Click the ❤️ on any order to save it here.</small>
+          </div>
+
+          <div class="fav-list" id="favOrderList">
+
+          </div>
+
+      </section>
+
+
+      <!-- ==========================
+      Rename Favourite Modal
+      ========================== -->
+
+      <div id="renameModal" class="modal hidden">
+
+          <div class="modal-content">
+
+              <h3>Rename Favourite</h3>
+
+              <input
+                  type="text"
+                  id="renameInput"
+                  placeholder="Enter favourite name"
+              >
+
+              <div class="modal-buttons">
+
+                  <button id="saveRenameBtn">
+                      Save
+                  </button>
+
+                  <button id="cancelRenameBtn">
+                      Cancel
+                  </button>
+
+              </div>
+
+          </div>
+
+      </div>
+      
+
+    </main>
+    <script type="module" src="/js/patron/orderHistory.js"></script>
+    <script type="module" src="/js/patron/index.js"></script>
+
+  </body>
+</html>

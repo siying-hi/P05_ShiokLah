@@ -1,0 +1,38 @@
+.vendor-decision-popup {
+  position: fixed;
+  z-index: 9999;
+  right: 24px;
+  top: 24px;
+  width: min(420px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 22px;
+  color: #344054;
+  background: #fff;
+  border: 2px solid #ff7a18;
+  border-left-width: 8px;
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(16, 24, 40, .22);
+  animation: vendorDecisionIn .25s ease-out;
+}
+
+.vendor-decision-popup.approved { border-color: #079455; }
+.vendor-decision-popup.rejected { border-color: #d92d20; }
+.vendor-decision-popup.grade { border-color: #7f56d9; }
+.vendor-decision-popup h2 { margin: 4px 30px 8px 0; font-size: 22px; }
+.vendor-decision-popup p { margin: 7px 0; line-height: 1.45; }
+.vendor-decision-label { color: #ff7a18; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+.vendor-decision-popup dl { display: grid; gap: 8px; margin: 14px 0; }
+.vendor-decision-popup dl div { padding: 9px 11px; background: #f7f8fa; border-radius: 9px; }
+.vendor-decision-popup dt { color: #667085; font-size: 12px; font-weight: 800; }
+.vendor-decision-popup dd { margin: 3px 0 0; font-weight: 700; }
+.vendor-decision-popup a { display: inline-block; color: #b54708; font-weight: 900; }
+.vendor-decision-close { position: absolute; top: 10px; right: 12px; border: 0; background: transparent; font-size: 28px; cursor: pointer; }
+
+@keyframes vendorDecisionIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .vendor-decision-popup { top: 12px; right: 16px; }
+}

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShiokLah!</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Open+Sans:wght@300..800&family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="../css/vendor/vendorStyles.css" />
+    <link rel="stylesheet" href="../css/vendor/vendorMenuItem.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Vendor Navigation will be loaded here -->
+      <div id="vendor-navigation"></div>
+
+      <!-- Page Contents -->
+      <main class="contents">
+        <header class="page-header">
+          <div class="header-row">
+            <div class="title-block">
+              <h1>Manage Menu</h1>
+            </div>
+
+            <div class="cuisine-dropdown">
+              <select id="cuisineSelect"></select>
+
+              <button id="addBtn" class="create-btn" type="button">+</button>
+            </div>
+
+            <!-- Visibility Filter -->
+            <div class="visibility-filter">
+              <button class="active" data-filter="all">All</button>
+
+              <button data-filter="visible">Visible</button>
+
+              <button data-filter="hidden">Hidden</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Modal -->
+        <div class="modal" id="menuModal">
+          <div class="modal-overlay" id="menuOverlay"></div>
+
+          <form class="menu-form" id="menuForm">
+            <h2 id="formTitle">Add Menu Item</h2>
+
+            <div class="modal-grid">
+              <!-- LEFT -->
+              <div class="modal-left">
+                <label>Item:</label>
+                <input
+                  type="text"
+                  class="itemName"
+                  id="itemName"
+                  placeholder="Enter menu item"
+                  required
+                />
+
+                <label>Price:</label>
+                <input
+                  type="number"
+                  class="price"
+                  id="itemPrice"
+                  pattern="^\d+(\.\d{1,2})?$"
+                  placeholder="Enter price"
+                  step="0.01"
+                  required
+                />
+
+                <label>EWT (mins):</label>
+                <input
+                  type="number"
+                  class="ewt"
+                  id="itemEWT"
+                  pattern="^\d+$"
+                  placeholder="Enter estimated waiting time"
+                  required
+                />
+
+                <label>Description:</label>
+                <textarea
+                  class="description"
+                  id="itemDesc"
+                  rows="4"
+                  placeholder="Enter a description of your food"
+                  required
+                ></textarea>
+
+                <label>Allergen Info:</label>
+                <textarea
+                  class="allergen"
+                  id="itemAllergen"
+                  rows="4"
+                  placeholder="Enter allergen information"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- RIGHT -->
+              <div class="modal-right">
+                <label>Upload Image:</label>
+                <div
+                  id="imagePicker"
+                  class="image-picker"
+                  role="button"
+                  tabindex="0"
+                >
+                  <img
+                    id="imagePreview"
+                    class="image-preview"
+                    alt="Image preview"
+                  />
+                  <div id="imageHint" class="image-hint">Image Preview</div>
+                </div>
+
+                <label style="margin-top: 12px">Image Name</label>
+                <select
+                  id="imageSelect"
+                  style="
+                    margin-top: 6px;
+                    width: 100%;
+                    padding: 10px 12px;
+                    border-radius: 12px;
+                    border: 1px solid #e8ecf3;
+                  "
+                >
+                  <option value="placeholder.png" selected>
+                    No image (use placeholder)
+                  </option>
+                  <option value="Set Meal A Picture.jpg">Set Meal A</option>
+                  <option value="Set Meal B Picture.jpg">Set Meal B</option>
+                  <option value="Set Meal C Picture.png">Set Meal C</option>
+                  <option value="Set Meal D Picture.jpg">Set Meal D</option>
+                  <option value="Otah Picture.webp">Otah</option>
+                  <option value="malaysiacurry.jpg">Malaysia Curry</option>
+                  <option value="meebakso.jpg">Mee Bakso</option>
+                  <option value="nasi-sambal-goreng-daging.jpg">
+                    Nasi Sambal Goreng Daging
+                  </option>
+                  <option value="nasilemak.jpg">Original Nasi Lemak</option>
+                  <option value="rendangayam.webp">Rendangayam</option>
+                  <option value="White Carrot Cake Picture.jpg">
+                    White Carrot Cake
+                  </option>
+                  <option value="Black Carrot Cake Picture.jpg">
+                    Black Carrot Cake
+                  </option>
+                  <option value="Other Cuisines Picture.webp">
+                    Chicken Biryani
+                  </option>
+                  <option value="Char Kway Teow Picture.webp">
+                    Char Kway Teow
+                  </option>
+                  <option value="Chinese Cuisine Picture.jpg">Dumpling</option>
+                  <option value="Indian Cuisine Picture.webp">
+                    Butter Chicken Curry
+                  </option>
+                </select>
+
+                <button
+                  type="button"
+                  id="removeImageBtn"
+                  class="remove-image-btn"
+                  style="display: none"
+                >
+                  Remove image
+                </button>
+              </div>
+            </div>
+
+            <div class="form-buttons">
+              <button type="button" class="cancel-btn" id="cancelModal">
+                Cancel
+              </button>
+              <button type="submit" class="confirm-btn">Confirm</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Delete cuisine type -->
+        <div class="modal" id="deleteCuisineModal">
+          <div class="modal-overlay" id="deleteCuisineOverlay"></div>
+
+          <form class="menu-form delete-cuisine-form">
+            <h2>Delete Cuisine</h2>
+
+            <p>Select a custom cuisine to remove:</p>
+
+            <div class="cuisine-picker">
+              <button type="button" id="previousCuisine" class="arrow-btn">
+                ▲
+              </button>
+
+              <div id="deleteCuisineList" class="selected-cuisine"></div>
+
+              <button type="button" id="nextCuisine" class="arrow-btn">
+                ▼
+              </button>
+            </div>
+
+            <div class="form-buttons">
+              <button type="button" class="cancel-btn" id="cancelDeleteCuisine">
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                class="confirm-btn"
+                id="confirmDeleteCuisine"
+              >
+                Delete
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Menu Section -->
+        <section class="menu">
+          <div class="table-header">
+            <span>Image</span>
+            <span>Item Details</span>
+            <span class="actions-header">Controls</span>
+          </div>
+          <div class="menu-list" id="menuList"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/js/vendor/vendorNavigation.js"></script>
+    <script src="/js/vendor/loadVendorNavigation.js"></script>
+
+    <script type="module" src="/js/vendor/menuUI.js"></script>
+    <script type="module" src="/js/vendor/menuInteraction.js"></script>
+    <script type="module" src="/js/vendor/menuItem.js"></script>
+    <script type="module" src="/js/vendor/menuAPI.js"></script>
+
+    <script type="module" src="/js/vendor/cuisine.js"></script>
+    <script type="module" src="/js/vendor/cuisineAPI.js"></script>
+  </body>
+</html>

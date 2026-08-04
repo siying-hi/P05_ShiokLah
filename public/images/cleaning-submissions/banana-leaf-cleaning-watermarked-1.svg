@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6eee6"/>
+      <stop offset="1" stop-color="#d7c1a9"/>
+    </linearGradient>
+    <pattern id="wm" width="340" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(-28)">
+      <text x="0" y="56" fill="rgba(255,255,255,.72)" font-family="Georgia, serif" font-size="34" font-weight="700">NEA VERIFIED - V-1</text>
+    </pattern>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="100" y="90" width="1080" height="540" rx="28" fill="#fdfaf5" stroke="#9b6f4f" stroke-width="10"/>
+  <rect x="170" y="160" width="420" height="330" rx="18" fill="#c9d8da"/>
+  <rect x="690" y="160" width="420" height="330" rx="18" fill="#efe7d9"/>
+  <rect x="220" y="210" width="320" height="54" rx="10" fill="#ffffff"/>
+  <rect x="220" y="292" width="320" height="54" rx="10" fill="#ffffff"/>
+  <rect x="735" y="215" width="330" height="34" rx="6" fill="#b78a64"/>
+  <rect x="735" y="285" width="330" height="34" rx="6" fill="#b78a64"/>
+  <rect x="735" y="355" width="330" height="34" rx="6" fill="#b78a64"/>
+  <circle cx="380" cy="545" r="38" fill="#63a66d"/>
+  <circle cx="840" cy="545" r="38" fill="#63a66d"/>
+  <text x="100" y="58" fill="#4d2a12" font-family="Georgia, serif" font-size="34" font-weight="700">Submitted cleaning photo - wiped counter and display glass</text>
+  <text x="100" y="680" fill="#4d2a12" font-family="Georgia, serif" font-size="28" font-weight="700">Banana Leaf Nasi Lemak - 15 Jul 2026</text>
+  <rect width="1280" height="720" fill="url(#wm)"/>
+</svg>

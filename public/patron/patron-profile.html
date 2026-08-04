@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patron Profile</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/patron/patron-profile.css" />
+    <link rel="stylesheet" href="css/patron/main.css" />
+  </head>
+  <body>
+    <!-- ==========================================
+     Add Visa Card Modal
+========================================== -->
+
+    <div class="card-modal" id="cardModal">
+      <div class="card-modal-content">
+        <div class="card-modal-header">
+          <h2>Add Visa Card</h2>
+
+          <button id="closeCardModal" class="close-card-btn" type="button">
+            &times;
+          </button>
+        </div>
+
+        <form id="cardForm">
+          <div class="form-group">
+            <label>Cardholder Name</label>
+
+            <input
+              type="text"
+              id="cardholderName"
+              placeholder="John Tan"
+              maxlength="100"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Card Number</label>
+
+            <input
+              type="password"
+              id="cardNumber"
+              maxlength="19"
+              placeholder="1111 1111 1111 1111"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Expiry Date</label>
+
+              <input type="month" id="expiryDate" required />
+            </div>
+
+            <div class="form-group">
+              <label>CVV</label>
+
+              <input
+                type="password"
+                id="cvv"
+                maxlength="3"
+                placeholder="123"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="cancelCardBtn" class="btn secondary">
+              Cancel
+            </button>
+
+            <button type="submit" class="btn primary">Save Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <nav class="navrectangle">
+      <div class="container">
+        <div class="top-nav">
+          <div class="nav-left">
+            <div class="Logo">
+              <img src="/images/ShiokLah(cropped).jpeg" alt="Logo" />
+            </div>
+          </div>
+
+          <div class="nav-center">
+            <ul class="menu" id="menu">
+              <li class="menu-item">
+                <a href="#">Home</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-homepage">Start Order</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Order History</a>
+                <ul class="dropdown">
+                  <li><a href="/order-history">Past Orders</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Profile</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-profile">Overview</a></li>
+                  <li><a href="/analytics">Analytics & Reporting</a></li>
+                  <li>
+                    <a href="/feedback">Customer Feedback</a>
+                  </li>
+                  <li><a href="/favourties">Favourites</a></li>
+                  <li>
+                    <a href="/rewards">Rewards</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a id="logoutBtn" href="/select-role">Log Out</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-right">
+            <button class="reserve-btn">Reserve A Table</button>
+            <div class="hamburger" id="hamburger">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+    <hr class="Nav-line" />
+
+    <main>
+      <div class="profile-wrapper">
+        <div class="profile-shell">
+          <!-- LEFT: Profile Card -->
+          <section class="card profile-hero">
+            <div class="hero-top">
+              <div class="hero-row">
+                <div class="avatar" id="avatarIcon">👤</div>
+
+                <div class="hero-title">
+                  <h1 id="profileTitle">Loading...</h1>
+                  <p>Manage your ShiokLah account</p>
+                </div>
+
+                <div class="badge registered" id="membershipBadge">
+                  Standard
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-body">
+              <form id="profileForm">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" id="firstName" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" id="lastName" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="email" readonly />
+                </div>
+
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" id="username" readonly />
+                </div>
+              </form>
+
+              <div class="actions">
+                <div class="left-actions">
+                  <button class="btn primary" id="editBtn" type="button">
+                    Edit Profile
+                  </button>
+
+                  <button
+                    class="btn primary"
+                    id="saveBtn"
+                    type="button"
+                    style="display: none"
+                  >
+                    Save Changes
+                  </button>
+
+                  <button
+                    class="btn"
+                    id="cancelBtn"
+                    type="button"
+                    style="display: none"
+                  >
+                    Cancel
+                  </button>
+                </div>
+
+                <div class="right-actions">
+                  <button
+                    class="delete-account-btn"
+                    id="deleteBtn"
+                    type="button"
+                  >
+                    Delete Account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT: Quick Tiles / Info -->
+          <section class="card profile-details" aria-label="Profile details">
+            <div class="details-title">
+              <h2>Quick Access</h2>
+              <div class="hint">Shortcuts in profile</div>
+            </div>
+
+            <div class="tiles">
+              <a class="tile tile-link fav" id="tileFav" href="/favourites">
+                <div class="t-top">
+                  <div class="t-title">Favourites</div>
+                  <div class="pill" id="pillFav">Go</div>
+                </div>
+                <p>Save your top dishes and reorder faster.</p>
+              </a>
+
+              <a
+                class="tile tile-link rewards"
+                id="tileRewards"
+                href="/rewards"
+              >
+                <div class="t-top">
+                  <div class="t-title">Rewards</div>
+                  <div class="pill" id="pillRewards">Go</div>
+                </div>
+                <p>Track vouchers.</p>
+              </a>
+
+              <a
+                class="tile tile-link insights"
+                id="tileInsights"
+                href="/analytics"
+              >
+                <div class="t-top">
+                  <div class="t-title">Order Insights</div>
+                  <div class="pill new" id="pillInsights">New</div>
+                </div>
+                <p>See analytics of the Hawker Centre.</p>
+              </a>
+
+              <div class="tile tile-link support" id="tileMembership">
+                <div class="t-top">
+                  <div class="t-title">Membership</div>
+
+                  <button class="pill" id="membershipBtn" type="button">
+                    Change
+                  </button>
+                </div>
+
+                <p id="membershipDescription">Current membership: Standard</p>
+
+                <p id="membershipPoints">Membership bonus: 0 points</p>
+              </div>
+            </div>
+            <div class="saved-cards">
+              <div class="saved-cards-header">
+                <h3>Saved Cards</h3>
+
+                <button id="addCardBtn" class="add-card-btn">+ Add Card</button>
+              </div>
+
+              <div id="cardsContainer" class="cards-container"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <div class="membership-modal" id="membershipModal">
+      <div class="membership-modal-content">
+        <h2>Choose Membership</h2>
+
+        <p>Select your ShiokLah membership.</p>
+
+        <select id="membershipSelect">
+          <option value="Standard">Standard</option>
+
+          <option value="ShiokLah Member">
+            ShiokLah Member — 200 bonus points
+          </option>
+        </select>
+
+        <div class="membership-actions">
+          <button type="button" id="cancelMembershipBtn">Cancel</button>
+
+          <button type="button" id="saveMembershipBtn">Save Membership</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/patron/patron-profile.js"></script>
+    <script type="module" src="js/patron/index.js"></script>
+    <script type="module" src="js/utility/logout.js"></script>
+  </body>
+</html>

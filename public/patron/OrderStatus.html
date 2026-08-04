@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Order Status</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="../images/ShiokLah(cropped).jpeg"
+    />
+
+    <link rel="stylesheet" href="../css/patron/main.css" />
+    <link rel="stylesheet" href="../css/patron/orderStatus.css" />
+  </head>
+
+  <body>
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navrectangle">
+      <div class="container">
+        <div class="top-nav">
+          <div class="nav-left">
+            <div class="Logo">
+              <img src="../images/ShiokLah(cropped).jpeg" alt="Logo" />
+            </div>
+          </div>
+
+          <div class="nav-center">
+            <ul class="menu" id="menu">
+              <li class="menu-item">
+                <a href="/patron-homepage">Home</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-homepage">Start Order</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Order History</a>
+
+                <ul class="dropdown">
+                  <li><a href="/order-history">Past Orders</a></li>
+                </ul>
+                <ul class="dropdown">
+                  <li><a href="/order-history">Past Orders</a></li>
+                  <!-- <button onclick="goToOrderHistory()">Order History</button> -->
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="/patron-profile">Profile</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-profile">Overview</a></li>
+
+                  <li><a href="/analytics">Analytics</a></li>
+
+                  <li>
+                    <a href="/feedback">Customer Feedback</a>
+                  </li>
+
+                  <li><a href="/favourites">Favourites</a></li>
+
+                  <li>
+                    <a href="/rewards">Rewards</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#" id="logoutBtn">Log Out</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-right">
+            <button class="reserve-btn">Reserve A Table</button>
+            <div class="hamburger" id="hamburger">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+      <h1>Order Status</h1>
+
+      <p>Track your latest hawker order in real time.</p>
+    </section>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <div class="status-wrapper">
+      <div class="status-card">
+        <h2 class="card-title">🍜 Current Order</h2>
+
+        <div id="statusContainer">
+          <div class="loading">
+            <div class="spinner"></div>
+
+            <h2>Loading...</h2>
+
+            <p>Fetching your latest order...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+
+      <div class="quiz-card">
+        <h2>🎮 Hawker Food Quiz</h2>
+
+        <p>Play while waiting!</p>
+
+        <div id="quizContainer">
+          <h3 id="question">Loading...</h3>
+
+          <div id="answers"></div>
+
+          <button id="nextQuestion">Next Question →</button>
+
+          <p id="score">Score: 0</p>
+        </div>
+      </div>
+
+      <!-- Fun Fact -->
+
+      <div class="fact-card">
+        <h2>💡 Did You Know?</h2>
+
+        <p id="factText">
+          Hawker Culture became a UNESCO Intangible Cultural Heritage in 2020.
+        </p>
+      </div>
+
+      <!-- Chef Message -->
+
+      <div class="chef-card">
+        <h2>👨‍🍳 Chef's Message</h2>
+
+        <p>
+          "Good food takes time. Thank you for supporting our local hawkers!"
+        </p>
+
+        <div class="food-icons">🍜 🍗 🥟 🍛 🧋 🌶️</div>
+      </div>
+    <script src="/js/patron/orderStatus.js"></script>
+    <script type="module" src="/js/patron/index.js"></script>
+    <script type="module" src="/js/utility/logout.js"></script>
+  </body>
+</html>

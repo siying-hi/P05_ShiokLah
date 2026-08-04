@@ -1,0 +1,361 @@
+/* NEA morning-inspection report form layout and responsive presentation. */
+body {
+  background: #f6f6f4;
+}
+
+.report-page {
+  width: min(1500px, calc(100% - 48px));
+  margin: 0 auto 70px;
+}
+
+.report-hero {
+  margin: 28px 0 26px;
+  padding: clamp(30px, 5vw, 54px);
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(24, 26, 23, .96), rgba(24, 26, 23, .9)),
+    repeating-linear-gradient(110deg, transparent 0 64px, rgba(244, 90, 20, .18) 65px 66px);
+  border: 2px solid #ff8738;
+  border-radius: 10px;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, .18);
+}
+
+.report-hero p {
+  margin: 0 0 8px;
+  color: #f45a14;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.report-hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(38px, 6vw, 66px);
+  line-height: 1;
+}
+
+.report-hero span {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.report-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.report-summary,
+.report-form {
+  background: #1c1c1a;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+}
+
+.report-summary {
+  position: sticky;
+  top: 20px;
+  padding: 28px;
+  color: #ffffff;
+}
+
+.report-summary h2,
+.evidence-box h2 {
+  margin: 0 0 18px;
+  color: #f45a14;
+  font-size: 30px;
+}
+
+.summary-item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 16px 0;
+  border-top: 1px solid #3a3a36;
+}
+
+.summary-item strong {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: #f45a14;
+  background: #232323;
+  border-radius: 50%;
+}
+
+.summary-item span {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.report-form {
+  display: grid;
+  gap: 22px;
+  padding: clamp(22px, 4vw, 34px);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.report-form label,
+.checklist legend {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.report-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.report-form input,
+.report-form select,
+.report-form textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 15px;
+  color: #232323;
+  background: #fbfbfa;
+  border: 2px solid #e0dfdc;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+}
+
+.report-form textarea {
+  resize: vertical;
+}
+
+.report-form input:focus,
+.report-form select:focus,
+.report-form textarea:focus {
+  outline: none;
+  border-color: #ff8738;
+  box-shadow: 0 0 0 3px rgba(255, 135, 56, .18);
+}
+
+.checklist {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid #3a3a36;
+  border-radius: 10px;
+}
+
+.checklist label,
+.declaration {
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.checklist input,
+.declaration input {
+  width: 18px;
+  height: 18px;
+  min-height: auto;
+  margin: 3px 0 0;
+  padding: 0;
+  accent-color: #f45a14;
+}
+
+.evidence-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  gap: 18px;
+  align-items: center;
+  padding: 20px;
+  background: #fbfbfa;
+  border: 2px solid #ff8738;
+  border-radius: 10px;
+}
+
+.evidence-box h2 {
+  margin-bottom: 8px;
+}
+
+.evidence-box p {
+  margin: 0;
+  color: #666666;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 2px;
+}
+
+.form-actions a,
+.form-actions button {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form-actions a {
+  color: #232323;
+  background: #ffffff;
+  border: 2px solid #e0dfdc;
+}
+
+.form-actions button {
+  color: #ffffff;
+  background: #f45a14;
+  border: 2px solid #f45a14;
+}
+
+.form-actions a:hover,
+.form-actions button:hover {
+  color: #1c1c1a;
+  background: #ff8738;
+  border-color: #ff8738;
+}
+
+.form-status {
+  min-height: 24px;
+  margin: 0;
+  color: #87d984;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+@media (max-width: 980px) {
+  .report-shell,
+  .form-grid,
+  .evidence-box {
+    grid-template-columns: 1fr;
+  }
+
+  .report-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .report-page {
+    width: min(100% - 28px, 680px);
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+/* ---- Light theme ---- */
+:root[data-nea-theme="light"] body {
+  background: #fff7ef;
+  color: #3f250f;
+}
+
+:root[data-nea-theme="light"] .report-hero {
+  color: #3f250f;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 245, .98), rgba(255, 226, 199, .9)),
+    repeating-linear-gradient(110deg, transparent 0 64px, rgba(244, 90, 20, .14) 65px 66px);
+  border-color: #ff8738;
+  box-shadow: 0 16px 34px rgba(126, 70, 22, .12);
+}
+
+:root[data-nea-theme="light"] .report-hero p {
+  color: #b94700;
+}
+
+:root[data-nea-theme="light"] .report-hero h1,
+:root[data-nea-theme="light"] .report-hero span {
+  color: #3f250f;
+}
+
+:root[data-nea-theme="light"] .report-summary,
+:root[data-nea-theme="light"] .report-form {
+  background: #fffaf5;
+  border-color: #ffcf9f;
+  box-shadow: 0 14px 30px rgba(126, 70, 22, .1);
+}
+
+:root[data-nea-theme="light"] .report-summary {
+  color: #3f250f;
+}
+
+:root[data-nea-theme="light"] .report-summary h2,
+:root[data-nea-theme="light"] .evidence-box h2 {
+  color: #b94700;
+}
+
+:root[data-nea-theme="light"] .summary-item {
+  border-top-color: #ffd6b1;
+}
+
+:root[data-nea-theme="light"] .summary-item strong {
+  color: #ffffff;
+  background: #f45a14;
+}
+
+:root[data-nea-theme="light"] .summary-item span,
+:root[data-nea-theme="light"] .report-form label,
+:root[data-nea-theme="light"] .checklist legend,
+:root[data-nea-theme="light"] .checklist label,
+:root[data-nea-theme="light"] .declaration {
+  color: #3f250f;
+}
+
+:root[data-nea-theme="light"] .report-form input,
+:root[data-nea-theme="light"] .report-form select,
+:root[data-nea-theme="light"] .report-form textarea {
+  color: #3f250f;
+  background: #ffffff;
+  border-color: #ffcf9f;
+}
+
+:root[data-nea-theme="light"] .checklist {
+  background: #fff7ef;
+  border-color: #ffcf9f;
+}
+
+:root[data-nea-theme="light"] .evidence-box {
+  background: #fff1e3;
+  border-color: #ff8738;
+}
+
+:root[data-nea-theme="light"] .evidence-box p {
+  color: #6f6258;
+}
+
+:root[data-nea-theme="light"] .form-actions a {
+  color: #3f250f;
+  background: #fffaf5;
+  border-color: #ffcf9f;
+}
+
+:root[data-nea-theme="light"] .form-actions a:hover,
+:root[data-nea-theme="light"] .form-actions button:hover {
+  color: #ffffff;
+  background: #ff8738;
+  border-color: #ff8738;
+}
+
+:root[data-nea-theme="light"] .form-status {
+  color: #2f7d44;
+}

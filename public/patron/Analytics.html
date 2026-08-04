@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ShiokLah! Analytics Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/patron/main.css" />
+    <link rel="stylesheet" href="../css/patron/analytics.css" />
+
+    
+  </head>
+
+  <body>
+    <nav class="navrectangle">
+      <div class="container">
+        <div class="top-nav">
+          <div class="nav-left">
+            <div class="Logo">
+              <img src="../images/ShiokLah(cropped).jpeg" alt="Logo" />
+            </div>
+          </div>
+
+          <div class="nav-center">
+            <ul class="menu" id="menu">
+              <li class="menu-item">
+                <a href="#">Home</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-homepage">Start Order</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Order History</a>
+                <ul class="dropdown">
+                  <li><a href="/order-history">Past Orders</a></li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="#">Profile</a>
+                <ul class="dropdown">
+                  <li><a href="/patron-profile">Overview</a></li>
+                  <li><a href="/analytics">Analytics & Reporting</a></li>
+                  <li>
+                    <a href="/feedback">Customer Feedback</a>
+                  </li>
+                  <li><a href="/favourites">Favourites</a></li>
+                  <li>
+                    <a href="Customer Vouchers and Rewards.html">Rewards</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="/select-role">Log Out</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-right">
+            <button class="reserve-btn">Reserve A Table</button>
+            <div class="hamburger" id="hamburger">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+    <hr class="Nav-line" />
+
+    <div class="dash-wrap">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-title">Total Orders</div>
+            <div class="kpi-value" id="kpiTotalOrders">—</div>
+            <div class="kpi-sub" id="kpiOrdersSub">This Month</div>
+          </div>
+          <div class="kpi-badge up" id="kpiOrdersDelta">+0%</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-title">Top Item</div>
+            <div class="kpi-value" id="kpiTopItem">—</div>
+            <div class="kpi-sub" id="kpiTopItemSub">Share: —</div>
+          </div>
+          <div class="kpi-badge neutral" id="kpiTopItemBadge">Hot</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-left">
+            <div class="kpi-title">Avg Rating</div>
+            <div class="kpi-value" id="kpiAvgRating">—</div>
+            <div class="kpi-sub" id="kpiRatingSub">From feedback mix</div>
+          </div>
+          <div class="kpi-badge" id="kpiRatingBadge">—</div>
+        </div>
+
+        
+      </div>
+
+      <div class="grid">
+        <section>
+          <div class="card-header">
+            <h2>Top 3 Food Item Sales</h2>
+            <div class="card-tools">
+              <label for="salesFilter">Filter</label>
+              <select id="salesFilter">
+                <option value="month">This Month</option>
+                <option value="3months">Last 3 Months</option>
+                <option value="6months">Last 6 Months</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="insight">
+            <span id="salesInsightText">—</span>
+            <span><strong id="salesInsightStrong">—</strong></span>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <div class="chart-box">
+            <canvas id="salesChart"></canvas>
+          </div>
+        </section>
+
+        <section>
+          <div class="card-header">
+            <h2>Customer Feedback</h2>
+            <div class="card-tools">
+              <label for="feedbackFilter">Filter by</label>
+              <select id="feedbackFilter">
+                <option value="month">This Month</option>
+                <option value="3months">Last 3 Months</option>
+                <option value="6months">Last 6 Months</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="insight">
+            <span id="feedbackInsightText">—</span>
+            <span><strong id="feedbackInsightStrong">—</strong></span>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <div class="chart-box chart-box--donut">
+            <div class="donut-wrapper">
+              <canvas id="feedbackChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section class="full-width">
+          <div class="card-header">
+            <h2>Hygiene Grade</h2>
+          </div>
+          <div class="card-divider"></div>
+          <table class="hygiene-table">
+            <thead>
+              <tr>
+                <th>Stall</th>
+                <th>Grade</th>
+              </tr>
+            </thead>
+            <tbody id="hygieneTableBody"></tbody>
+          </table>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="/js/patron/chart.js"></script>
+    <script type="module" src="../js/patron/index.js"></script>
+    <script type="module" src="../js/patron/analytics.js"></script>
+
+
+    
+
+
+  </body>
+</html>

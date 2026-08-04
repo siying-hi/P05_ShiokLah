@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f4eee9"/>
+      <stop offset="1" stop-color="#d1bcaa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="115" y="125" width="1050" height="455" rx="24" fill="#fffaf6" stroke="#8e715e" stroke-width="8"/>
+  <rect x="185" y="195" width="430" height="300" rx="20" fill="#d7e0df"/>
+  <rect x="680" y="195" width="410" height="300" rx="20" fill="#e5d8c7"/>
+  <path d="M240 430h315" stroke="#6da06b" stroke-width="22" stroke-linecap="round"/>
+  <path d="M735 265h300M735 335h300M735 405h300" stroke="#a77d5e" stroke-width="28" stroke-linecap="round"/>
+  <text x="100" y="58" fill="#4d2a12" font-family="Georgia, serif" font-size="34" font-weight="700">Submitted cleaning photo - counter uploaded without required watermark</text>
+  <text x="100" y="680" fill="#4d2a12" font-family="Georgia, serif" font-size="28" font-weight="700">I. Mohamed Ismail Food Stall - 13 Jul 2026</text>
+</svg>

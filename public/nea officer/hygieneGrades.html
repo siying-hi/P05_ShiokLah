@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- NEA hygiene-grade workspace: inspect stalls and publish updated hygiene grades. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hygiene Grades | NEA Officer</title>
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficerHygieneGrades.css">
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficerDarkTheme.css?v=20260725-14">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/nea-officer/home">
+      <img src="/images/ShiokLah_cropped_-removebg-preview.png" alt="ShiokLah!">
+      <span class="brand-sub">Singaporean Hawker Favourites</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/nea-officer/home">Home</a>
+
+      <div class="nav-item has-dropdown">
+        <a class="active" href="/nea-officer/cleaning">Inspections</a>
+        <div class="dropdown">
+          <a class="active" href="/nea-officer/hygiene-grades">Hygiene Grades</a>
+          <a href="/nea-officer/cleaning">Cleaning</a>
+        </div>
+      </div>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/complaints">Reports</a>
+        <div class="dropdown">
+          <a href="/nea-officer/complaints">Complaints</a>
+          <a href="/nea-officer/certificates">Certificate Expiries</a>
+        </div>
+      </div>
+
+      <a href="/nea-officer/profile">Profile</a>
+      <a href="/logout">Log Out</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <p class="eyebrow">Inspections</p>
+      <h1>Hygiene Grades</h1>
+      <p class="subtitle">View and update hawker stall hygiene grades</p>
+    </div>
+  </section>
+
+  <main class="hygiene-shell">
+    <section class="toolbar">
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Search by stall name, location, or ID...">
+      </div>
+      <div class="filter-wrap">
+        <label for="gradeFilter">Grade</label>
+        <select id="gradeFilter">
+          <option value="">All</option>
+          <option value="checked">Checked</option>
+          <option value="unchecked">Unchecked</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+      <button id="refreshBtn" class="btn-outline">Refresh</button>
+    </section>
+
+    <section class="table-panel">
+      <div id="statusMessage" class="status-message" hidden></div>
+
+      <div id="hygieneTableBody" class="hygiene-groups">
+        <section class="hygiene-group-panel">
+          <div class="group-heading">
+            <h2>Loading hygiene grades...</h2>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit / Record Modal -->
+  <div id="hygieneModal" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="modalTitle">Update Hygiene Grade</h2>
+        <button id="closeModalBtn" class="modal-close" aria-label="Close">&times;</button>
+      </div>
+
+      <form id="hygieneForm">
+        <input type="hidden" id="formStallId">
+        <input type="hidden" id="formHygieneId">
+
+        <div class="form-row">
+          <label for="stallNameDisplay">Stall</label>
+          <input type="text" id="stallNameDisplay" disabled>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="gradeInput">Hygiene Grade</label>
+            <select id="gradeInput" required>
+              <option value="">Select grade</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+          <div>
+            <label for="scoreInput">Score (optional)</label>
+            <input type="number" id="scoreInput" min="0" max="100" step="0.1" placeholder="e.g. 92.5">
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div>
+            <label for="dateInput">Inspection Date</label>
+            <input type="date" id="dateInput" required>
+          </div>
+          <div>
+            <label for="timeInput">Inspection Time (optional)</label>
+            <input type="time" id="timeInput">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="remarksInput">Remarks (optional)</label>
+          <textarea id="remarksInput" rows="3" placeholder="Notes about this inspection..."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="cancelBtn" class="btn-outline">Cancel</button>
+          <button type="submit" class="btn-solid">Save Grade</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/nea officer/theme.js"></script>
+  <script src="/nea-officer/hygieneGrades.js"></script>
+</body>
+</html>
+
+

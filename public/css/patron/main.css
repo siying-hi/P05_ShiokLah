@@ -1,0 +1,761 @@
+/* =========================
+   BASE
+========================= */
+body {
+  font-family: "Open Sans", sans-serif;
+  background: #fff;
+  color: #222;
+  padding-top: 96px;
+ 
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+:root {
+  --primary-orange: #FF8C3A;
+  --primary-yellow: #ffd400;
+  --dark-text: #111;
+}
+
+/* =========================
+   NAV (DESKTOP)
+========================= */
+/* .navrectangle {
+  background: white;
+  margin-top: 25px;
+  position: relative;
+  z-index: 1000;
+  font-family: "Kodchasan", Arial;
+} */
+.navrectangle {
+  position: fixed;      /* keeps it pinned to the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  font-family: "Kodchasan", Arial;
+  z-index: 1000;
+  margin-top: 0;        /* remove the gap */
+  padding: 25px;    
+
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.nav-left,
+.nav-right {
+  flex: 0 0 auto;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  overflow: hidden;
+}
+.Logo img {
+  height: 100%;
+  width: auto;
+  transform: scale(1.2);
+  transform-origin: left center;
+}
+
+/* Menu */
+#menu.menu {
+  display: flex;
+  align-items: center;
+  gap: 65px;
+  list-style: none;
+}
+#menu.menu a {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 15px;
+  color: #111;
+}
+#menu.menu a:hover {
+  color: var(--primary-orange);
+}
+
+/* Reserve */
+.reserve-btn {
+  background: var(--primary-orange);
+  color: white;
+  border: 3px solid var(--primary-orange);
+  padding: 14px 30px;
+  border-radius: 22px;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.reserve-btn:hover {
+  background: white;
+  color: var(--primary-orange);
+}
+
+#logoutBtn {
+    cursor: pointer;
+}
+
+/* 
+.Nav-line {
+  position: fixed;
+  top: 70px;            
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #e0e0e0;
+  z-index: 999;           
+  margin: 0;          
+  border-bottom: 10px solid #e0e0e0;
+} */
+
+/* =========================
+   SUBMENU (DESKTOP)
+========================= */
+.menu-item {
+  position: relative;
+}
+
+.menu-item > .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: var(--primary-yellow);
+  border-radius: 14px;
+  min-width: 160px;
+  padding: 10px 0;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.18s ease;
+  z-index: 999;
+}
+
+.menu-item:hover > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown li {
+  list-style: none;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 18px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   HAMBURGER (BASE)
+========================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.hamburger div {
+  width: 22px;
+  height: 2px;
+  background: #111;
+  border-radius: 1px;
+}
+
+/* Permanent highlight for current page */
+#menu.menu a.active {
+  color: var(--primary-orange);
+  font-weight: 800;
+  border-bottom: 3px solid var(--primary-orange);
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+html {
+  overflow-y: scroll;
+}
+
+/*Menu Item Description Styling*/
+/* .menu-desc{
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0.85;
+} */
+
+/* =========================
+   BANNER + HOME
+========================= */
+.Banner {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.home {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 40px;
+  margin: 3% 0;
+}
+
+.hello-text {
+  font-size: 2.5rem;
+  font-family: "Kodchasan", Arial;
+}
+
+.searchBar {
+  justify-content: center;
+  display: flex;
+  background: #e5e5e5;
+  border-radius: 999px;
+  padding: 12px 20px;
+  width: 50%;
+  height: 42px;
+}
+
+.searchBar input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* =========================
+   CUISINES (DESKTOP)
+========================= */
+.cuisines {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+.filter-btn.cuisine-card {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.filter-btn.cuisine-card img {
+  width: 85%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.filter-btn.cuisine-card p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.filter-btn.cuisine-card:hover img {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+}
+
+.filter-btn.cuisine-card.active img {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 16px 36px rgba(255, 140, 58, 0.45);
+  filter: brightness(1.08) saturate(1.1);
+}
+.filter-btn.cuisine-card.active p {
+  color: var(--primary-orange);
+}
+
+.Content-line {
+  border: none;
+  height: 1px;
+  background: #e0e0e0;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   STALL GRID (DESKTOP)
+   (keep your specificity so mobile can override it correctly)
+========================= */
+#stall-grid.stall-grid {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 60px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.stall-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.stall-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.stall-info {
+  padding: 12px;
+  width: 100%;
+}
+
+.stall-info h4 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.stall-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 992px) {
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+  }
+  .nav-overlay.show { display: block; }
+
+  .hello-text{
+    margin-top: 8px;
+    margin-left: 13px;
+    text-align: center
+  }
+  .home{
+    flex-direction: column;  
+    align-items: center;       
+    justify-content: center;
+    gap: 12px;                
+    margin: 16px 0;
+    padding: 0 14px;
+    text-align: center;
+  }
+  .searchBar{
+    width: 100%;
+    max-width: 320px;           /* prevents being too wide */
+    margin: 0 auto;            
+    margin-top:14px;
+  }
+  /* hide reserve */
+  .reserve-btn { display: none; }
+
+  /* show hamburger */
+  .hamburger { display: flex; }
+  .hamburger div { width: 22px; height: 2px; }
+
+  /* smaller logo + banner */
+  .Logo img { 
+    height: 60px; 
+    margin-top:4px;
+  }
+  .Banner { 
+    height: 42vh; 
+  }
+
+  .container { 
+    padding-left: 14px; 
+    padding-right: 14px; 
+  }
+
+  .navrectangle {
+    margin-top: 0;
+    position: fixed;
+    top: 0;
+    background: #fff;
+    z-index: 4000;
+    padding:15px 0;
+  }
+
+  
+  /* drawer menu */
+  #menu.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(86vw, 360px);
+    background: #fff;
+
+    padding: 86px 16px 18px;
+    border-left: 1px solid #eee;
+    box-shadow: -18px 0 40px rgba(0,0,0,0.16);
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    transform: translateX(110%);
+    transition: transform 0.25s ease;
+    z-index: 3000;
+  }
+
+  #menu.menu.show { transform: translateX(0); }
+
+  /* main items */
+  #menu.menu > .menu-item > a {
+    color: #9a9a9a;
+    font-weight: 700;
+    font-size: 15px;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  /* logout */
+  #menu.menu > .menu-item:last-child > a {
+    color: #d93025;
+    font-weight: 800;
+  }
+
+  /* dropdown becomes inline box (content height) */
+  .menu-item > .dropdown {
+    position: static;
+    min-width: unset;
+    width: 100%;
+    margin: 6px 0 12px;
+    padding: 10px;
+
+    background: rgba(214, 112, 39, 0.12);
+    border-radius: 14px;
+    box-shadow: none;
+
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    height: auto; /* ✅ prevents big empty box */
+  }
+
+  /* dropdown becomes inline box (content height) */
+  .menu-item > .dropdown {
+    position: static;
+    min-width: unset;
+    width: 100%;
+    margin: 6px 0 12px;
+    padding: 10px;
+
+    background: rgba(214, 112, 39, 0.12);
+    border-radius: 14px;
+    box-shadow: none;
+
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    height: auto; /* ✅ prevents big empty box */
+  }
+
+  .dropdown a {
+    font-size: 16px;
+    font-weight: 800;
+    padding: 12px 14px;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  /* cuisines 2x2 smaller */
+  .cuisines {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px 14px;
+    margin: 10px 0 12px;
+  }
+
+  .filter-btn.cuisine-card img {
+    width: 100%;
+    height: 72px;
+  }
+
+  .filter-btn.cuisine-card p {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+
+  #stall-grid.stall-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 14px;
+    margin: 0 auto 24px;
+    gap: 14px;
+  }
+
+  #stall-grid.stall-grid .stall-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 16px;
+    text-align: left;
+  }
+
+  #stall-grid.stall-grid .stall-card img {
+    width: 150px;
+    height: 110px;
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  #stall-grid.stall-grid .stall-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #stall-grid.stall-grid .stall-info h4 {
+    margin: 0 0 4px;
+    font-size: 15px;
+  }
+
+  #stall-grid.stall-grid .stall-info p {
+    font-size: 13px;
+  }
+}
+
+/* ==========================================
+   TABLET (768px and below)
+========================================== */
+@media (max-width: 768px) {
+
+    .main-content{
+        padding:20px;
+    }
+
+    .order-box,
+    .favourite-section{
+        width:100%;
+        padding:20px;
+        border-radius:12px;
+    }
+
+    .order-card{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .order-right{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .filter-container{
+        width:100%;
+    }
+
+    .filter-box{
+        width:100%;
+    }
+
+    .filter-group{
+        margin-bottom:15px;
+    }
+
+    .filter-group select{
+        width:100%;
+    }
+
+    .filter-actions{
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .filter-actions button{
+        width:100%;
+    }
+
+    .see-more-btn,
+    .order-btn{
+        width:100%;
+    }
+
+    .fav-card{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .fav-actions{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .fav-actions button{
+        flex:1;
+        min-width:120px;
+    }
+
+    .modal-content{
+        width:90%;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE (480px and below)
+========================================== */
+
+@media (max-width:480px){
+
+    body{
+        font-size:14px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    .order-card{
+        padding:15px;
+    }
+
+    .dish{
+        font-size:17px;
+        font-weight:600;
+    }
+
+    .order-right{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .cost,
+    .date{
+        font-size:14px;
+    }
+
+    .fav-btn{
+        font-size:22px;
+        align-self:flex-end;
+    }
+
+    .fav-card{
+        padding:15px;
+    }
+
+    .fav-name{
+        font-size:18px;
+    }
+
+    .fav-details{
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .fav-actions{
+        flex-direction:column;
+    }
+
+    .fav-actions button{
+        width:100%;
+    }
+
+    .back-btn,
+    .order-btn,
+    .see-more-btn,
+    .apply-btn{
+        width:100%;
+        font-size:15px;
+    }
+
+    .modal-content{
+        width:95%;
+        padding:20px;
+    }
+
+    .modal-content input{
+        width:100%;
+    }
+
+}
