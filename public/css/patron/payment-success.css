@@ -1,0 +1,128 @@
+      body {
+        background: #fff;
+        color: #222;
+        flex-direction: column;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --primary-orange: #ff8c3a;
+        --primary-yellow: #ffd400;
+        --dark-text: #111;
+      }
+
+      /* Center only the success section under nav */
+      main.card h1,
+      main.card .check-wrap,
+      main.card .msg {
+        display: block;
+        text-align: center;
+      }
+
+      main.card h1 {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111;
+      }
+
+      /* green check */
+      .check-wrap {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 28px;
+      }
+
+      /* proceed text */
+      .msg {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin: 0 0 34px;
+        color: #111;
+      }
+
+      /* buttons */
+      .btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+      }
+
+      .btn {
+        width: 320px;
+        padding: 16px 18px;
+        border: none;
+        border-radius: 999px;
+        font-weight: 750;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+
+      .btn-primary {
+        background: #e47329;
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: #7a2d1c;
+        color: #fff;
+      }
+
+      .btn:hover {
+        opacity: 0.92;
+        transform: translateY(-1px);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        main.card h1 {
+          margin-top: 50px;
+          font-size: 28px;
+        }
+
+        .check-wrap {
+          width: 150px;
+          height: 150px;
+        }
+
+        .msg {
+          font-size: 18px;
+          margin-bottom: 26px;
+        }
+
+        .btn {
+          width: min(320px, 90vw);
+        }
+      }
+
+      /* MOBILE NAV */
+      @media (max-width: 768px) {
+        .menu {
+          display: none;
+          position: absolute;
+          top: 90px;
+          right: 20px;
+          flex-direction: column;
+          background: white;
+          padding: 20px;
+          border-radius: 14px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+          gap: 20px;
+        }
+
+        .menu.show {
+          display: flex;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+      }

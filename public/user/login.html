@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/user/user-pages.css" />
+    <link rel="stylesheet" href="css/user/login.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-pane"></div>
+
+        <div class="right-pane">
+            <button class="backBtn">←</button>
+
+            <div class="card">
+                <img src="/images/ShiokLah(cropped).jpeg" alt="ShiokLah Logo" />
+
+                <div class="message" id="message"></div>
+
+                <div class="group">
+                    <input type="text" id="username" placeholder="Username" />
+                    <input type="password" id="password" placeholder="Password" />
+                </div>
+
+                <div class="links" id="links">
+                    <a id="register-account" href="/register">Sign up here!</a>
+                    <a href="/find-account">Forgot Password?</a>
+                </div>
+
+                <button id="loginBtn">Log in</button>
+
+                <a href="/select-role" class="mobileBackBtn">
+                    Head back to starting page
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/user/login.js"></script>
+</body>
+</html>

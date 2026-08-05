@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShiokLah!</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Open+Sans:wght@300..800&family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="../css/vendor/vendorStyles.css" />
+    <link rel="stylesheet" href="../css/vendor/vendorMenuItem.css" />
+    <link rel="stylesheet" href="../css/vendor/stallHygiene.css" />
+  </head>
+  <body>
+    <div class="container">
+
+    <!-- Vendor Navigation will be loaded here -->
+    <div id="vendor-navigation"></div>
+
+    <main class="contents hygiene-page">
+      <header class="hygiene-header">
+        <p class="section-label">Connected to your vendor account</p>
+        <h1>My Stall Hygiene Grades</h1>
+        <p id="stallSummary">Loading your assigned stall...</p>
+      </header>
+      <section id="currentGrade" class="current-grade" aria-live="polite"><p>Loading latest hygiene grade...</p></section>
+      <section class="grade-history">
+        <div class="history-heading"><h2>Inspection History</h2><button id="refreshGrades" type="button">Refresh</button></div>
+        <div id="gradeHistory"><p>Loading inspection history...</p></div>
+      </section>
+    </main>
+
+
+    <script src="../js/vendor/vendorNavigation.js"></script>
+    <script src="../js/vendor/loadVendorNavigation.js"></script>
+    <script type="module" src="../js/index.js"></script>
+    <script src="/js/vendor/stallHygiene.js"></script>
+  </body>
+</html>

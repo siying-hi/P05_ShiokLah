@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account</title>
+
+    <link rel="stylesheet" href="css/user/user-pages.css">
+    <link rel="stylesheet" href="css/user/register.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-pane"></div>
+
+        <div class="card">
+            <div class="right-pane">
+                <h2>Register</h2>
+
+                <p>
+                    Enter the email which you can be contacted.
+                    No one will see this on your profile.
+                </p>
+
+                <div class="message" id="message"></div>
+
+                <div class="inputs">
+                    <input
+                        type="text"
+                        id="firstName"
+                        placeholder="First Name">
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        placeholder="Last Name">
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email">
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Username">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm Password">
+                </div>
+
+                <button id="registerBtn">Create account</button>
+
+                <div class="divider">OR</div>
+
+                <a href="/login" class="login-link">
+                    I already have an account
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/user/register.js"></script>
+</body>
+</html>

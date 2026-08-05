@@ -1,0 +1,1032 @@
+
+/* content */
+
+.empty-filter {
+    font-family: "Open Sans",Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    margin: 20px 0;
+}
+/* ==========================
+See More / Show Less Button
+========================== */
+.filter-container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.filter-toggle {
+  background: #ff8c3a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.filter-toggle:hover {
+  background: #e6762f;
+  transform: scale(1.05);
+}
+
+.filter-box {
+  margin-top: 15px;
+  max-width: 500px;
+  background: #fff8f0;
+  border: 2px dashed #ff8c3a;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  overflow: hidden;
+}
+
+.filter-box.hidden {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #ff8c3a;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filter-group select:focus {
+  border-color: #e6762f;
+}
+
+.apply-btn {
+  background: #ff8c3a;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.apply-btn:hover {
+  background: #e6762f;
+}
+
+
+/* ==========================
+   Pagination Controls
+========================== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.pagination button:hover {
+  background: #f4f4f4;
+}
+
+.pagination .active {
+  background: #FF8C3A;
+  color: #fff;
+  border-color: #FF8C3A;
+}
+
+
+.page-btn {
+  background: #ff8c3a;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.page-btn:hover {
+  background: #e6762f;
+  transform: scale(1.05);
+}
+
+.page-btn:disabled {
+  background: #ffd1a6;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.page-number {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.page-number:hover {
+  background: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.page-number.active {
+  background: #ff8c3a;
+  color: #fff;
+  border-color: #ff8c3a;
+}
+
+
+
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fav-btn:hover {
+  transform: scale(1.2);
+}
+
+.fav-btn.liked {
+  color: #ff4d4d; /* red when liked */
+}
+
+.fav-order-list {
+  list-style: none;   /* removes bullets */
+  padding: 0;         /* removes left indentation */
+  margin: 0;
+}
+
+.fav-order-list li {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #444;
+}
+
+
+
+/* ======================================
+   Favourite Order History
+====================================== */
+
+.favourite-section {
+    margin: 40px auto;
+    max-width: 700px;
+}
+
+.fav-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fav-header h2 {
+    color: #ff7a18;
+    font-size: 28px;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 6px;
+}
+
+.fav-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.fav-empty {
+    text-align: center;
+    background: #fff;
+    border: 2px dashed #ffb066;
+    border-radius: 14px;
+    padding: 25px;
+    color: #777;
+}
+
+.fav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ======================================
+   Favourite Card
+====================================== */
+
+.fav-card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    transition: .25s;
+}
+
+.fav-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.fav-left {
+    flex: 1;
+}
+
+.fav-name {
+    font-size: 20px;
+    color: #ff7a18;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.fav-details {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+}
+
+.fav-date {
+    font-size: 13px;
+    color: #999;
+}
+
+/* ======================================
+   Buttons
+====================================== */
+
+.fav-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fav-actions button {
+    border: none;
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+/* Rename */
+
+.rename-btn {
+    background: #ffe5cf;
+    color: #ff7a18;
+}
+
+.rename-btn:hover {
+    background: #ffd1a6;
+}
+
+/* Order Again */
+
+.reorder-btn {
+    background: #ff8c3a;
+    color: white;
+}
+
+.reorder-btn:hover {
+    background: #e6762f;
+}
+
+/* Delete */
+
+.delete-btn {
+    background: #fff1f1;
+    color: #d63031;
+}
+
+.delete-btn:hover {
+    background: #ffdede;
+}
+
+/* ======================================
+   Modal
+====================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.45);
+
+    z-index: 2000;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 380px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(0,0,0,.15);
+}
+
+.modal-content h3 {
+    color: #ff7a18;
+    margin-bottom: 20px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+
+    border: 2px solid #ffb066;
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+.modal-content input:focus {
+    border-color: #ff7a18;
+}
+
+.modal-buttons {
+    margin-top: 22px;
+
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-buttons button {
+    border: none;
+    border-radius: 999px;
+
+    padding: 10px 24px;
+
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: .25s;
+}
+
+
+
+
+#saveRenameBtn {
+    background: #ff8c3a;
+    color: white;
+}
+
+#saveRenameBtn:hover {
+    background: #e6762f;
+}
+
+#cancelRenameBtn {
+    background: #ececec;
+}
+
+#cancelRenameBtn:hover {
+    background: #d9d9d9;
+}
+
+
+.see-more-btn {
+margin: 12px auto 0;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+padding: 6px 14px;
+background: #f1f5f9;          /* soft neutral */
+color: #334155;               /* slate text */
+font-family:  Arial,"Kodchasan";
+font-size: 12px;
+font-weight: 600;
+border: 1px solid #e2e8f0;
+border-radius: 999px;
+cursor: pointer;
+box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.see-more-btn:hover {
+background: #e2e8f0;
+transform: translateY(-1px);
+box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.see-more-btn:active {
+transform: scale(0.96);
+}
+
+.see-more-icon {
+font-size: 13px;
+transition: transform 0.25s ease;
+}
+
+/* rotate arrow when expanded */
+.see-more-btn.expanded .see-more-icon {
+transform: rotate(180deg);
+}
+
+.order-box {
+  max-width: 800px;          /* wider container */
+  margin: 40px auto;
+  padding: 60px 40px;        /* more horizontal padding */
+  background: #fff8f0;
+  border: 2px dashed #ff8c3a;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Adjust the table width and spacing */
+.order-items {
+  width: 90%;                /* slightly narrower than container */
+  margin: 0 auto;            /* center the table */
+  border-collapse: collapse;
+}
+
+.order-items th,
+.order-items td {
+  padding: 8px 12px;         /* more breathing room */
+  font-size: 15px;
+}
+
+.order-box h2 {
+font-size: 28px;
+font-weight: 700;
+color: #ff7a18;
+margin-bottom: 10px;
+font-family: "Montserrat", sans-serif;
+}
+
+.order-box p {
+font-size: 16px;
+color: #444;
+margin-bottom: 24px;
+font-family: "Kodchasan", Arial;
+}
+
+.order-box a {
+text-decoration: none;
+font-weight: 600;
+font-size: 15px;
+color: white;
+}
+.order-btn {
+    display: inline-block;
+    margin: 20px 0 0 20px;
+    background: #ff8c3a;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 999px;
+    border:none;
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease; /* enables animation */
+}
+
+.order-btn:hover {
+background: #e6762f;
+transform: scale(1.05); /* hover animation */
+}
+
+.teaser {
+margin: 20px 0;
+text-align: center;
+}
+
+.teaser img {
+width: 120px;
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease;
+}
+
+.teaser img:hover {
+transform: scale(1.05);
+}
+
+.teaser p {
+font-size: 14px;
+color: #555;
+margin-top: 8px;
+font-style: italic;
+}
+
+.filter-box {
+margin: 15px auto;
+max-width: 400px;
+text-align: center;
+}
+
+.filter-box input {
+width: 100%;
+padding: 10px 14px;
+border: 2px solid #ff8c3a;
+border-radius: 8px;
+font-size: 14px;
+outline: none;
+transition: border-color 0.3s ease;
+}
+
+.filter-box input:focus {
+border-color: #e6762f;
+}
+.order-list {
+list-style: none;
+padding: 0;
+margin: 20px auto;
+max-width: 500px;
+}
+
+.order-list li {
+margin-bottom: 5px;
+}
+
+.order-card {
+  display: flex;
+  flex-direction: column;
+  background: #fffaf6;
+  border-radius: 12px;
+  padding: 18px 24px;          /* more breathing space */
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.order-card:hover {
+transform: translateY(-3px);
+box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.order-card .dish {
+font-weight: 600;
+font-size: 14px;
+color: #333;
+}
+
+.order-card .date {
+font-size: 13px;
+color: #777;
+font-style: italic;
+}
+
+/* ✅ added cost styling (minimal change) */
+.order-right {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+gap: 2px;
+}
+.order-card .cost {
+font-size: 13px;
+color: #333;
+font-weight: 600;
+}
+
+
+/* fav order list to order history page button */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-orange);
+  color: #fff;
+  border: 2px solid var(--primary-orange);
+  border-radius: 22px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-left: -100px; /* move button further left */
+}
+
+.back-btn:hover {
+  background: #fff;
+  color: var(--primary-orange);
+  border-color: var(--primary-orange);
+  transform: translateX(-3px);
+}
+
+
+
+
+
+
+/* -------------------- MOBILE RESPONSIVE -------------------- */
+/* .hamburger {
+display: none;
+flex-direction: column;
+gap: 4px;
+cursor: pointer;
+}
+.hamburger div {
+width: 25px;
+height: 3px;
+background: #111;
+border-radius: 2px;
+} */
+
+@media (max-width: 992px) {
+.main-content{
+    padding:0 24px;
+}
+.order-box {
+    margin: 16px auto;
+    padding: 24px 16px;
+    border-radius: 20px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+.order-box h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.order-box p {
+    font-size: 13px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+.order-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+}
+.teaser img {
+    width: 80px;
+    border-radius: 14px;
+}
+.teaser p {
+    font-size: 12px;
+}
+.order-list li {
+    font-size: 13px;
+    padding: 8px;
+}
+.hamburger {
+    display: flex;
+}
+}
+
+.order-card {
+  background: #fffaf6;
+  border-radius: 12px;
+  padding: 22px 28px;          /* more space inside */
+  margin: 16px auto;
+  max-width: 700px;            /* wider container */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Header row: date, order info, and heart icon aligned neatly */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.order-date {
+  font-style: italic;
+  color: #666;
+  font-size: 0.95rem;
+  margin-right: 12px;     /* adds space between date and order number */
+  min-width: 100px;       /* ensures consistent spacing */
+}
+
+/* Order info aligned nicely beside date */
+.order-info {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  margin-left: 8px;       /* small buffer from date */
+}
+
+/* Table spacing for items */
+.order-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.order-items th,
+.order-items td {
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+.order-items tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Heart icon styling */
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  margin-left: auto;              /* ensures it stays at far right */
+  transition: transform 0.2s ease;
+}
+
+.fav-btn:hover {
+  transform: scale(1.2);
+}
+
+/* =========================
+   Order History Responsive
+========================= */
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .order-box {
+    max-width: 95%;
+    padding: 30px 20px;
+  }
+
+  .order-items {
+    width: 100%;
+  }
+}
+/* Tablet adjustments */
+@media (max-width: 768px) {
+  .order-box {
+    margin: 16px auto;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  .order-box h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .order-box p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .order-btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 12px auto 0;
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  .order-list {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .order-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .order-card .dish {
+    font-size: 15px;
+  }
+
+  .order-card .date,
+  .order-card .cost {
+    font-size: 13px;
+  }
+
+  .order-right {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .favourite-section {
+    margin: 20px auto;
+    padding: 0 16px;
+    max-width: 100%;
+  }
+
+  .fav-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .fav-name {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .fav-details {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .fav-actions {
+    width: 100%;
+    margin-top: 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .fav-actions button {
+    flex: 1;
+    min-width: 120px;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .fav-header h2 {
+    font-size: 22px;
+  }
+
+  .fav-header p {
+    font-size: 13px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+    .back-btn {
+    width: auto;              /* shrink to fit text */
+    padding: 6px 14px;        /* compact padding */
+    font-size: 13px;
+    margin: 0;           /* remove auto centering */
+    margin-bottom:15px;
+    display: inline-flex;     /* keep inline alignment */
+    justify-content: flex-start; /* align text to left */
+  }
+  .favourite-section {
+    text-align: left;         /* ensure section aligns left */
+    padding-left: 12px;       /* optional: small left padding */
+  }
+}
+
+
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .order-box {
+    margin: 12px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .order-box h2 {
+    font-size: 18px;
+  }
+
+  .order-box p {
+    font-size: 12px;
+  }
+
+  .order-btn {
+    font-size: 13px;
+    padding: 8px 16px;
+    width: 100%;
+  }
+
+  .order-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .order-card .dish {
+    font-size: 14px;
+  }
+
+  .order-card .date,
+  .order-card .cost {
+    font-size: 12px;
+  }
+
+  .order-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+   .back-btn {
+    width: auto;
+    padding: 5px 12px;
+    font-size: 12px;
+    margin: 8px 0;            /* remove centering */
+    display: inline-flex;
+    justify-content: flex-start;
+  }
+
+  .favourite-section {
+    text-align: left;
+    padding-left: 10px;       /* optional: small left padding */
+  }
+
+  .fav-card {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .fav-name {
+    font-size: 16px;
+  }
+
+  .fav-details {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .fav-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fav-actions button {
+    width: auto;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .fav-header h2 {
+    font-size: 20px;
+  }
+
+  .fav-header p {
+    font-size: 12px;
+  }
+
+  .fav-empty {
+    font-size: 13px;
+    padding: 18px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+}

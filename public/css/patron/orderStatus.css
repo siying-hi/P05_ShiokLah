@@ -1,0 +1,852 @@
+/* ===============================
+   SHIOKLAH ORDER STATUS
+   =============================== */
+
+:root {
+    --primary: #E87522;
+    --primary-dark: #cf6418;
+    --secondary: #FFF5EE;
+    --text: #222;
+    --grey: #666;
+    --light: #fafafa;
+    --white: #fff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    --radius: 22px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: #fafafa;
+    color: var(--text);
+}
+
+/* ===================================
+   HERO
+=================================== */
+
+.hero {
+
+    background: linear-gradient(135deg, #E87522, #FF9745);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+}
+
+.hero h1 {
+
+    font-family: "Kodchasan", sans-serif;
+
+    font-size: 58px;
+
+    margin-bottom: 15px;
+
+}
+
+.hero p {
+
+    font-size: 22px;
+
+    opacity: .95;
+
+}
+
+/* ===================================
+   MAIN WRAPPER
+=================================== */
+
+.status-wrapper {
+
+    width: min(1200px, 92%);
+
+    margin: -40px auto 70px;
+
+}
+
+/* ===================================
+   WHITE CARD
+=================================== */
+
+.status-card {
+
+    background: white;
+
+    border-radius: 28px;
+
+    box-shadow: var(--shadow);
+
+    padding: 40px;
+
+    margin-bottom: 35px;
+
+}
+
+.card-title {
+
+    color: var(--primary);
+
+    font-size: 38px;
+
+    margin-bottom: 30px;
+
+}
+
+/* ===================================
+   LOADING
+=================================== */
+
+.loading {
+
+    text-align: center;
+
+    padding: 70px;
+
+}
+
+.spinner {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    border: 7px solid #eee;
+
+    border-top: 7px solid var(--primary);
+
+    animation: spin .8s linear infinite;
+
+}
+
+.loading h2 {
+
+    margin-top: 25px;
+
+    color: var(--primary);
+
+}
+
+.loading p {
+
+    margin-top: 10px;
+
+    color: var(--grey);
+
+}
+
+@keyframes spin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+/* ===================================
+   ORDER CARD
+=================================== */
+
+.order-box {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 40px;
+
+    flex-wrap: wrap;
+
+}
+
+.order-left {
+
+    flex: 2;
+
+}
+
+.order-left h2 {
+
+    font-size: 34px;
+
+    margin-bottom: 20px;
+
+}
+
+.order-left p {
+
+    margin: 14px 0;
+
+    font-size: 20px;
+
+}
+
+.order-left strong {
+
+    color: var(--primary);
+
+}
+
+.order-right {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+/* ===================================
+   ETA CLOCK
+=================================== */
+
+.clock-box {
+
+    width: 240px;
+
+    background: var(--secondary);
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    text-align: center;
+
+}
+
+.clock {
+
+    width: 120px;
+
+    height: 120px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 8px solid var(--primary);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 55px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+
+}
+
+.clock-box h3 {
+
+    margin-top: 20px;
+
+    color: var(--primary);
+
+}
+
+#etaTimer {
+
+    font-size: 52px;
+
+    font-weight: 700;
+
+    margin: 10px 0;
+
+}
+
+.clock-box p {
+
+    color: #777;
+
+}
+
+/* ===================================
+   STATUS BADGE
+=================================== */
+
+.status {
+
+    display: inline-block;
+
+    padding: 12px 24px;
+
+    border-radius: 40px;
+
+    color: white;
+
+    font-weight: 700;
+
+    margin-top: 10px;
+
+}
+
+.pending {
+
+    background: #ff9800;
+
+}
+
+.preparing {
+
+    background: #2196F3;
+
+}
+
+.ready {
+
+    background: #43A047;
+
+}
+
+.completed {
+
+    background: #2E7D32;
+
+}
+
+/* ===================================
+   PROGRESS CARD
+=================================== */
+
+.progress-card {
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow: var(--shadow);
+
+    padding: 35px;
+
+    margin-bottom: 35px;
+
+}
+
+.progress-card h2 {
+
+    color: var(--primary);
+
+    margin-bottom: 25px;
+
+}
+
+.progress-bar {
+
+    width: 100%;
+
+    height: 18px;
+
+    background: #ececec;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+}
+
+.progress-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: linear-gradient(90deg, #E87522, #ffb26d);
+
+    transition: .6s;
+
+}
+
+.progress-labels {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 15px;
+
+    color: #666;
+
+    font-size: 15px;
+
+}
+
+/* ===================================
+   QUIZ
+=================================== */
+
+.quiz-card {
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 40px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 35px;
+
+}
+
+.quiz-card h2 {
+
+    color: var(--primary);
+
+}
+
+.quiz-card p {
+
+    color: #777;
+
+    margin: 10px 0 30px;
+
+}
+
+#question {
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+
+}
+
+#answers {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+}
+
+.answer {
+
+    background: #fff4eb;
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.answer:hover {
+
+    background: var(--primary);
+
+    color: white;
+
+    transform: translateY(-2px);
+
+}
+
+.correct {
+
+    background: #4CAF50 !important;
+
+    color: white;
+
+}
+
+.wrong {
+
+    background: #f44336 !important;
+
+    color: white;
+
+}
+
+#nextQuestion {
+
+    margin-top: 30px;
+
+    background: var(--primary);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 40px;
+
+    padding: 16px 40px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+#nextQuestion:hover {
+
+    background: var(--primary-dark);
+
+}
+
+#score {
+
+    margin-top: 20px;
+
+    font-weight: bold;
+
+    color: var(--primary);
+
+}
+
+/* ===================================
+   FACT CARD
+=================================== */
+
+.fact-card {
+
+    background: #FFF7EF;
+
+    border-left: 8px solid var(--primary);
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    margin-bottom: 30px;
+
+    box-shadow: var(--shadow);
+
+}
+
+.fact-card h2 {
+
+    color: var(--primary);
+
+    margin-bottom: 15px;
+
+}
+
+.fact-card p {
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+}
+
+/* ===================================
+   CHEF CARD
+=================================== */
+
+.chef-card {
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 35px;
+
+}
+
+.chef-card h2 {
+
+    color: var(--primary);
+
+    margin-bottom: 15px;
+
+}
+
+.chef-card p {
+
+    font-size: 20px;
+
+    font-style: italic;
+
+    color: #555;
+
+    margin-bottom: 20px;
+
+}
+
+.food-icons {
+
+    font-size: 34px;
+
+    letter-spacing: 10px;
+
+}
+
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media(max-width:900px) {
+
+    .order-box {
+
+        flex-direction: column;
+
+    }
+
+    .order-right {
+
+        width: 100%;
+
+    }
+
+    .clock-box {
+
+        width: 100%;
+
+    }
+
+    #answers {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .hero h1 {
+
+        font-size: 42px;
+
+    }
+
+    .card-title {
+
+        font-size: 30px;
+
+    }
+
+}
+.collect-btn {
+
+    margin-top: 20px;
+
+    background: #E87522;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 30px;
+
+    padding: 14px 28px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    transition: .25s;
+
+}
+
+.collect-btn:hover {
+
+    background: #cf6418;
+
+}
+
+.collect-btn:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+
+}
+
+.order-box {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 30px;
+    align-items: start;
+    padding: 40px;
+}
+
+.order-left {
+    width: 100%;
+}
+
+.receipt-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.receipt-heading h2 {
+    margin-bottom: 5px;
+}
+
+.receipt-heading p {
+    color: #777;
+}
+
+.receipt-divider {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 20px 0;
+}
+
+.receipt-labels,
+.receipt-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 70px 100px;
+    gap: 15px;
+    align-items: center;
+}
+
+.receipt-labels {
+    color: #888;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.receipt-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.receipt-item-name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.receipt-item-name span {
+    color: #888;
+    font-size: 13px;
+}
+
+.receipt-quantity {
+    text-align: center;
+}
+
+.receipt-price {
+    text-align: right;
+    font-weight: bold;
+}
+
+.receipt-summary {
+    margin-left: auto;
+    max-width: 340px;
+}
+
+.receipt-summary>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 6px 0;
+}
+
+.receipt-total {
+    color: #e47329;
+    font-size: 20px;
+    border-top: 1px solid #dddddd;
+    margin-top: 8px;
+    padding-top: 14px !important;
+}
+
+.receipt-date {
+    margin-top: 20px;
+}
+
+.progress-card {
+    grid-column: 1 / -1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.progress-bar {
+    width: 100%;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+
+    .order-box {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+
+    .order-right {
+        width: 100%;
+    }
+
+    .receipt-labels,
+    .receipt-item {
+        grid-template-columns: minmax(0, 1fr) 45px 80px;
+    }
+
+}
+/* Leave enough room for the fixed navbar */
+body {
+    padding-top: 120px;
+}
+
+@media (max-width: 992px) {
+
+    body {
+        padding-top: 100px;
+    }
+
+    .hero {
+        padding: 45px 18px 70px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .status-card {
+        padding: 25px 18px;
+    }
+
+    .loading {
+        padding: 55px 15px;
+    }
+
+}

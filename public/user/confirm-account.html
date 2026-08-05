@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/user/user-pages.css" />
+    <link rel="stylesheet" href="css/user/confirm-account.css" />
+    <title>Confirm Account</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Left image panel -->
+      <div class="left-pane"></div>
+
+      <!-- Right content panel -->
+      <div class="right-pane">
+        <button class="backBtn">←</button>
+        <div class="card">
+          <h1>Confirm your account</h1>
+          <p class="subtitle">
+            A code has been sent to you via email. Enter the code to verify your
+            account.
+          </p>
+          <div class="message" id="message"></div>
+
+          <input type="text" id="code" placeholder="Enter code" maxlength="6" />
+
+          <button id="resendBtn">Resend code</button>
+          <button id="primaryBtn">Continue</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="js/user/confirm-account.js"></script>
+  </body>
+</html>

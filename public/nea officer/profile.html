@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!-- NEA officer profile: displays account details, assignment, and profile actions. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEA Officer Profile</title>
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficer.css">
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficerDarkTheme.css?v=20260725-14">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/nea-officer/home">
+      <img src="/images/ShiokLah_cropped_-removebg-preview.png" alt="ShiokLah!">
+      <span class="brand-sub">Singaporean Hawker Favourites</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/nea-officer/home">Home</a>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/cleaning">Inspections</a>
+        <div class="dropdown">
+          <a href="/nea-officer/hygiene-grades">Hygiene Grades</a>
+          <a href="/nea-officer/cleaning">Cleaning</a>
+        </div>
+      </div>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/complaints">Reports</a>
+        <div class="dropdown">
+          <a href="/nea-officer/complaints">Complaints</a>
+          <a href="/nea-officer/certificates">Certificate Expiries</a>
+        </div>
+      </div>
+
+      <a class="active" href="/nea-officer/profile">Profile</a>
+      <a href="/logout">Log Out</a>
+    </nav>
+  </header>
+
+  <main class="profile-page">
+    <section class="profile-heading">
+      <div>
+        <p>Officer Credential</p>
+        <h1>My Profile</h1>
+      </div>
+
+      <div class="profile-tools">
+        <div class="theme-switch" aria-label="Theme mode">
+          <button type="button" class="theme-option active" data-theme-choice="dark">Dark</button>
+          <button type="button" class="theme-option" data-theme-choice="light">Light</button>
+        </div>
+
+        <button class="settings-icon-btn" id="settingsToggle" type="button" aria-expanded="false" aria-controls="settingsMenu" aria-label="Open settings">
+          ⚙
+        </button>
+
+        <div class="settings-menu" id="settingsMenu" hidden>
+          <a class="settings-link primary" href="/nea-officer/profile/edit">Edit Profile</a>
+          <a class="settings-link" href="/nea-officer/profile/change-password">Change Password</a>
+          <a class="settings-link" href="/nea-officer/profile/notifications">Notification Settings</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="credential-card" id="credentialCard" aria-labelledby="profileName">
+      <label class="photo-picker" for="profilePhotoInput" aria-label="Upload profile picture">
+        <input type="file" id="profilePhotoInput" accept="image/*">
+        <img id="profilePhotoPreview" alt="Officer profile preview" hidden>
+        <span id="avatarInitials">NEA</span>
+        <small>Set Picture</small>
+      </label>
+
+      <div class="credential-main">
+        <h2 id="profileName">Loading profile...</h2>
+        <p id="profileRole">NEA Officer</p>
+
+        <div class="credential-meta">
+          <div>
+            <span>NEA Officer ID</span>
+            <strong id="officerIdCard"></strong>
+          </div>
+          <div>
+            <span>Place Assigned</span>
+            <strong id="assignedAreaCard"></strong>
+          </div>
+          <div>
+            <span>Email</span>
+            <strong id="emailCard"></strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="credential-status">
+        <span>Credential Active</span>
+        <p>Valid through 31 Dec 2026</p>
+      </div>
+    </section>
+
+    <div id="statusMessage" class="status-message">Fetching officer details...</div>
+
+    <section class="overview-grid" id="overview">
+      <article>
+        <strong id="inspectionsMonth">-</strong>
+        <span>Inspections this month</span>
+      </article>
+
+      <article>
+        <strong id="pendingReview">-</strong>
+        <span>Cases pending review</span>
+      </article>
+
+      <article>
+        <strong id="complianceRate">-</strong>
+        <span>Stall compliance rate</span>
+      </article>
+
+      <article>
+        <strong id="advisoriesIssued">-</strong>
+        <span>Advisories issued</span>
+      </article>
+    </section>
+
+    <section class="profile-content-grid" id="profileContent">
+      <div class="details-panel" id="details">
+        <h2>Personal Details</h2>
+
+        <div class="info-grid" id="profileDetails" hidden>
+          <article class="info-card">
+            <span>NEA Officer ID</span>
+            <strong id="officerId"></strong>
+          </article>
+
+          <article class="info-card">
+            <span>Email</span>
+            <strong id="email"></strong>
+          </article>
+
+          <article class="info-card">
+            <span>Phone</span>
+            <strong id="phone"></strong>
+          </article>
+
+          <article class="info-card">
+            <span>Place Assigned</span>
+            <strong id="assignedArea"></strong>
+          </article>
+        </div>
+      </div>
+
+      <aside class="work-panel" id="inspections" aria-label="Officer work summary">
+        <h2>Recent Inspections</h2>
+
+        <div class="work-list">
+          <div>
+            <span>Assigned inspections</span>
+            <strong id="assignedInspections">-</strong>
+          </div>
+
+          <div>
+            <span>Pending follow-ups</span>
+            <strong id="pendingFollowUps">-</strong>
+          </div>
+
+          <div>
+            <span>Resolved cases</span>
+            <strong id="resolvedCases">-</strong>
+          </div>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <script src="/js/nea officer/theme.js"></script>
+  <script src="/nea-officer/profile.js"></script>
+</body>
+</html>
+
+

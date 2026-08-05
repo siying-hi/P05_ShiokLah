@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- NEA officer dashboard: profile summary, statistics, quick actions, and daily tasks. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEA Officer Home</title>
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficerHome.css?v=20260725-7">
+  <link rel="stylesheet" href="/css/neaofficer/neaOfficerDarkTheme.css?v=20260725-14">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/nea-officer/home">
+      <img src="/images/ShiokLah_cropped_-removebg-preview.png" alt="ShiokLah!">
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="active" href="/nea-officer/home">Home</a>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/cleaning">Inspections</a>
+        <div class="dropdown">
+          <a href="/nea-officer/hygiene-grades">Hygiene Grades</a>
+          <a href="/nea-officer/cleaning">Cleaning</a>
+        </div>
+      </div>
+
+      <div class="nav-item has-dropdown">
+        <a href="/nea-officer/complaints">Reports</a>
+        <div class="dropdown">
+          <a href="/nea-officer/complaints">Complaints</a>
+          <a href="/nea-officer/certificates">Certificate Expiries</a>
+        </div>
+      </div>
+
+      <a href="/nea-officer/profile">Profile</a>
+      <a href="/logout">Log Out</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <img src="https://www.nea.gov.sg/assets/images/design/logo.png" alt="National Environment Agency">
+      <p>National Environment Agency</p>
+      <h1>Officer Dashboard</h1>
+    </div>
+  </section>
+
+  <main class="dashboard">
+    <section class="welcome-panel">
+      <div>
+        <p class="eyebrow">Welcome back</p>
+        <h2 id="officerName">NEA Officer</h2>
+        <p id="assignedArea">Assigned area loading...</p>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Officer summary">
+      <a class="stat-card" href="/nea-officer/cleaning">
+        <span>Cleaning Reviews</span>
+        <strong id="cleaningReviewsCount">0</strong>
+      </a>
+
+      <a class="stat-card" href="/nea-officer/complaints">
+        <span>Pending Reports</span>
+        <strong id="pendingReportsCount">0</strong>
+      </a>
+
+      <a class="stat-card" href="/nea-officer/cleaning">
+        <span>Resolved Cases</span>
+        <strong id="resolvedCasesCount">0</strong>
+      </a>
+
+      <a class="stat-card" href="/nea-officer/hygiene-grades">
+        <span>Hawker Stalls Checked</span>
+        <strong id="stallsCheckedCount">0</strong>
+      </a>
+    </section>
+
+    <section class="actions-section">
+      <h2>Quick Actions</h2>
+
+      <div class="action-grid">
+        <a class="action-card" href="/nea-officer/cleaning" aria-label="Review Cleaning Photos" title="Review Cleaning Photos">
+          <span class="action-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M4 7h3l1.4-2h7.2L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="4"/><path d="m9.8 13 1.4 1.4 3-3"/></svg>
+          </span>
+          <h3>Review Cleaning Photos</h3>
+          <p>Approve or reject vendor cleaning submissions.</p>
+        </a>
+
+        <a class="action-card" href="/nea-officer/hygiene-grades" aria-label="Hygiene Grades" title="Hygiene Grades">
+          <span class="action-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M12 3 5 6v5c0 4.8 2.8 8.2 7 10 4.2-1.8 7-5.2 7-10V6l-7-3Z"/><path d="m8.7 12 2.1 2.1 4.6-4.6"/></svg>
+          </span>
+          <h3>Hygiene Grades</h3>
+          <p>Review and update stall inspection grades.</p>
+        </a>
+
+        <a class="action-card" href="/nea-officer/complaints" aria-label="View Reports" title="View Reports">
+          <span class="action-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><path d="M8 4h8l3 3v13H5V4h3Z"/><path d="M9 4v4h6V4M8 12h8M8 16h6"/></svg>
+          </span>
+          <h3>View Reports</h3>
+          <p>Review complaints and unresolved cases.</p>
+        </a>
+
+        <a class="action-card" href="/nea-officer/profile" aria-label="My Profile" title="My Profile">
+          <span class="action-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="img"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.7-4.2 3.2-6.5 7.5-6.5s6.8 2.3 7.5 6.5"/></svg>
+          </span>
+          <h3>My Profile</h3>
+          <p>View your officer details and assigned location.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="task-panel">
+      <h2>Today&apos;s Tasks</h2>
+
+      <div class="task-list" id="todayTasksList">
+        <p class="task-empty">Loading today&apos;s tasks...</p>
+      </div>
+
+      <div class="inspection-queue" aria-labelledby="inspectionQueueTitle">
+        <div class="inspection-queue-header">
+          <h3 id="inspectionQueueTitle">Morning Inspections To Follow Up</h3>
+          <a href="/nea-officer/morning-inspection-report/">Open report</a>
+        </div>
+
+        <div id="inspectionQueueList" class="inspection-queue-list">
+          <p class="inspection-empty">Loading inspection work...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/nea officer/theme.js"></script>
+  <script src="/nea-officer/home.js"></script>
+</body>
+</html>
+
+

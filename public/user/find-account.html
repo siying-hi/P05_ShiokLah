@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/user/user-pages.css" />
+    <link rel="stylesheet" href="css/user/find-account.css" />
+    <title>Find Account</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-pane"></div>
+      <div class="right-pane">
+        <div class="card">
+          <h1>Find your account</h1>
+          <p class="instructions">Enter your username</p>
+          <div class="message" id="message"></div>
+          <input type="username" id="username" placeholder="Username" />
+          <p class="note">
+            You may receive emails from us for security and login purposes.
+          </p>
+          <button id="continueBtn">Continue</button>
+          <div class="divider">OR</div>
+          <a href="/login">I already have an account</a>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="js/user/find-account.js"></script>
+  </body>
+</html>
