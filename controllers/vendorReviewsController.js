@@ -4,7 +4,7 @@ const vendorModel = require("../models/vendorModel");
 // Get feedback for logged-in vendor's stall
 exports.getFeedbackByStallId = async (req, res) => {
     try {
-        let vendorId = req.user.vendor_id;
+        const vendorId = req.user?.id;
 
         if (!vendorId) {
             return res.status(401).json({
@@ -12,7 +12,7 @@ exports.getFeedbackByStallId = async (req, res) => {
             });
         }
 
-        let stallId = await vendorModel.getStallIdByVendorId(vendorId);
+        const stallId = await vendorModel.getStallIdByVendorId(vendorId);
 
         if (!stallId) {
             return res.status(404).json({
@@ -20,7 +20,7 @@ exports.getFeedbackByStallId = async (req, res) => {
             });
         }
 
-        let feedback = await reviewModel.getFeedbackByStallId(stallId);
+        const feedback = await reviewModel.getFeedbackByStallId(stallId);
 
         return res.status(200).json(feedback);
 
@@ -36,7 +36,7 @@ exports.getFeedbackByStallId = async (req, res) => {
 // Get complaints for logged-in vendor's stall
 exports.getComplaintByStallId = async (req, res) => {
     try {
-        let vendorId = req.user.vendor_id;
+        const vendorId = req.user?.id;
 
         if (!vendorId) {
             return res.status(401).json({
@@ -44,7 +44,7 @@ exports.getComplaintByStallId = async (req, res) => {
             });
         }
 
-        let stallId = await vendorModel.getStallIdByVendorId(vendorId);
+        const stallId = await vendorModel.getStallIdByVendorId(vendorId);
 
         if (!stallId) {
             return res.status(404).json({
@@ -52,7 +52,7 @@ exports.getComplaintByStallId = async (req, res) => {
             });
         }
 
-        let complaints = await reviewModel.getComplaintByStallId(stallId);
+        const complaints = await reviewModel.getComplaintByStallId(stallId);
 
         return res.status(200).json(complaints);
 

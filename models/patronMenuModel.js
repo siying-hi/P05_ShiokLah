@@ -112,6 +112,7 @@ async function getMenuItems(stallId) {
         // Open a connection to the database
         connection = await sql.connect(dbConfig);
 
+        console.log("Fetching menu for stall:", stallId);
         // Retrieve the stall's menu items
         const result = await connection.request()
 
@@ -136,13 +137,14 @@ async function getMenuItems(stallId) {
 
                 FROM MenuItem
 
-                WHERE stall_id = @stallId
+                WHERE stall_id = @stallId  AND visibility = 1
 
                 ORDER BY item_name
 
             `);
 
         // Return all menu items belonging to the stall
+        console.log("Rows found:", result.recordset.length);
         return result.recordset;
 
     }

@@ -49,10 +49,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     }
 
-await loadCart();
-await loadFavouriteItemIds();
-await loadStallMenu(stallId);
-await loadPatronHygieneAlerts();
+    await loadCart();
+    await loadFavouriteItemIds();
+    await loadStallMenu(stallId);
+    await loadPatronHygieneAlerts();
 
 });
 
@@ -144,6 +144,8 @@ async function loadStallMenu(stallId) {
         );
 
         const data = await response.json();
+        console.log(data);
+        console.log(data.menuItems);
 
         if (!response.ok) {
 
@@ -206,7 +208,7 @@ function renderMenu(menuItems) {
 
     root.appendChild(heading);
 
-        // No menu items
+    // No menu items
     if (!menuItems || menuItems.length === 0) {
 
         const message = document.createElement("p");
@@ -273,130 +275,130 @@ function renderMenu(menuItems) {
         const actions = document.createElement("div");
         actions.className = "menu-actions";
         const heartBtn =
-    document.createElement("button");
+            document.createElement("button");
 
-heartBtn.type = "button";
-heartBtn.className = "heart-btn";
-
-
-const heartIcon =
-    document.createElement("span");
-
-heartIcon.className = "heart-icon";
-heartIcon.textContent = "♥";
+        heartBtn.type = "button";
+        heartBtn.className = "heart-btn";
 
 
-if (
-    favouriteItemIds.includes(
-        item.item_id
-    )
-) {
+        const heartIcon =
+            document.createElement("span");
 
-    heartBtn.classList.add("active");
-
-}
+        heartIcon.className = "heart-icon";
+        heartIcon.textContent = "♥";
 
 
-heartBtn.appendChild(heartIcon);
+        if (
+            favouriteItemIds.includes(
+                item.item_id
+            )
+        ) {
+
+            heartBtn.classList.add("active");
+
+        }
 
 
-heartBtn.addEventListener(
-    "click",
-    async () => {
-
-        try {
-
-            heartBtn.disabled = true;
-
-            const isFavourite =
-                heartBtn.classList.contains(
-                    "active"
-                );
-
-            let response;
+        heartBtn.appendChild(heartIcon);
 
 
-            if (isFavourite) {
+        heartBtn.addEventListener(
+            "click",
+            async () => {
 
-                response = await apiFetch(
-                    `/api/favourites/${item.item_id}`,
-                    {
-                        method: "DELETE"
+                try {
+
+                    heartBtn.disabled = true;
+
+                    const isFavourite =
+                        heartBtn.classList.contains(
+                            "active"
+                        );
+
+                    let response;
+
+
+                    if (isFavourite) {
+
+                        response = await apiFetch(
+                            `/api/favourites/${item.item_id}`,
+                            {
+                                method: "DELETE"
+                            }
+                        );
+
                     }
-                );
+                    else {
 
-            }
-            else {
+                        response = await apiFetch(
+                            `/api/favourites/${item.item_id}`,
+                            {
+                                method: "POST"
+                            }
+                        );
 
-                response = await apiFetch(
-                    `/api/favourites/${item.item_id}`,
-                    {
-                        method: "POST"
                     }
-                );
-
-            }
 
 
-            const data =
-                await response.json();
+                    const data =
+                        await response.json();
 
 
-            if (!response.ok) {
+                    if (!response.ok) {
 
-                alert(
-                    data.message ||
-                    "Unable to update favourite."
-                );
+                        alert(
+                            data.message ||
+                            "Unable to update favourite."
+                        );
 
-                return;
+                        return;
 
-            }
+                    }
 
 
-            if (isFavourite) {
+                    if (isFavourite) {
 
-                heartBtn.classList.remove(
-                    "active"
-                );
+                        heartBtn.classList.remove(
+                            "active"
+                        );
 
-                favouriteItemIds =
-                    favouriteItemIds.filter(
-                        id =>
-                            id !== item.item_id
+                        favouriteItemIds =
+                            favouriteItemIds.filter(
+                                id =>
+                                    id !== item.item_id
+                            );
+
+                    }
+                    else {
+
+                        heartBtn.classList.add(
+                            "active"
+                        );
+
+                        favouriteItemIds.push(
+                            item.item_id
+                        );
+
+                    }
+
+                }
+                catch (error) {
+
+                    console.error(error);
+
+                    alert(
+                        "Unable to update favourite."
                     );
 
-            }
-            else {
+                }
+                finally {
 
-                heartBtn.classList.add(
-                    "active"
-                );
+                    heartBtn.disabled = false;
 
-                favouriteItemIds.push(
-                    item.item_id
-                );
+                }
 
             }
-
-        }
-        catch (error) {
-
-            console.error(error);
-
-            alert(
-                "Unable to update favourite."
-            );
-
-        }
-        finally {
-
-            heartBtn.disabled = false;
-
-        }
-
-    }
-);
+        );
 
         const stepper = document.createElement("div");
         stepper.className = "qty-stepper";
@@ -413,8 +415,8 @@ heartBtn.addEventListener(
         );
 
         qtyVal.textContent = existing
-        ? existing.quantity
-        : "0";
+            ? existing.quantity
+            : "0";
 
         const plusBtn = document.createElement("button");
         plusBtn.type = "button";
@@ -504,9 +506,9 @@ heartBtn.addEventListener(
 
             }
 
-});
+        });
 
-       plusBtn.addEventListener("click", async () => {
+        plusBtn.addEventListener("click", async () => {
 
             try {
 
@@ -603,8 +605,8 @@ heartBtn.addEventListener(
         stepper.appendChild(qtyVal);
         stepper.appendChild(plusBtn);
 
-actions.appendChild(heartBtn);
-actions.appendChild(stepper);
+        actions.appendChild(heartBtn);
+        actions.appendChild(stepper);
 
         const content = document.createElement("div");
 

@@ -126,8 +126,8 @@ router.put("/api/orders/:id/status",verifyJWT,authorise("vendor"),orderControlle
 router.get("/api/profile",verifyJWT,authorise("vendor"),vendorController.getVendorProfile);
 
 // Reviews
-router.get("/api/complaint",verifyJWT,authorise("vendor"),reviewController.getComplaintByStallId);
-router.get("/api/feedback",verifyJWT,authorise("vendor"),reviewController.getFeedbackByStallId);
+router.get("/api/vendor-complaint",verifyJWT,authorise("vendor"),reviewController.getComplaintByStallId);
+router.get("/api/vendor-feedback",verifyJWT,authorise("vendor"),reviewController.getFeedbackByStallId);
 
    
 module.exports = router;
