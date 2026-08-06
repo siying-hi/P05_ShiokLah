@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Queue Management - ShiokLah!</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/patron/main.css" />
+
+    <link rel="stylesheet" href="/css/operator/queueManagement.css" />
+  </head>
+
+  <body>
+    <!-- Operator Navigation -->
+    <nav class="navrectangle">
+      <div class="container">
+        <div class="top-nav">
+          <div class="nav-left">
+            <div class="Logo">
+              <img src="/images/ShiokLah(cropped).jpeg" alt="ShiokLah Logo" />
+            </div>
+          </div>
+
+          <div class="nav-center">
+            <h1>Queue Management</h1>
+          </div>
+
+          <div class="nav-right">
+            <ul class="nav-links">
+              <li>
+                <a href="/operator/"> Dashboard </a>
+              </li>
+
+              <li>
+                <a href="/queueManagement" class="active"> Queue Management </a>
+              </li>
+
+              <li>
+                <a href="/operatorManageRental"> Stall Inspection </a>
+              </li>
+
+              <li>
+                <a href="/select-role"> Log out </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="queue-page">
+      <!-- Page Heading -->
+      <section class="page-heading">
+        <div>
+          <p class="heading-label">LIVE ORDER TRACKING</p>
+
+          <h1>Digital Queue Management</h1>
+
+          <p class="heading-description">
+            View and manage active customer orders across all stalls.
+          </p>
+        </div>
+
+        <div class="live-status">
+          <span class="live-dot"></span>
+          Live Queue
+        </div>
+      </section>
+
+      <!-- Queue Summary -->
+      <section class="summary-grid">
+        <!-- Waiting Summary -->
+        <article class="summary-card">
+          <div class="summary-icon waiting-icon">01</div>
+
+          <div>
+            <span>Waiting</span>
+
+            <strong id="waitingSummaryCount"> 0 </strong>
+          </div>
+        </article>
+
+        <!-- Preparing Summary -->
+        <article class="summary-card">
+          <div class="summary-icon preparing-icon">02</div>
+
+          <div>
+            <span>Preparing</span>
+
+            <strong id="preparingSummaryCount"> 0 </strong>
+          </div>
+        </article>
+
+        <!-- Ready Summary -->
+        <article class="summary-card">
+          <div class="summary-icon ready-icon">03</div>
+
+          <div>
+            <span>Ready</span>
+
+            <strong id="readySummaryCount"> 0 </strong>
+          </div>
+        </article>
+
+        <!-- Total Summary -->
+        <article class="summary-card">
+          <div class="summary-icon total-icon">04</div>
+
+          <div>
+            <span>Active Orders</span>
+
+            <strong id="activeSummaryCount"> 0 </strong>
+          </div>
+        </article>
+      </section>
+
+      <!-- Search and Filters -->
+      <section class="queue-controls">
+        <div class="search-box">
+          <input
+            type="search"
+            id="queueSearch"
+            placeholder="Search queue number, order number or stall..."
+          />
+        </div>
+
+        <div class="filter-buttons">
+          <button type="button" class="filter-button active" data-status="All">
+            All Orders
+          </button>
+
+          <button type="button" class="filter-button" data-status="Pending">
+            Waiting
+          </button>
+
+          <button type="button" class="filter-button" data-status="Preparing">
+            Preparing
+          </button>
+
+          <button type="button" class="filter-button" data-status="Ready">
+            Ready
+          </button>
+        </div>
+      </section>
+
+      <!-- Digital Queue Board -->
+      <section class="queue-board">
+        <!-- Waiting Column -->
+        <div class="queue-column">
+          <div class="column-heading">
+            <div>
+              <span class="column-dot waiting-dot"></span>
+
+              <h2>Waiting</h2>
+            </div>
+
+            <span class="column-count" id="waitingColumnCount"> 0 </span>
+          </div>
+
+          <!-- Real pending orders appear here -->
+          <div class="queue-list" id="waitingQueue"></div>
+        </div>
+
+        <!-- Preparing Column -->
+        <div class="queue-column">
+          <div class="column-heading">
+            <div>
+              <span class="column-dot preparing-dot"></span>
+
+              <h2>Preparing</h2>
+            </div>
+
+            <span class="column-count" id="preparingColumnCount"> 0 </span>
+          </div>
+
+          <!-- Real preparing orders appear here -->
+          <div class="queue-list" id="preparingQueue"></div>
+        </div>
+
+        <!-- Ready Column -->
+        <div class="queue-column">
+          <div class="column-heading">
+            <div>
+              <span class="column-dot ready-dot"></span>
+
+              <h2>Ready for Collection</h2>
+            </div>
+
+            <span class="column-count" id="readyColumnCount"> 0 </span>
+          </div>
+
+          <!-- Real ready orders appear here -->
+          <div class="queue-list" id="readyQueue"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Digital Queue JavaScript -->
+    <script type="module" src="/js/operator/queueManagement.js"></script>
+  </body>
+</html>
