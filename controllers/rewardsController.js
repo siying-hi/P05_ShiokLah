@@ -202,11 +202,92 @@ async function useReward(req, res) {
     }
 
 }
+async function claimSpinPrize(req, res) {
 
+    try {
+
+        const patronId =
+            req.user.id;
+
+        const prize =
+            String(req.body.prize || "");
+
+        const pointPrizes = {
+            "1 Point": 1,
+            "2 Points": 2,
+            "5 Points": 5
+        };
+
+        if (pointPrizes[prize]) {
+
+            const result =
+                await rewardsModel.addSpinPoints(
+                    patronId,
+                    pointPrizes[prize]
+                );
+
+            return res.json({
+                message:
+                    `${pointPrizes[prize]} point(s) added successfully.`,
+                points: result.points
+            });
+
+        }
+
+        if (prize === "$2 Voucher") {
+
+            const voucher =
+                await rewardsModel.giveSpinVoucher(
+                    patronId
+                );
+
+            return res.json({
+                message:
+                    "$2 voucher added successfully.",
+                voucher
+            });
+
+        }
+
+        if (
+            prize === "Try Again" ||
+            prize === "Better Luck"
+        ) {
+
+            return res.json({
+                message:
+                    "No reward received.",
+                noReward: true
+            });
+
+        }
+
+        return res.status(400).json({
+            message:
+                "Invalid Lucky Spin prize."
+        });
+
+    }
+    catch (error) {
+
+        console.error(
+            "Lucky Spin error:",
+            error
+        );
+
+        return res.status(500).json({
+            message:
+                "Unable to save Lucky Spin prize."
+        });
+
+    }
+}
 module.exports = {
     getRewards,
+    claimSpinPrize,
     getPoints,
     dailyCheckIn,
     markRewardAsSeen,
-    useReward
+    useReward,
+    claimSpinPrize
 };

@@ -175,6 +175,8 @@ app.use("/api/nea-officer/cleaning-submissions", cleaningRoutes);
 app.use("/api/stalls", stallRoutes);
 //aadya complaints 
 app.use("/api/complaint", ComplaintsRoutes);
+// Route for Order APIs
+app.use("/api/orders", orderRoutes);
 app.use("/", vendorRoutes);
 app.use("/", userRoutes);
 app.use("/", patronRoutes);
@@ -183,8 +185,7 @@ app.use("/", creditRoutes);
 app.use("/api/complaints", complaintsRoutes);
 
 
-// Route for Order APIs
-app.use("/api/orders", orderRoutes);
+
 app.use(
     "/api/favourites",
     menuItemfavouriteRoutes

@@ -95,6 +95,7 @@ async function getFeedbackById(feedbackId, patronId) {
 
 // Create feedback
 async function createFeedback(
+    orderId,
     patronId,
     stallId,
     foodRating,
@@ -107,6 +108,11 @@ async function createFeedback(
 
     const result = await connection
         .request()
+        .input(
+    "orderId",
+    sql.Int,
+    orderId
+)
         .input(
             "patronId",
             sql.Int,
@@ -149,7 +155,7 @@ async function createFeedback(
             )
             OUTPUT INSERTED.*
             VALUES (
-                NULL,
+                @orderId,
                 @stallId,
                 @patronId,
                 @foodRating,

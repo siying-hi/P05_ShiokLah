@@ -751,7 +751,7 @@ const spinColours = [
 ];
 
 const spinCooldown =
-    48 * 60 * 60 * 1000;
+    12 * 60 * 60 * 1000;
 
 
 // Draw the wheel
@@ -916,23 +916,32 @@ function updateSpinButton() {
     spinButton.textContent =
         "Come back later";
 
-    const hours =
-        Math.floor(
-            timeRemaining /
+const hours =
+    Math.floor(
+        timeRemaining /
+        (60 * 60 * 1000)
+    );
+
+const minutes =
+    Math.floor(
+        (
+            timeRemaining %
             (60 * 60 * 1000)
-        );
+        ) /
+        (60 * 1000)
+    );
 
-    const minutes =
-        Math.floor(
-            (
-                timeRemaining %
-                (60 * 60 * 1000)
-            ) /
+const seconds =
+    Math.floor(
+        (
+            timeRemaining %
             (60 * 1000)
-        );
+        ) /
+        1000
+    );
 
-    spinTimer.textContent =
-        `Next spin in ${hours}h ${minutes}m`;
+spinTimer.textContent =
+    `Next spin in ${hours}h ${minutes}m ${seconds}s`;
 
 }
 
@@ -943,9 +952,7 @@ spinButton.addEventListener(
     function () {
 
         if (spinButton.disabled) {
-
             return;
-
         }
 
         spinButton.disabled = true;
@@ -978,24 +985,104 @@ spinButton.addEventListener(
             `rotate(${finalRotation}deg)`;
 
         setTimeout(
-            function () {
+            async function () {
 
                 const prize =
                     spinPrizes[
                         winningIndex
                     ];
 
-                localStorage.setItem(
-                    "shiok_spin_cooldown_v1",
-                    Date.now()
-                );
+                /*
+                 * Try Again does not consume
+                 * the patron's spin.
+                 */
+                if (prize === "Try Again") {
 
-                showRewardMessage(
-                    "Lucky Spin Result 🎉",
-                    `You won: ${prize}`
-                );
+                    showRewardMessage(
+                        "Try Again!",
+                        "You can spin the wheel again."
+                    );
 
-                updateSpinButton();
+                    spinButton.disabled = false;
+                    spinButton.textContent = "Spin";
+
+                    return;
+
+                }
+
+                try {
+
+                    const response =
+                        await apiFetch(
+                            "/api/rewards/spin",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+                                    prize
+                                })
+                            }
+                        );
+
+                    const data =
+                        await response.json();
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message ||
+                            "Unable to save prize."
+                        );
+
+                    }
+
+                    /*
+                     * Successful prizes and
+                     * Better Luck consume the spin.
+                     */
+                    localStorage.setItem(
+                        "shiok_spin_cooldown_v1",
+                        Date.now()
+                    );
+
+                    showRewardMessage(
+                        prize === "Better Luck"
+                            ? "Better Luck Next Time"
+                            : "Lucky Spin Result 🎉",
+
+                        prize === "Better Luck"
+                            ? "No prize this time. Try again in two minutes."
+                            : `You won: ${prize}`
+                    );
+
+                    await loadPoints();
+                    await loadRewards();
+
+                    updateSpinButton();
+
+                }
+                catch (error) {
+
+                    console.error(
+                        "Spin prize error:",
+                        error
+                    );
+
+                    showRewardMessage(
+                        "Unable to Save Prize",
+                        error.message
+                    );
+
+                    // Allow retry when saving fails
+                    spinButton.disabled = false;
+                    spinButton.textContent = "Spin";
+
+                }
 
             },
             4000
@@ -1004,7 +1091,6 @@ spinButton.addEventListener(
     }
 );
 
-
 // Draw immediately when the page loads
 drawWheel();
 
@@ -1012,5 +1098,5 @@ updateSpinButton();
 
 setInterval(
     updateSpinButton,
-    60000
+    1000
 );
