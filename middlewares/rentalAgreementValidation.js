@@ -130,29 +130,86 @@ function validateRentalAgreementId(req, res, next) {
 }
 
 
-// Middleware to validate create rental agreement data
-function validateCreateRentalAgreement(req, res, next) {
+function validateRenewRentalAgreement(req, res, next) {
 
-  const { error } =
-    createRentalAgreementSchema.validate(req.body, {
-      abortEarly: false
-    });
+    const {
+        startDate,
+        endDate,
+        tradeType,
+        termCondition
+    } = req.body;
 
 
-  if (error) {
+    const errors = [];
 
-    return res.status(400).json({
 
-      error:
-      error.details.map(detail => detail.message)
+    if (!startDate) {
 
-    });
-  }
-  next();
+        errors.push(
+            "Start date is required."
+        );
+
+    }
+
+
+    if (!endDate) {
+
+        errors.push(
+            "End date is required."
+        );
+
+    }
+
+
+    if (
+        startDate &&
+        endDate &&
+        new Date(endDate) <= new Date(startDate)
+    ) {
+
+        errors.push(
+            "End date must be after start date."
+        );
+
+    }
+
+
+    if (!tradeType) {
+
+        errors.push(
+            "Trade type is required."
+        );
+
+    }
+
+
+    if (!termCondition) {
+
+        errors.push(
+            "Terms and conditions are required."
+        );
+
+    }
+
+
+    if (errors.length > 0) {
+
+        return res.status(400).json({
+
+            error: errors
+
+        });
+
+    }
+
+
+    next();
+
 }
+
 
 module.exports = {
   validateRentalAgreement,
   validateRentalAgreementId,
-  validateCreateRentalAgreement
+  validateRenewRentalAgreement
 };
