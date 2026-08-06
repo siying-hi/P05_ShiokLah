@@ -158,9 +158,162 @@ async function collectOrder(req, res) {
 
 }
 
+async function getOperatorOrders(req, res) {
 
+    try {
+
+        const orders =
+            await orderModel.getOperatorOrders();
+
+        res.json(orders);
+
+    }
+    catch (error) {
+
+        console.error(
+            "Get operator orders error:",
+            error
+        );
+
+        res.status(500).json({
+            message:
+                "Failed to retrieve operator orders."
+        });
+
+    }
+
+}
+
+
+async function updateOperatorOrderStatus(req, res) {
+
+    try {
+
+        const orderId =
+            Number(req.params.orderId);
+
+        const status =
+            String(req.body.status || "").trim();
+
+        const allowedStatuses = [
+            "Preparing",
+            "Ready"
+        ];
+
+        if (
+            !Number.isInteger(orderId) ||
+            orderId <= 0
+        ) {
+
+            return res.status(400).json({
+                message: "Invalid order id."
+            });
+
+        }
+
+        if (!allowedStatuses.includes(status)) {
+
+            return res.status(400).json({
+                message: "Invalid order status."
+            });
+
+        }
+
+        const updated =
+            await orderModel.updateOperatorOrderStatus(
+                orderId,
+                status
+            );
+
+        if (!updated) {
+
+            return res.status(404).json({
+                message: "Order not found."
+            });
+
+        }
+
+        res.json({
+            message:
+                "Order status updated successfully."
+        });
+
+    }
+    catch (error) {
+
+        console.error(
+            "Operator update error:",
+            error
+        );
+
+        res.status(500).json({
+            message:
+                "Failed to update order status."
+        });
+
+    }
+
+}
+
+
+async function operatorCollectOrder(req, res) {
+
+    try {
+
+        const orderId =
+            Number(req.params.orderId);
+
+        if (
+            !Number.isInteger(orderId) ||
+            orderId <= 0
+        ) {
+
+            return res.status(400).json({
+                message: "Invalid order id."
+            });
+
+        }
+
+        const collected =
+            await orderModel.operatorCollectOrder(
+                orderId
+            );
+
+        if (!collected) {
+
+            return res.status(404).json({
+                message:
+                    "Ready order not found."
+            });
+
+        }
+
+        res.json({
+            message:
+                "Order marked as collected."
+        });
+
+    }
+    catch (error) {
+
+        console.error(
+            "Operator collect error:",
+            error
+        );
+
+        res.status(500).json({
+            message:
+                "Failed to collect order."
+        });
+
+    }
+
+}
 module.exports = {
     getOrderStatus,
     updateOrderStatus,
-    collectOrder
+    collectOrder,
+    getOperatorOrders,
+    updateOperatorOrderStatus,
+    operatorCollectOrder
 };

@@ -672,12 +672,164 @@ async function collectOrder(
     }
 
 }
+async function getOperatorOrders() {
+
+    const connection =
+        await sql.connect(dbConfig);
+
+    try {
+
+        const result =
+            await connection.request()
+                .query(`
+                    SELECT
+                        o.order_id,
+                        o.patron_id,
+                        o.stall_id,
+                        o.time_created,
+                        o.order_status,
+                        o.total_price,
+                        s.stall_name,
+                        SUM(oi.quantity) AS item_count
+
+                    FROM Orders o
+
+                    INNER JOIN Stalls s
+                        ON o.stall_id = s.stall_id
+
+                    INNER JOIN OrderItems oi
+                        ON o.order_id = oi.order_id
+
+                    WHERE o.order_status IN (
+                        'Pending',
+                        'Preparing',
+                        'Ready'
+                    )
+
+                    GROUP BY
+                        o.order_id,
+                        o.patron_id,
+                        o.stall_id,
+                        o.time_created,
+                        o.order_status,
+                        o.total_price,
+                        s.stall_name
+
+                    ORDER BY o.time_created ASC
+                `);
+
+        return result.recordset;
+
+    }
+    finally {
+
+        await connection.close();
+
+    }
+
+}
+
+
+async function updateOperatorOrderStatus(
+    orderId,
+    status
+) {
+
+    const connection =
+        await sql.connect(dbConfig);
+
+    try {
+
+        const result =
+            await connection.request()
+
+                .input(
+                    "orderId",
+                    sql.Int,
+                    orderId
+                )
+
+                .input(
+                    "status",
+                    sql.VarChar(20),
+                    status
+                )
+
+                .query(`
+                    UPDATE Orders
+
+                    SET order_status = @status
+
+                    WHERE order_id = @orderId
+                `);
+
+        return result.rowsAffected[0] > 0;
+
+    }
+    finally {
+
+        await connection.close();
+
+    }
+
+}
+
+
+async function operatorCollectOrder(orderId) {
+
+    const connection =
+        await sql.connect(dbConfig);
+
+    try {
+
+        const result =
+            await connection.request()
+
+                .input(
+                    "orderId",
+                    sql.Int,
+                    orderId
+                )
+
+                .query(`
+                    SELECT patron_id
+
+                    FROM Orders
+
+                    WHERE order_id = @orderId
+                    AND order_status = 'Ready'
+                `);
+
+        if (result.recordset.length === 0) {
+
+            return false;
+
+        }
+
+        const patronId =
+            result.recordset[0].patron_id;
+
+        return await collectOrder(
+            orderId,
+            patronId
+        );
+
+    }
+    finally {
+
+        await connection.close();
+
+    }
+
+}
 module.exports = {
     checkout,
     getOrderStatus,
     updateOrderStatus,
-    collectOrder
-
+    collectOrder,
+    operatorCollectOrder,
+    getOperatorOrders,
+    updateOperatorOrderStatus
 };
 
 

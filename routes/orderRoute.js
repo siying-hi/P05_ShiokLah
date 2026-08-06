@@ -36,6 +36,27 @@ router.post(
     orderController.collectOrder
 );
 
+router.get(
+    "/operator/all",
+    verifyJWT,
+    authorise(["operator"]),
+    orderController.getOperatorOrders
+);
 
+
+router.put(
+    "/operator/:orderId/status",
+    verifyJWT,
+    authorise(["operator"]),
+    orderController.updateOperatorOrderStatus
+);
+
+
+router.post(
+    "/operator/:orderId/collect",
+    verifyJWT,
+    authorise(["operator"]),
+    orderController.operatorCollectOrder
+);
 module.exports =
     router;

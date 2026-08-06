@@ -148,6 +148,16 @@ app.get("/rewards", (req, res) => {
 
 });
 
+app.get("/queueManagement", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "public",
+      "operator",
+      "digitalqueue.html"
+    )
+  );
+});
 // app.get("/logout", (req, res) => {
 //   req.session.destroy(() => {
 //     res.redirect("/user/select-role.html");
