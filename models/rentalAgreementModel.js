@@ -294,15 +294,68 @@ async function updateRentalAgreement(
 
 }
 
+async function getAllRentalAgreements() {
+
+    let connection;
+
+    try {
+
+        connection = await sql.connect(dbConfig);
+
+        const result = await connection.request()
+
+            .query(`
+
+                SELECT
+
+                    ra.agreement_id,
+                    ra.stall_id,
+                    fs.stall_name,
+                    hc.hawker_centre_name,
+
+                    ra.agr_start_date,
+                    ra.agr_end_date,
+
+                    DATEDIFF(
+                        DAY,
+                        ra.agr_start_date,
+                        ra.agr_end_date
+                    ) + 1 AS validity_period,
+
+                    ra.status
+
+                FROM RentalAgreement ra
+
+                INNER JOIN FoodStall fs
+                    ON ra.stall_id = fs.stall_id
+
+                INNER JOIN HawkerCentre hc
+                    ON fs.hawker_centre_id = hc.hawker_centre_id
+
+                ORDER BY
+                    ra.agr_start_date DESC
+
+            `);
+
+        return result.recordset;
+
+    } finally {
+
+        if (connection) {
+
+            await connection.close();
+
+        }
+
+    }
+
+};
+
 module.exports = {
-
     getRentalAgreements,
-
     getRentalAgreementById,
-
     renewRentalAgreement,
-
     updateRentalAgreement,
-
+    getAllRentalAgreements
 
 };

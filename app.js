@@ -148,6 +148,8 @@ app.get("/rewards", (req, res) => {
 
 });
 
+
+//Operator HTML pages
 app.get("/queueManagement", (req, res) => {
   res.sendFile(
     path.join(
@@ -155,6 +157,17 @@ app.get("/queueManagement", (req, res) => {
       "public",
       "operator",
       "digitalqueue.html"
+    )
+  );
+});
+
+app.get("/operatorManageRental", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "public",
+      "operator",
+      "operatorManageRental.html"
     )
   );
 });
