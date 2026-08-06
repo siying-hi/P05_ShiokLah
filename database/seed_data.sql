@@ -796,93 +796,32 @@ INSERT INTO Complaints
 (
     order_id,
     patron_id,
-    stall_name,
-    item_name,
+    stall_id,
+    item_id,
     purchase_date,
     food_issue,
     service_issue,
     additional_comments,
     complaint_status,
-    date_submitted
+    date_submitted,
+    date_updated
 )
 VALUES
 (
-    18,
     1,
-    'Banana Leaf Nasi Lemak',
-    'Chicken Curry',
+    1,
+    1,
+    1,
     '2026-07-08',
     'The chicken was cold and the curry was watery.',
     'Staff were polite but the waiting time was close to 30 minutes.',
     'Please improve the food temperature.',
     'Pending Review',
-    '2026-07-08 11:15:00'
+    '2026-07-08 11:15:00',
+    '2026-08-08 2:15:00'
 ),
 
-(
-    18,
-    1,
-    'Banana Leaf Nasi Lemak',
-    'Chicken Curry',
-    '2026-07-08',
-    'The portion size was much smaller than expected.',
-    'Collection process was smooth.',
-    NULL,
-    'Under Review',
-    '2026-07-08 12:40:00'
-),
 
-(
-    18,
-    1,
-    'Banana Leaf Nasi Lemak',
-    'Chicken Curry',
-    '2026-07-08',
-    'The curry tasted extremely salty.',
-    'Service was friendly.',
-    'Would appreciate more consistency.',
-    'Resolved',
-    '2026-07-08 14:20:00'
-),
-
-(
-    18,
-    1,
-    'Banana Leaf Nasi Lemak',
-    'Chicken Curry',
-    '2026-07-08',
-    'Rice was undercooked.',
-    'Had to wait a long time before anyone acknowledged me.',
-    NULL,
-    'Rejected',
-    '2026-07-08 15:45:00'
-),
-
-(
-    18,
-    1,
-    'Banana Leaf Nasi Lemak',
-    'Chicken Curry',
-    '2026-07-08',
-    'Chicken pieces contained several small bones.',
-    'Staff apologised immediately.',
-    'Appreciated the apology.',
-    'Resolved',
-    '2026-07-08 16:30:00'
-),
-
-(
-    18,
-    1,
-    'Banana Leaf Nasi Lemak',
-    'Chicken Curry',
-    '2026-07-08',
-    'Food was not fresh and had an unusual smell.',
-    'Counter staff seemed distracted.',
-    NULL,
-    'Pending Review',
-    '2026-07-08 17:10:00'
-);
 INSERT INTO FavouriteMenuItems
 (
     patron_id,
