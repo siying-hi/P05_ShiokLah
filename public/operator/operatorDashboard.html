@@ -25,8 +25,12 @@
             <h2>Sales Analytics</h2>
             <div class="chart-filters sales-filters">
               <button class="filter-btn" data-range="month">This Month</button>
-              <button class="filter-btn" data-range="3months">Last 3 Months</button>
-              <button class="filter-btn" data-range="6months">Last 6 Months</button>
+              <button class="filter-btn" data-range="3months">
+                Last 3 Months
+              </button>
+              <button class="filter-btn" data-range="6months">
+                Last 6 Months
+              </button>
             </div>
           </div>
           <div class="chart-box">
@@ -38,12 +42,16 @@
         <div class="card">
           <div class="card-header">
             <h2>Customer Feedback</h2>
-              <div class="chart-filters feedback-filters">
-                <button class="filter-btn" data-range="month">This Month</button>
-                <button class="filter-btn" data-range="3months">Last 3 Months</button>
-                <button class="filter-btn" data-range="6months">Last 6 Months</button>
-              </div>
+            <div class="chart-filters feedback-filters">
+              <button class="filter-btn" data-range="month">This Month</button>
+              <button class="filter-btn" data-range="3months">
+                Last 3 Months
+              </button>
+              <button class="filter-btn" data-range="6months">
+                Last 6 Months
+              </button>
             </div>
+          </div>
           <div class="chart-box chart-box--donut">
             <canvas id="feedbackChart"></canvas>
           </div>
@@ -69,7 +77,10 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="../js/operator/loadOperatorNavigation.js"></script>
+    <script
+      type="module"
+      src="../js/operator/loadOperatorNavigation.js"
+    ></script>
     <script type="module" src="/js/utility/logout.js"></script>
     <script type="module" src="../js/operator/operatorDashboard.js"></script>
     <script type="module" src="../js/operator/operatorNavigation.js"></script>

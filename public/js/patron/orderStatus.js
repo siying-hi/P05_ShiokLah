@@ -1,3 +1,6 @@
+
+import { apiFetch } from "../utility/api.js";
+
 //Check if user has logged in
 const accessToken = sessionStorage.getItem("accessToken");
 
@@ -23,16 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-    const response = await fetch(
-        "/api/orders",
-        {
-            headers: {
-                Authorization:
-                    `Bearer ${accessToken}`
-            }
-        }
-    );
-
+const response =
+    await apiFetch("/api/orders");
         if (!response.ok) {
             throw new Error("Unable to load orders.");
         }
@@ -87,46 +82,52 @@ document.addEventListener("DOMContentLoaded", () => {
     // PUT Order Status
     // ===========================
 
-    async function updateStatus(orderId, status) {
+ async function updateStatus(
+    orderId,
+    status
+) {
 
-        try {
+    try {
 
-            const response = await fetch(`/api/orders/${orderId}`, {
+        const response =
+            await apiFetch(
+                `/api/orders/${orderId}`,
+                {
+                    method: "PUT",
 
-                method: "PUT",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-headers: {
+                    body: JSON.stringify({
+                        status
+                    })
+                }
+            );
 
-    "Content-Type": "application/json",
+        if (!response.ok) {
 
-    Authorization:
-        `Bearer ${accessToken}`
+            const data =
+                await response.json();
 
-},
-
-                body: JSON.stringify({
-
-                    status
-
-                })
-
-            });
-
-            if (!response.ok) {
-
-                throw new Error("Status update failed.");
-
-            }
-
-        }
-
-        catch (err) {
-
-            console.error(err);
+            throw new Error(
+                data.message ||
+                "Status update failed."
+            );
 
         }
 
     }
+    catch (err) {
+
+        console.error(
+            "Update status error:",
+            err
+        );
+
+    }
+}
 
     // ===========================
     // Collect Order
@@ -136,20 +137,13 @@ async function collectOrder(orderId) {
 
     try {
 
-        const response = await fetch(
-
-            `/api/orders/${orderId}/collect`,
-
-            {
-                method: "POST",
-
-                headers: {
-                    Authorization:
-                        `Bearer ${accessToken}`
+        const response =
+            await apiFetch(
+                `/api/orders/${orderId}/collect`,
+                {
+                    method: "POST"
                 }
-            }
-
-        );
+            );
 
         const data =
             await response.json();
@@ -170,12 +164,14 @@ async function collectOrder(orderId) {
     }
     catch (err) {
 
-        console.error(err);
+        console.error(
+            "Collect order error:",
+            err
+        );
 
         alert(err.message);
 
     }
-
 }
 
     // ===========================
