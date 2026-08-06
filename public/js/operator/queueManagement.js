@@ -1,12 +1,5 @@
-const waitingQueue =
-    document.getElementById("waitingQueue");
-
-const preparingQueue =
-    document.getElementById("preparingQueue");
-
-const readyQueue =
-    document.getElementById("readyQueue");
-
+const stallBoard =
+    document.getElementById("stallBoard");
 const queueSearch =
     document.getElementById("queueSearch");
 
@@ -101,54 +94,6 @@ function getStatusClass(status) {
 }
 
 
-function createActionButton(order) {
-
-    if (order.order_status === "Pending") {
-
-        return `
-            <button
-                type="button"
-                class="order-button prepare-button"
-                data-order-id="${order.order_id}"
-                data-action="Preparing"
-            >
-                Start Preparing
-            </button>
-        `;
-
-    }
-
-    if (order.order_status === "Preparing") {
-
-        return `
-            <button
-                type="button"
-                class="order-button ready-button"
-                data-order-id="${order.order_id}"
-                data-action="Ready"
-            >
-                Mark as Ready
-            </button>
-        `;
-
-    }
-
-    return `
-        <div class="collection-message">
-            Customer has been notified.
-        </div>
-
-        <button
-            type="button"
-            class="order-button collected-button"
-            data-order-id="${order.order_id}"
-            data-action="Collected"
-        >
-            Mark as Collected
-        </button>
-    `;
-
-}
 
 
 function createOrderCard(order) {
@@ -159,84 +104,30 @@ function createOrderCard(order) {
     const minutes =
         calculateMinutes(order.time_created);
 
-    let timeLabel = "Waiting for";
-
-    if (order.order_status === "Preparing") {
-
-        timeLabel = "Active for";
-
-    }
-
-    if (order.order_status === "Ready") {
-
-        timeLabel = "Ready for";
-
-    }
-
-    const delayedClass =
-        minutes >= 10 ? "delayed" : "";
-
     return `
-        <article class="order-card">
-            <div class="order-heading">
-                <div>
-                    <span class="queue-label">
-                        QUEUE NUMBER
-                    </span>
+        <article class="stall-order-card">
+            <div class="stall-order-heading">
+                <strong>${queueNumber}</strong>
 
-                    <h3>${queueNumber}</h3>
-                </div>
-
-                <span
-                    class="status-badge
-                    ${getStatusClass(order.order_status)}"
-                >
+                <span class="status-badge
+                    ${getStatusClass(order.order_status)}">
                     ${getDisplayStatus(order.order_status)}
                 </span>
             </div>
 
-            <div class="order-details">
-                <div class="detail-row">
-                    <span>Order</span>
-                    <strong>
-                        #${order.order_id}
-                    </strong>
-                </div>
+            <div class="stall-order-details">
+                <span>Order #${order.order_id}</span>
 
-                <div class="detail-row">
-                    <span>Stall</span>
-                    <strong>
-                        ${order.stall_name}
-                    </strong>
-                </div>
+                <span>
+                    ${order.item_count || 0} item(s)
+                </span>
 
-                <div class="detail-row">
-                    <span>Items</span>
-                    <strong>
-                        ${order.item_count} items
-                    </strong>
-                </div>
-
-                <div class="detail-row">
-                    <span>Ordered at</span>
-                    <strong>
-                        ${formatTime(order.time_created)}
-                    </strong>
-                </div>
+                <span>
+                    ${minutes} min(s)
+                </span>
             </div>
-
-            <div class="waiting-time ${delayedClass}">
-                <span>${timeLabel}</span>
-
-                <strong>
-                    ${minutes} mins
-                </strong>
-            </div>
-
-            ${createActionButton(order)}
         </article>
     `;
-
 }
 
 
@@ -249,13 +140,30 @@ function showEmptyMessage(container) {
     `;
 
 }
+function createStatusCards(orders) {
 
+    if (orders.length === 0) {
+
+        return `
+            <p class="empty-status-message">
+                No orders
+            </p>
+        `;
+
+    }
+
+    return orders
+        .map(function (order) {
+
+            return createOrderCard(order);
+
+        })
+        .join("");
+}
 
 function displayOrders() {
 
-    waitingQueue.innerHTML = "";
-    preparingQueue.innerHTML = "";
-    readyQueue.innerHTML = "";
+    stallBoard.innerHTML = "";
 
     const searchValue =
         queueSearch.value
@@ -289,65 +197,138 @@ function displayOrders() {
 
         });
 
+    if (filteredOrders.length === 0) {
+
+        stallBoard.innerHTML = `
+            <div class="empty-queue-message">
+                No active orders found.
+            </div>
+        `;
+
+        return;
+    }
+
+    const stallGroups = {};
 
     for (const order of filteredOrders) {
 
-        const card =
-            createOrderCard(order);
+        const stallName =
+            order.stall_name || "Unknown Stall";
 
-        if (order.order_status === "Pending") {
+        if (!stallGroups[stallName]) {
 
-            waitingQueue.insertAdjacentHTML(
-                "beforeend",
-                card
-            );
-
-        }
-        else if (
-            order.order_status === "Preparing"
-        ) {
-
-            preparingQueue.insertAdjacentHTML(
-                "beforeend",
-                card
-            );
-
-        }
-        else if (
-            order.order_status === "Ready"
-        ) {
-
-            readyQueue.insertAdjacentHTML(
-                "beforeend",
-                card
-            );
+            stallGroups[stallName] = [];
 
         }
 
-    }
-
-
-    if (waitingQueue.innerHTML === "") {
-
-        showEmptyMessage(waitingQueue);
+        stallGroups[stallName].push(order);
 
     }
 
-    if (preparingQueue.innerHTML === "") {
+    for (const stallName in stallGroups) {
 
-        showEmptyMessage(preparingQueue);
+        const stallOrders =
+            stallGroups[stallName];
+
+        const waitingOrders =
+            stallOrders.filter(function (order) {
+
+                return order.order_status === "Pending";
+
+            });
+
+        const preparingOrders =
+            stallOrders.filter(function (order) {
+
+                return order.order_status === "Preparing";
+
+            });
+
+        const readyOrders =
+            stallOrders.filter(function (order) {
+
+                return order.order_status === "Ready";
+
+            });
+
+        const waitingCards =
+            createStatusCards(waitingOrders);
+
+        const preparingCards =
+            createStatusCards(preparingOrders);
+
+        const readyCards =
+            createStatusCards(readyOrders);
+
+        const stallColumn = `
+            <article class="stall-column">
+                <div class="stall-heading">
+                    <div>
+                        <span class="stall-label">
+                            STALL
+                        </span>
+
+                        <h2>${stallName}</h2>
+                    </div>
+
+                    <span class="stall-order-count">
+                        ${stallOrders.length} active
+                    </span>
+                </div>
+
+                <section class="stall-status-section">
+                    <div class="stall-status-heading">
+                        <div>
+                            <span class="column-dot waiting-dot"></span>
+                            <h3>Waiting</h3>
+                        </div>
+
+                        <span>${waitingOrders.length}</span>
+                    </div>
+
+                    <div class="stall-order-list">
+                        ${waitingCards}
+                    </div>
+                </section>
+
+                <section class="stall-status-section">
+                    <div class="stall-status-heading">
+                        <div>
+                            <span class="column-dot preparing-dot"></span>
+                            <h3>Preparing</h3>
+                        </div>
+
+                        <span>${preparingOrders.length}</span>
+                    </div>
+
+                    <div class="stall-order-list">
+                        ${preparingCards}
+                    </div>
+                </section>
+
+                <section class="stall-status-section">
+                    <div class="stall-status-heading">
+                        <div>
+                            <span class="column-dot ready-dot"></span>
+                            <h3>Ready</h3>
+                        </div>
+
+                        <span>${readyOrders.length}</span>
+                    </div>
+
+                    <div class="stall-order-list">
+                        ${readyCards}
+                    </div>
+                </section>
+            </article>
+        `;
+
+        stallBoard.insertAdjacentHTML(
+            "beforeend",
+            stallColumn
+        );
 
     }
-
-    if (readyQueue.innerHTML === "") {
-
-        showEmptyMessage(readyQueue);
-
-    }
-
-
-    addActionButtonEvents();
-
 }
 
 
@@ -360,14 +341,12 @@ function updateCounts() {
 
         }).length;
 
-
     const preparingCount =
         allOrders.filter(function (order) {
 
             return order.order_status === "Preparing";
 
         }).length;
-
 
     const readyCount =
         allOrders.filter(function (order) {
@@ -376,41 +355,21 @@ function updateCounts() {
 
         }).length;
 
-
     document.getElementById(
         "waitingSummaryCount"
     ).textContent = waitingCount;
-
 
     document.getElementById(
         "preparingSummaryCount"
     ).textContent = preparingCount;
 
-
     document.getElementById(
         "readySummaryCount"
     ).textContent = readyCount;
 
-
     document.getElementById(
         "activeSummaryCount"
     ).textContent = allOrders.length;
-
-
-    document.getElementById(
-        "waitingColumnCount"
-    ).textContent = waitingCount;
-
-
-    document.getElementById(
-        "preparingColumnCount"
-    ).textContent = preparingCount;
-
-
-    document.getElementById(
-        "readyColumnCount"
-    ).textContent = readyCount;
-
 }
 
 
@@ -489,171 +448,6 @@ async function loadOrders() {
         console.error(
             "Load queue error:",
             error
-        );
-
-    }
-
-}
-
-
-async function updateStatus(
-    orderId,
-    status
-) {
-
-    const accessToken =
-        getAccessToken();
-
-
-    try {
-
-        const response =
-            await fetch(
-                `/api/orders/operator/${orderId}/status`,
-                {
-                    method: "PUT",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json",
-
-                        Authorization:
-                            `Bearer ${accessToken}`
-                    },
-
-                    body: JSON.stringify({
-                        status: status
-                    })
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.message ||
-                "Failed to update order status."
-            );
-
-        }
-
-
-        await loadOrders();
-
-    }
-    catch (error) {
-
-        console.error(
-            "Update status error:",
-            error
-        );
-
-        alert(error.message);
-
-    }
-
-}
-
-
-async function collectOrder(orderId) {
-
-    const accessToken =
-        getAccessToken();
-
-
-    try {
-
-        const response =
-            await fetch(
-                `/api/orders/operator/${orderId}/collect`,
-                {
-                    method: "POST",
-
-                    headers: {
-                        Authorization:
-                            `Bearer ${accessToken}`
-                    }
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.message ||
-                "Failed to collect order."
-            );
-
-        }
-
-
-        await loadOrders();
-
-    }
-    catch (error) {
-
-        console.error(
-            "Collect order error:",
-            error
-        );
-
-        alert(error.message);
-
-    }
-
-}
-
-
-function addActionButtonEvents() {
-
-    const actionButtons =
-        document.querySelectorAll(
-            "[data-action]"
-        );
-
-
-    for (const button of actionButtons) {
-
-        button.addEventListener(
-            "click",
-            async function () {
-
-                const orderId =
-                    Number(this.dataset.orderId);
-
-                const action =
-                    this.dataset.action;
-
-
-                this.disabled = true;
-
-
-                if (action === "Collected") {
-
-                    await collectOrder(orderId);
-
-                }
-                else {
-
-                    await updateStatus(
-                        orderId,
-                        action
-                    );
-
-                }
-
-
-                this.disabled = false;
-
-            }
         );
 
     }

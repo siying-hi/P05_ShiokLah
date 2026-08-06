@@ -156,6 +156,7 @@ async function createFeedback(req, res) {
         const patronId = req.user.id;
 
         const {
+            order_id,
             stall_id,
             food_rating,
             service_rating,
@@ -200,6 +201,7 @@ async function createFeedback(req, res) {
 
         const newFeedback =
             await feedbackModel.createFeedback(
+                orderId,
                 patronId,
                 stallId,
                 foodRating,
@@ -237,6 +239,7 @@ async function updateFeedback(req, res) {
     const patronId = req.user.id;
 
     const {
+        order_id,
         stall_id,
         food_rating,
         service_rating,

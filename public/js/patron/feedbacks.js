@@ -1,4 +1,19 @@
-const FEEDBACK_API_URL = "/api/feedbacks";
+const FEEDBACK_API_URL =
+    "/api/feedbacks";
+const urlParameters =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const selectedOrderId =
+    Number(
+        urlParameters.get("orderId")
+    ) || null;
+
+const selectedStallId =
+    Number(
+        urlParameters.get("stallId")
+    ) || null;
 
 // Check if user has logged in
 const accessToken = sessionStorage.getItem("accessToken");
@@ -108,6 +123,12 @@ async function loadAllStalls() {
 
             stallSelect.appendChild(option);
         });
+      if (selectedStallId) {
+
+    stallSelect.value =
+        String(selectedStallId);
+
+}
     } catch (error) {
         console.error(
             "Error loading stalls:",
@@ -531,6 +552,15 @@ const stallId = Number(
       .getElementById("fbComment")
       .value
       .trim();
+  if (!feedbackId && !selectedOrderId) {
+
+    alert(
+        "Please select an order from your order history."
+    );
+
+    return;
+
+}
 
 if (!feedbackId && !stallId) {
     alert(
@@ -604,6 +634,7 @@ if (!feedbackId && !stallId) {
         {
           method: "POST",
 body: JSON.stringify({
+    order_id: selectedOrderId,
     stall_id: stallId,
     food_rating: foodRating,
     service_rating: serviceRating,
