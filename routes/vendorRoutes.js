@@ -144,12 +144,12 @@ router.put(
     rentalAgreementController.updateRentalAgreement
 );
 // Order
-router.get("/api/orders",verifyJWT,authorise(["vendor", "patron"]),orderController.getOrdersByStallId);
-router.put("/api/orders/:id/status",verifyJWT,authorise("vendor"),orderController.updateOrderStatusAsVendor);
+router.get("/api/vendor/orders",verifyJWT,authorise(["vendor","patron"]),orderController.getOrdersByStallId);
+router.put("/api/vendor/orders/:id/status",verifyJWT,authorise(["vendor","patron"]),orderController.updateOrderStatusAsVendor);
 
 
 //Vendor Profile
-router.get("/api/profile",verifyJWT,authorise("vendor"),vendorController.getVendorProfile);
+router.get("/api/vendor/profile",verifyJWT,authorise("vendor"),vendorController.getVendorProfile);
 
 // Reviews
 router.get("/api/vendor-complaint",verifyJWT,authorise("vendor"),reviewController.getComplaintByStallId);

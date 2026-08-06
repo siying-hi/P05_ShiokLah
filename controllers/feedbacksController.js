@@ -201,7 +201,7 @@ async function createFeedback(req, res) {
 
         const newFeedback =
             await feedbackModel.createFeedback(
-                orderId,
+                order_id,
                 patronId,
                 stallId,
                 foodRating,
@@ -220,9 +220,9 @@ return res.status(201).json({
             error
         );
 
-        return res.status(500).json({
-            message: "Unable to create feedback."
-        });
+return res.status(500).json({
+    message: error.message
+});
     }
 }
 
