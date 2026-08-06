@@ -3,15 +3,6 @@ const Joi = require("joi");
 
 // Validation Schema for POST
 const createRentalAgreementSchema = Joi.object({
-
-  agreement_no: Joi.string().min(1).max(10).required().messages({
-    "string.base": "Agreement number must be a string",
-    "string.empty": "Agreement number cannot be empty",
-    "string.min": "Agreement number must be at least 1 character long",
-    "string.max": "Agreement number cannot exceed 10 characters",
-    "any.required": "Agreement number is required",
-  }),
-
   stall_id: Joi.number().integer().positive().required().messages({
     "number.base": "Stall ID must be a number",
     "number.integer": "Stall ID must be an integer",

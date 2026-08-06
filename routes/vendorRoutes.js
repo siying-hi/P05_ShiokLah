@@ -129,5 +129,11 @@ router.get("/api/profile",verifyJWT,authorise("vendor"),vendorController.getVend
 router.get("/api/vendor-complaint",verifyJWT,authorise("vendor"),reviewController.getComplaintByStallId);
 router.get("/api/vendor-feedback",verifyJWT,authorise("vendor"),reviewController.getFeedbackByStallId);
 
-   
+const orderHistoryController = require("../controllers/vendorDashboardController");
+
+router.get("/api/totalOrders",verifyJWT,authorise("vendor"),orderHistoryController.getTotalOrders);
+router.get("/api/customerFrequency",verifyJWT,authorise("vendor"),orderHistoryController.getCustomerFrequency);
+router.get("/api/menuPerformance",verifyJWT,authorise("vendor"),orderHistoryController.getMenuPerformance
+);
+router.get("/api/averageRevenue",verifyJWT, authorise("vendor"), orderHistoryController.getAverageRevenue);
 module.exports = router;
