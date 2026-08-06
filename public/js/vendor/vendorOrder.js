@@ -116,7 +116,7 @@ function renderOrders() {
 
         }
 
-        showErrorMessage(title,message,hint,"📦");
+        showErrorMessage(title, message, hint, "📦");
 
         return;
 
@@ -125,48 +125,128 @@ function renderOrders() {
         const card = document.createElement("div");
         card.className = "orderCard";
         card.innerHTML = `
-            <div class="orderHeader">
-                <h3>Order #${order.order_id}</h3>
-                <span class="status ${order.order_status}">
-                    ${order.order_status}
-                </span>
-            </div>
-            <p>
-                <i class="fa-solid fa-clock"></i>
-                ${new Date(order.time_created).toLocaleString()}
-            </p>
-            <p>
-                <b>Order Mode:</b>
-                ${order.order_mode}
-            </p>
-            <p>
-                <b>Payment:</b>
-                ${order.payment_method}
-            </p>
-            <div class="itemList">
-                ${order.items.map(item => `
-                    <div class="itemRow">
-                        <span>
-                            ${item.item_name} x${item.quantity}
-                        </span>
-                        <span>
-                            $${(item.price * item.quantity).toFixed(2)}
-                        </span>
-                    </div>
-                `).join("")}
-            </div>
-            <div class="orderFooter">
-                <strong>
-                    Total: $${order.total_price.toFixed(2)}
-                </strong>
-                ${getActionButton(order)}
-            </div>
-        `;
+
+<div class="orderHeader">
+
+    <h3>
+        Order #${order.order_id}
+    </h3>
+
+
+    <span class="status ${order.order_status}">
+        ${order.order_status}
+    </span>
+
+</div>
+
+
+
+<div class="order-details">
+
+
+    <div class="detail-box">
+
+        <span>
+            <i class="fa-solid fa-clock"></i>
+            Order Time
+        </span>
+
+
+        <strong>
+            ${new Date(order.time_created).toLocaleString()}
+        </strong>
+
+    </div>
+
+
+
+    <div class="detail-box">
+
+        <span>
+            <i class="fa-solid fa-bag-shopping"></i>
+            Order Mode
+        </span>
+
+
+        <strong>
+            ${order.order_mode}
+        </strong>
+
+    </div>
+
+
+
+    <div class="detail-box">
+
+        <span>
+            <i class="fa-solid fa-credit-card"></i>
+            Payment Type
+        </span>
+
+
+        <strong>
+            ${order.payment_method}
+        </strong>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="itemList">
+
+
+    ${order.items.map(item => `
+
+        <div class="itemRow">
+
+
+            <span>
+                ${item.item_name} × ${item.quantity}
+            </span>
+
+
+            <span>
+                $${(item.price * item.quantity).toFixed(2)}
+            </span>
+
+
+        </div>
+
+
+    `).join("")}
+
+
+
+</div>
+
+
+
+<div class="orderFooter">
+
+
+    <strong>
+        Total: $${order.total_price.toFixed(2)}
+    </strong>
+
+
+    <div>
+
+        ${getActionButton(order)}
+
+    </div>
+
+
+</div>
+
+`;
         orderContainer.appendChild(card);
     });
 }
 
-function showErrorMessage(title,message,hint,icon) {
+function showErrorMessage(title, message, hint, icon) {
 
     orderContainer.innerHTML = `
         <div class="empty-order-card">
@@ -190,29 +270,102 @@ function showErrorMessage(title,message,hint,icon) {
 
 
 function getActionButton(order) {
+
     if (order.order_status === "Pending") {
+
         return `
-            <button class="statusBtn" onclick="changeOrderStatus(${order.order_id}, 'Preparing')">
-                Accept Order
+            <button class="statusBtn" onclick="changeOrderStatus(${order.order_id}, 'Preparing')"> Accept Order </button>
+            
+            <button 
+                class="statusBtn cancelBtn"
+                onclick="changeOrderStatus(${order.order_id}, 'Cancelled')">
+
+                Cancel
+
             </button>
+
         `;
+
     }
+
+    if (order.order_status === "Preparing") {
+
+        return `
+            <button 
+                class="statusBtn completeBtn"
+                onclick="changeOrderStatus(${order.order_id}, 'Ready')">
+
+                Complete for pickup
+
+            </button>
+            
+            <button 
+                class="statusBtn cancelBtn"
+                onclick="changeOrderStatus(${order.order_id}, 'Cancelled')">
+
+                Cancel
+
+            </button>
+
+
+        `;
+
+    }
+
+
     return "";
+
 }
 
-window.changeOrderStatus = async function (orderId, status) {
+window.changeOrderStatus = async function (
+    orderId,
+    status
+) {
+
     try {
-        const response = await updateOrderStatus(orderId, status);
+
+        const response =
+            await updateOrderStatus(
+                orderId,
+                status
+            );
+
+
         if (response.success) {
-            alert("Order updated successfully");
-            loadOrders();
-        } else {
-            alert(response.message);
+
+            alert(
+                `Order ${status.toLowerCase()} successfully`
+            );
+
+
+            await loadOrders();
+
+
         }
-    } catch (error) {
-        console.error(error);
-        alert("Failed to update order");
+        else {
+
+            alert(
+                response.message
+            );
+
+        }
+
+
     }
+    catch (error) {
+
+        console.error(
+            "Update order error:",
+            error
+        );
+
+
+        alert(
+            "Failed to update order status."
+        );
+
+    }
+
 };
 
 filterButtons.forEach(button => {
