@@ -11,6 +11,7 @@ function groupOrders(rows) {
             grouped[row.order_id] = {
                 order_id: row.order_id,
                 history_id: row.history_id,
+                stall_id: row.stall_id,
                 order_date: row.order_date,
                 order_status: row.order_status,
                 items: [],

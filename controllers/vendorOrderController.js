@@ -35,7 +35,10 @@ async function updateOrderStatusAsVendor(req,res) {
 
         const allowedStatus = [
             "Pending",
-            "Preparing"
+            "Preparing",
+            "Ready",
+            // "Completed",
+            "Cancelled"
         ];
 
         if(

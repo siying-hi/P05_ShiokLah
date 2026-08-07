@@ -43,7 +43,7 @@
               </li>
 
               <li>
-                <a href="/operatorManageRental"> Stall Inspection </a>
+                <a href="/operatorManageRental"> Manage Rental </a>
               </li>
 
               <li>
@@ -61,10 +61,11 @@
         <div>
           <p class="heading-label">LIVE ORDER TRACKING</p>
 
-          <h1>Digital Queue Management</h1>
+          <h1>Hawker Centre Queue Overview</h1>
 
           <p class="heading-description">
-            View and manage active customer orders across all stalls.
+            Monitor active customer orders across every stall in the hawker
+            centre.
           </p>
         </div>
 
@@ -74,54 +75,46 @@
         </div>
       </section>
 
-      <!-- Queue Summary -->
+      <!-- Overall Queue Summary -->
       <section class="summary-grid">
-        <!-- Waiting Summary -->
         <article class="summary-card">
           <div class="summary-icon waiting-icon">01</div>
 
           <div>
             <span>Waiting</span>
-
-            <strong id="waitingSummaryCount"> 0 </strong>
+            <strong id="waitingSummaryCount">0</strong>
           </div>
         </article>
 
-        <!-- Preparing Summary -->
         <article class="summary-card">
           <div class="summary-icon preparing-icon">02</div>
 
           <div>
             <span>Preparing</span>
-
-            <strong id="preparingSummaryCount"> 0 </strong>
+            <strong id="preparingSummaryCount">0</strong>
           </div>
         </article>
 
-        <!-- Ready Summary -->
         <article class="summary-card">
           <div class="summary-icon ready-icon">03</div>
 
           <div>
             <span>Ready</span>
-
-            <strong id="readySummaryCount"> 0 </strong>
+            <strong id="readySummaryCount">0</strong>
           </div>
         </article>
 
-        <!-- Total Summary -->
         <article class="summary-card">
           <div class="summary-icon total-icon">04</div>
 
           <div>
             <span>Active Orders</span>
-
-            <strong id="activeSummaryCount"> 0 </strong>
+            <strong id="activeSummaryCount">0</strong>
           </div>
         </article>
       </section>
 
-      <!-- Search and Filters -->
+      <!-- Search and Status Filters -->
       <section class="queue-controls">
         <div class="search-box">
           <input
@@ -150,55 +143,16 @@
         </div>
       </section>
 
-      <!-- Digital Queue Board -->
-      <section class="queue-board">
-        <!-- Waiting Column -->
-        <div class="queue-column">
-          <div class="column-heading">
-            <div>
-              <span class="column-dot waiting-dot"></span>
+      <!--
+        JavaScript creates one column for every stall.
 
-              <h2>Waiting</h2>
-            </div>
-
-            <span class="column-count" id="waitingColumnCount"> 0 </span>
-          </div>
-
-          <!-- Real pending orders appear here -->
-          <div class="queue-list" id="waitingQueue"></div>
-        </div>
-
-        <!-- Preparing Column -->
-        <div class="queue-column">
-          <div class="column-heading">
-            <div>
-              <span class="column-dot preparing-dot"></span>
-
-              <h2>Preparing</h2>
-            </div>
-
-            <span class="column-count" id="preparingColumnCount"> 0 </span>
-          </div>
-
-          <!-- Real preparing orders appear here -->
-          <div class="queue-list" id="preparingQueue"></div>
-        </div>
-
-        <!-- Ready Column -->
-        <div class="queue-column">
-          <div class="column-heading">
-            <div>
-              <span class="column-dot ready-dot"></span>
-
-              <h2>Ready for Collection</h2>
-            </div>
-
-            <span class="column-count" id="readyColumnCount"> 0 </span>
-          </div>
-
-          <!-- Real ready orders appear here -->
-          <div class="queue-list" id="readyQueue"></div>
-        </div>
+        Each stall column contains:
+        - Waiting orders
+        - Preparing orders
+        - Ready orders
+      -->
+      <section class="stall-board" id="stallBoard">
+        <div class="empty-queue-message">Loading stall queues...</div>
       </section>
     </main>
 

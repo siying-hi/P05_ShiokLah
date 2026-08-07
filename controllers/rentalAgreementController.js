@@ -1,334 +1,162 @@
+const vendorController = require("./vendorController");
 const rentalAgreementModel = require("../models/rentalAgreementModel");
-const vendorModel = require("../models/vendorModel");
 
 
-// Get all rental agreements for logged-in vendor's stall
-async function getRentalAgreements(req, res) {
+
+exports.getRentalAgreements = async (req, res) => {
+
     try {
-        if (!req.user) {
-            return res.status(401).json({
-                success: false,
-                message: "Vendor not authenticated."
-            });
-        }
+        const stallId = await vendorController.getVendorStallId(req);
 
-        const vendorId = req.user.vendor_id || req.user.id;
+        const agreements = await rentalAgreementModel.getRentalAgreements(stallId);
 
-        if (!vendorId) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid vendor information."
-            });
-        }
+        res.status(200).json(agreements);
 
-        const stallId =
-            await vendorModel.getStallIdByVendorId(vendorId);
+    } catch(error) {
 
-        if (!stallId) {
-            return res.status(404).json({
-                success: false,
-                message: "No stall found for this vendor."
-            });
-        }
-
-        const agreements =
-            await rentalAgreementModel.getRentalAgreements(
-                stallId
-            );
-
-        res.status(200).json({
-            success: true,
-            data: agreements
-        });
-
-    } catch (error) {
-        console.error(
-            "Error retrieving rental agreements:",
-            error
-        );
+        console.error(error);
 
         res.status(500).json({
-            success: false,
-            message: "Unable to retrieve rental agreements"
+            error: "Failed to retrieve rental agreements."
         });
+
     }
-}
 
+};
 
-// Get rental agreement by ID
-async function getRentalAgreementById(req, res) {
+exports.getRentalAgreementById = async (
+    req,
+    res
+) => {
+
     try {
-        if (!req.user) {
-            return res.status(401).json({
-                success: false,
-                message: "Vendor not authenticated."
-            });
-        }
 
-        const vendorId =
-            req.user.vendor_id || req.user.id;
+        const id =
+            req.params.id;
 
-        if (!vendorId) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid vendor information."
-            });
-        }
-
-        const stallId =
-            await vendorModel.getStallIdByVendorId(vendorId);
-
-        if (!stallId) {
-            return res.status(404).json({
-                success: false,
-                message: "No stall found for this vendor."
-            });
-        }
-
-        const id = req.params.id;
 
         const agreement =
-            await rentalAgreementModel.getRentalAgreementById(
-                id
-            );
+            await rentalAgreementModel.getRentalAgreementById(id);
+
 
         if (!agreement) {
+
             return res.status(404).json({
-                success: false,
-                message: "Rental agreement not found"
+                error:
+                "Rental agreement not found."
             });
+
         }
 
-        if (agreement.stall_id !== stallId) {
-            return res.status(403).json({
-                success: false,
-                message:
-                    "You are not authorised to access this rental agreement."
-            });
-        }
 
-        res.status(200).json({
-            success: true,
-            data: agreement
-        });
-
-    } catch (error) {
-        console.error(
-            "Error retrieving rental agreement:",
-            error
+        res.status(200).json(
+            agreement
         );
 
+
+    } catch(error) {
+
+        console.error(error);
+
         res.status(500).json({
-            success: false,
-            message: "Unable to retrieve rental agreement"
+            error:
+            "Failed to retrieve rental agreement."
         });
+
     }
-}
 
+};
 
-// Renew rental agreement
-async function createRentalAgreement(req, res) {
+exports.renewRentalAgreement = async (req,res)=>{
+
     try {
-        if (!req.user) {
-            return res.status(401).json({
-                success: false,
-                message: "Vendor not authenticated."
-            });
-        }
-
-        const vendorId =
-            req.user.vendor_id || req.user.id;
-
-        if (!vendorId) {
-            return res.status(401).json({
-                success: false,
-                message: "Invalid vendor information."
-            });
-        }
 
         const stallId =
-            await vendorModel.getStallIdByVendorId(vendorId);
+            await vendorController.getVendorStallId(req);
 
-        if (!stallId) {
-            return res.status(404).json({
-                success: false,
-                message: "No stall found for this vendor."
-            });
-        }
 
         const {
-            aid,
             startDate,
             endDate
         } = req.body;
 
-        if (!aid || !startDate || !endDate) {
+
+        if(!startDate || !endDate){
+
             return res.status(400).json({
-                success: false,
-                message:
-                    "Agreement ID, start date and end date are required."
+                error:"Start date and end date are required."
             });
+
         }
 
-        // Get existing agreement
-        const oldAgreement =
-            await rentalAgreementModel.getRentalAgreementById(
-                aid
-            );
 
-        if (!oldAgreement) {
-            return res.status(404).json({
-                success: false,
-                message: "Rental agreement not found."
-            });
-        }
-
-        // Make sure agreement belongs to vendor's stall
-        if (oldAgreement.stall_id !== stallId) {
-            return res.status(403).json({
-                success: false,
-                message:
-                    "You are not authorised to renew this rental agreement."
-            });
-        }
-
-        // Only expired agreements can be renewed
-        if (oldAgreement.agr_status !== "expired") {
-            return res.status(400).json({
-                success: false,
-                message:
-                    "Only expired rental agreements can be renewed."
-            });
-        }
-
-        // Validate dates
-        const newStartDate =
-            new Date(startDate);
-
-        const newEndDate =
-            new Date(endDate);
-
-        if (
-            isNaN(newStartDate.getTime()) ||
-            isNaN(newEndDate.getTime())
-        ) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid rental agreement dates."
-            });
-        }
-
-        if (newEndDate < newStartDate) {
-            return res.status(400).json({
-                success: false,
-                message:
-                    "End date cannot be before start date."
-            });
-        }
-
-        // Use the existing agreement's
-        // approved values.
-        const rentalPrice =
-            oldAgreement.rental_price;
-
-        const tradeType =
-            oldAgreement.trade_type;
-
-        const termCondition =
-            oldAgreement.agr_term_condition;
-
-        const officerId =
-            oldAgreement.officer_id;
-
-        const status = "active";
-
-        const newAgreement =
-            await rentalAgreementModel.createRentalAgreement(
+        const agreement =
+            await rentalAgreementModel.renewRentalAgreement(
                 stallId,
                 startDate,
-                endDate,
-                rentalPrice,
-                tradeType,
-                termCondition,
-                officerId,
-                status
+                endDate
             );
+
 
         res.status(201).json({
-            success: true,
+
             message:
-                "Rental agreement renewed successfully.",
-            data: newAgreement
+            "Rental agreement renewed successfully.",
+
+            aid:
+            agreement.aid
+
         });
 
-    } catch (error) {
-        console.error(
-            "Error renewing rental agreement:",
-            error
-        );
 
-        res.status(500).json({
-            success: false,
-            message:
-                "Unable to renew rental agreement."
-        });
     }
-}
+    catch(error){
+
+        console.error(error);
 
 
-// Edit rental agreement
-async function updateRentalAgreement(req, res) {
+        res.status(400).json({
+            error:error.message
+        });
+
+    }
+
+};
+
+exports.updateRentalAgreement = async (req, res) => {
+
     try {
-        const agreementId = parseInt(req.params.id);
-        const { tradeType } = req.body;
 
-        if (!agreementId) {
-            return res.status(400).json({
-                message: "Invalid rental agreement ID."
-            });
-        }
+        const id = req.params.id;
 
-        if (!tradeType) {
-            return res.status(400).json({
-                message: "Trade type is required."
-            });
-        }
+        const {
+            tradeType
+        } = req.body;
 
-        if (
-            tradeType !== "cooked food" &&
-            tradeType !== "uncooked food"
-        ) {
-            return res.status(400).json({
-                message: "Invalid trade type."
-            });
-        }
 
-        const result =
-            await rentalAgreementModel.updateRentalAgreement(
-                agreementId,
-                tradeType
-            );
-
-        return res.status(200).json({
-            message: "Rental agreement updated successfully.",
-            data: result
-        });
-
-    } catch (error) {
-        console.error(
-            "Error updating rental agreement:",
-            error
+        const agreement = await rentalAgreementModel.updateRentalAgreement(
+            id,
+            tradeType
         );
 
-        return res.status(500).json({
-            message: "Unable to update rental agreement."
-        });
-    }
-}
 
-module.exports = {
-    getRentalAgreements,
-    getRentalAgreementById,
-    createRentalAgreement,
-    updateRentalAgreement
+        res.status(200).json({
+
+            message: "Rental agreement updated successfully.",
+
+            agreement
+
+        });
+
+
+    } catch(error) {
+
+        console.error(error);
+
+        res.status(400).json({
+            error: error.message
+        });
+
+    }
+
 };

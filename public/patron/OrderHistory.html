@@ -92,7 +92,9 @@
           <p>Try our bestselling Nasi Lemak today!</p>
         </div>
 
-        <small class="tagline">Your hawker favourites are just a click away!</small>
+        <small class="tagline"
+          >Your hawker favourites are just a click away!</small
+        >
         <br />
         <a href="/patron-homepage" class="order-btn">Start Ordering</a>
       </div>
@@ -122,7 +124,9 @@
 
         <!-- Expandable Filter Box -->
         <div class="filter-container">
-          <button id="toggleFilter" class="filter-toggle">🔍 Filter Orders</button>
+          <button id="toggleFilter" class="filter-toggle">
+            🔍 Filter Orders
+          </button>
           <div id="filterBox" class="filter-box hidden">
             <div class="filter-group">
               <label for="filterDate">Date Range:</label>
@@ -148,8 +152,9 @@
               <button id="clearFilter" class="apply-btn">Clear Filters</button>
             </div>
           </div>
-          <button id="viewFavouriteBtn" class="order-btn">View Favourite Orders</button>
-
+          <button id="viewFavouriteBtn" class="order-btn">
+            View Favourite Orders
+          </button>
         </div>
         <div id="pagination" class="pagination">
           <button id="prevPage" class="page-btn">Previous</button>
@@ -166,84 +171,64 @@
           <span class="see-more-icon">▾</span>
         </button> -->
 
-        <small class="tagline">Keep enjoying your favourites – we’ll save them here!</small>
+        <small class="tagline"
+          >Keep enjoying your favourites – we’ll save them here!</small
+        >
         <br />
-         <!-- Reorder button integrated with checkout flow -->
+        <!-- Reorder button integrated with checkout flow -->
         <a href="/patron-homepage" class="order-btn">Order Again</a>
       </div>
 
-      
-
-
-
-
-
-        <!-- Favourite Orders Section -->
-        <!-- <div class="favourites-box">
+      <!-- Favourite Orders Section -->
+      <!-- <div class="favourites-box">
           <h2>💖 Favourite Orders</h2>
           <div id="favOrderList" class="fav-list"></div>
         </div> -->
-
 
       <!-- ==========================
       Favourite Order History
       ========================== -->
       <section id="favouriteSection" class="favourite-section hidden">
-        <button  id="backToOrdersBtn" class="back-btn">← Back to Order History</button>
+        <button id="backToOrdersBtn" class="back-btn">
+          ← Back to Order History
+        </button>
 
-          <div class="fav-header">
-              <h2>❤️ Favourite Order History</h2>
-              <p>Your saved orders for quick reordering.</p>
-          </div>
+        <div class="fav-header">
+          <h2>❤️ Favourite Order History</h2>
+          <p>Your saved orders for quick reordering.</p>
+        </div>
 
-          <div class="fav-empty" id="favEmpty">
-              <p>No favourite orders yet.</p>
-              <small>Click the ❤️ on any order to save it here.</small>
-          </div>
+        <div class="fav-empty" id="favEmpty">
+          <p>No favourite orders yet.</p>
+          <small>Click the ❤️ on any order to save it here.</small>
+        </div>
 
-          <div class="fav-list" id="favOrderList">
-
-          </div>
-
+        <div class="fav-list" id="favOrderList"></div>
       </section>
-
 
       <!-- ==========================
       Rename Favourite Modal
       ========================== -->
 
       <div id="renameModal" class="modal hidden">
+        <div class="modal-content">
+          <h3>Rename Favourite</h3>
 
-          <div class="modal-content">
+          <input
+            type="text"
+            id="renameInput"
+            placeholder="Enter favourite name"
+          />
 
-              <h3>Rename Favourite</h3>
+          <div class="modal-buttons">
+            <button id="saveRenameBtn">Save</button>
 
-              <input
-                  type="text"
-                  id="renameInput"
-                  placeholder="Enter favourite name"
-              >
-
-              <div class="modal-buttons">
-
-                  <button id="saveRenameBtn">
-                      Save
-                  </button>
-
-                  <button id="cancelRenameBtn">
-                      Cancel
-                  </button>
-
-              </div>
-
+            <button id="cancelRenameBtn">Cancel</button>
           </div>
-
+        </div>
       </div>
-      
-
     </main>
     <script type="module" src="/js/patron/orderHistory.js"></script>
     <script type="module" src="/js/patron/index.js"></script>
-
   </body>
 </html>

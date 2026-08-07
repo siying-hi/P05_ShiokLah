@@ -2,20 +2,83 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Operator Dashboard - ShiokLah!</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Rental Agreement Management - ShiokLah!</title>
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/patron/main.css" />
-    <link rel="stylesheet" href="../css/operator/operatorDashboard.css" />
+
+    <link rel="stylesheet" href="/css/patron/main.css" />
+    <link rel="stylesheet" href="/css/operator/operatorManageRental.css" />
   </head>
 
   <body>
+    <!-- Operator Navigation -->
     <div id="operator-navigation"></div>
-    <script type="module" src="../js/operator/loadOperatorNavigation.js"></script>
-    <script type="module" src="../js/operator/operatorDashboard.js"></script>
+
+    <main class="rental-page">
+      <!-- Page Header -->
+      <section class="page-heading">
+        <div>
+          <p class="heading-label">RENTAL MANAGEMENT</p>
+
+          <h1>Stall Rental Agreements</h1>
+
+          <p class="heading-description">
+            Review and manage rental agreements submitted by stall owners.
+          </p>
+        </div>
+      </section>
+
+      <!-- Search Bar -->
+      <section class="rental-controls">
+        <input
+          type="search"
+          id="agreementSearch"
+          placeholder="Search stall name, location or status..."
+        />
+      </section>
+
+      <!-- Rental Agreement Table -->
+      <section class="agreement-table-container">
+        <table class="agreement-table">
+          <thead>
+            <tr>
+              <th>Stall Name</th>
+
+              <th>Location</th>
+
+              <th>Start Date</th>
+
+              <th>Validity Period</th>
+
+              <th>Terms & Conditions</th>
+
+              <th>Status</th>
+
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="agreementTableBody">
+            <!-- Javascript renders rental agreements here -->
+
+            <tr>
+              <td colspan="7">Loading rental agreements...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script
+      type="module"
+      src="/js/operator/loadOperatorNavigation.js"
+    ></script>
+    <script type="module" src="/js/utility/logout.js"></script>
+    <script type="module" src="/js/operator/operatorManageRental.js"></script>
   </body>
-  
 </html>

@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!navigation) return;
 
     try {
+
         const response = await fetch("/operator/operatorNavigation.html");
         const html = await response.text();
-
+        console.log(html);
         navigation.innerHTML = html;
+        console.log(document.querySelectorAll(".navrectangle").length);
 
         // Highlight current page
         const currentPath = window.location.pathname.replace(/\/+$/, "");

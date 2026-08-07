@@ -40,7 +40,7 @@ export function openDetailsModal(data) {
     detailsModal.style.display = "flex";
 
     agreementDetails.innerHTML = `
-        < div class="detail-row" >
+        <div class="detail-row">
         <b>AID</b>
         <span>${String(data.aid)}</span>
     </div >
@@ -66,7 +66,7 @@ export function openDetailsModal(data) {
     </div>
     <div class="detail-row">
         <b>Rental Price</b>
-        <span>£${Number(data.rental_price).toFixed(2)}</span>
+        <span>${Number(data.rental_price).toFixed(2)}</span>
     </div>
     <div class="detail-row">
         <b>Trade Type</b>

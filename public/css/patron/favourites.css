@@ -697,3 +697,17 @@ font-family: Arial, sans-serif;
     justify-content: flex-end;
     margin-bottom: 30px;
 }
+
+.navrectangle,
+.navrectangle .menu,
+.navrectangle .menu a,
+.navrectangle .dropdown a,
+.navrectangle .reserve-btn {
+    font-family: "Kodchasan", sans-serif !important;
+}
+.menu,
+.menu a,
+.menu button,
+.menu li {
+    font-family: "Kodchasan", sans-serif !important;
+}

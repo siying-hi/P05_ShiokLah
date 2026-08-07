@@ -144,8 +144,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         </tr>
                     `).join("")}
                     </tbody>
-                </table>
-                </div>
+</table>
+
+<div class="order-feedback-action">
+    <a
+        href="/feedback?orderId=${order.order_id}&stallId=${order.stall_id}"
+        class="feedback-btn"
+    >
+        Leave Feedback
+    </a>
+</div>
+
+</div>
         `;
         orderList.prepend(li);
         });

@@ -49,7 +49,7 @@ async function handleResponse(response) {
 export async function getVendorOrders() {
 
     const response =
-    await apiFetch("/api/orders");
+    await apiFetch("/api/vendor/orders");
 
     return await handleResponse(response);
 
@@ -63,7 +63,7 @@ export async function updateOrderStatus(
 ) {
 
     const response =
-    await apiFetch(`/api/orders/${orderId}/status`, {
+    await apiFetch(`/api/vendor/orders/${orderId}/status`, {
 
         method:"PUT",
 

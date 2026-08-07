@@ -41,7 +41,13 @@ router.put(
     rewardsController.dailyCheckIn
 );
 
-
+// Save Lucky Spin prize
+router.post(
+    "/spin",
+    verifyJWT,
+    authorise(["patron"]),
+    rewardsController.claimSpinPrize
+);
 // Mark reward notification as seen
 router.put(
     "/:rewardId/seen",

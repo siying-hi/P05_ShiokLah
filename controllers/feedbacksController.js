@@ -156,6 +156,7 @@ async function createFeedback(req, res) {
         const patronId = req.user.id;
 
         const {
+            order_id,
             stall_id,
             food_rating,
             service_rating,
@@ -200,6 +201,7 @@ async function createFeedback(req, res) {
 
         const newFeedback =
             await feedbackModel.createFeedback(
+                order_id,
                 patronId,
                 stallId,
                 foodRating,
@@ -218,9 +220,9 @@ return res.status(201).json({
             error
         );
 
-        return res.status(500).json({
-            message: "Unable to create feedback."
-        });
+return res.status(500).json({
+    message: error.message
+});
     }
 }
 
@@ -237,6 +239,7 @@ async function updateFeedback(req, res) {
     const patronId = req.user.id;
 
     const {
+        order_id,
         stall_id,
         food_rating,
         service_rating,

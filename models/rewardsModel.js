@@ -586,7 +586,129 @@ async function useReward(
 
 }
 
+async function addSpinPoints(
+    patronId,
+    pointsWon
+) {
 
+    await createPointsRow(patronId);
+
+    const connection =
+        await sql.connect(dbConfig);
+
+    try {
+
+        const result =
+            await connection.request()
+
+                .input(
+                    "patronId",
+                    sql.Int,
+                    patronId
+                )
+
+                .input(
+                    "pointsWon",
+                    sql.Int,
+                    pointsWon
+                )
+
+                .query(`
+                    UPDATE RewardPoints
+
+                    SET points =
+                        points + @pointsWon
+
+                    OUTPUT INSERTED.points
+
+                    WHERE patron_id = @patronId
+                `);
+
+        return result.recordset[0];
+
+    }
+    finally {
+
+        await connection.close();
+
+    }
+}
+
+
+async function giveSpinVoucher(patronId) {
+
+    const connection =
+        await sql.connect(dbConfig);
+
+    try {
+
+        const result =
+            await connection.request()
+
+                .input(
+                    "patronId",
+                    sql.Int,
+                    patronId
+                )
+
+                .query(`
+                    INSERT INTO Rewards
+                    (
+                        patron_id,
+                        reward_name,
+                        reward_description,
+                        reward_type,
+                        reward_value,
+                        reward_code,
+                        minimum_spend,
+                        points_required,
+                        is_used,
+                        is_new,
+                        reward_source,
+                        expiry_date
+                    )
+
+                    OUTPUT INSERTED.*
+
+                    VALUES
+                    (
+                        @patronId,
+                        '$2 Lucky Spin Voucher',
+                        'Get $2 off when you spend at least $8',
+                        'Fixed',
+                        2.00,
+                        CONCAT(
+                            'SPIN2-',
+                            @patronId,
+                            '-',
+                            DATEDIFF(
+                                SECOND,
+                                '2000-01-01',
+                                GETDATE()
+                            )
+                        ),
+                        8.00,
+                        0,
+                        0,
+                        1,
+                        'Lucky Spin',
+                        DATEADD(
+                            MONTH,
+                            1,
+                            GETDATE()
+                        )
+                    )
+                `);
+
+        return result.recordset[0];
+
+    }
+    finally {
+
+        await connection.close();
+
+    }
+}
 module.exports = {
     getRewardsByPatron,
     getPoints,
@@ -594,5 +716,7 @@ module.exports = {
     giveFeedbackReward,
     markRewardAsSeen,
     getRewardForCheckout,
-    useReward
+    useReward,
+    addSpinPoints,
+    giveSpinVoucher
 };

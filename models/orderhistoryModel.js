@@ -12,7 +12,7 @@ async function getOrdersByPatron(patronId) {
     request.input("patronId", sql.Int, patronId);
 
     const result = await request.query(`
-      SELECT history_id, order_id, patron_id, order_date, order_status,
+      SELECT history_id, order_id, patron_id, stall_id, order_date, order_status,
              item_id, item_name, quantity, price, total_amt, created_at
       FROM OrderHistory
       WHERE patron_id = @patronId
@@ -35,7 +35,7 @@ async function filterOrders(patronId, status, startDate, endDate) {
     request.input("patron_id", patronId);
 
     let query = `
-      SELECT history_id, order_id, patron_id, order_date, order_status,
+      SELECT history_id, order_id, patron_id, stall_id, order_date, order_status,
             item_id, item_name, quantity, price, total_amt, created_at
       FROM OrderHistory
       WHERE patron_id = @patron_id
@@ -79,7 +79,7 @@ async function getOrderById(orderId, patronId) {
     request.input("patronId", sql.Int, patronId);
 
     const query = `
-      SELECT history_id, order_id, patron_id, order_date, order_status,
+      SELECT history_id, order_id, patron_id, stall_id, order_date, order_status,
              item_id, item_name, quantity, price, total_amt, created_at
       FROM OrderHistory
       WHERE order_id = @orderId AND patron_id = @patronId

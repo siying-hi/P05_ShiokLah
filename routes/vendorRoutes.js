@@ -40,7 +40,7 @@ const {
 const {
     validateRentalAgreement,
     validateRentalAgreementId,
-    validateCreateRentalAgreement
+    validateRenewRentalAgreement
 }
 =
 require("../middlewares/rentalAgreementValidation");
@@ -112,22 +112,54 @@ router.get(
 );
 
 // Rental Agreement API
-router.get("/api/rentalAgreement",verifyJWT, authorise("vendor"),rentalAgreementController.getRentalAgreements);
-router.get("/api/rentalAgreement/:id", verifyJWT, authorise("vendor"), rentalAgreementController.getRentalAgreementById);
-router.post("/api/rentalAgreement", verifyJWT, authorise("vendor"), rentalAgreementController.createRentalAgreement);
-router.put("/api/rentalAgreement/:id",verifyJWT,authorise("vendor"),rentalAgreementController.updateRentalAgreement);
+router.get(
+    "/api/rentalAgreement",
+    verifyJWT,
+    authorise("vendor"),
+    rentalAgreementController.getRentalAgreements
+);
 
+
+router.get(
+    "/api/rentalAgreement/:id",
+    verifyJWT,
+    authorise("vendor"),
+    rentalAgreementController.getRentalAgreementById
+);
+
+
+router.post(
+    "/api/rentalAgreement/renew",
+    verifyJWT,
+    authorise("vendor"),
+    validateRenewRentalAgreement,
+    rentalAgreementController.renewRentalAgreement
+);
+
+
+router.put(
+    "/api/rentalAgreement/:id",
+    verifyJWT,
+    authorise("vendor"),
+    rentalAgreementController.updateRentalAgreement
+);
 // Order
-router.get("/api/orders",verifyJWT,authorise(["vendor", "patron"]),orderController.getOrdersByStallId);
-router.put("/api/orders/:id/status",verifyJWT,authorise("vendor"),orderController.updateOrderStatusAsVendor);
+router.get("/api/vendor/orders",verifyJWT,authorise(["vendor","patron"]),orderController.getOrdersByStallId);
+router.put("/api/vendor/orders/:id/status",verifyJWT,authorise(["vendor","patron"]),orderController.updateOrderStatusAsVendor);
 
 
 //Vendor Profile
-router.get("/api/profile",verifyJWT,authorise("vendor"),vendorController.getVendorProfile);
+router.get("/api/vendor/profile",verifyJWT,authorise("vendor"),vendorController.getVendorProfile);
 
 // Reviews
 router.get("/api/vendor-complaint",verifyJWT,authorise("vendor"),reviewController.getComplaintByStallId);
 router.get("/api/vendor-feedback",verifyJWT,authorise("vendor"),reviewController.getFeedbackByStallId);
 
-   
+const orderHistoryController = require("../controllers/vendorDashboardController");
+
+router.get("/api/totalOrders",verifyJWT,authorise("vendor"),orderHistoryController.getTotalOrders);
+router.get("/api/customerFrequency",verifyJWT,authorise("vendor"),orderHistoryController.getCustomerFrequency);
+router.get("/api/menuPerformance",verifyJWT,authorise("vendor"),orderHistoryController.getMenuPerformance
+);
+router.get("/api/averageRevenue",verifyJWT, authorise("vendor"), orderHistoryController.getAverageRevenue);
 module.exports = router;
