@@ -42,18 +42,30 @@ async function getTotalOrders() {
   }
 }
 
-async function getTop3ForPatron() {
-  const pool = await sql.connect(dbConfig);
-  const result = await pool.request().query(`
-    SELECT TOP 3
-        item_id,
-        item_name AS item,
-        SUM(quantity) AS total_qty
-    FROM OrderHistory
-    GROUP BY item_id, item_name
-    ORDER BY SUM(quantity) DESC;
-  `);
-  return result.recordset;
+async function getTop3ForPatron(months) {
+    const pool = await sql.connect(dbConfig);
+
+    const result = await pool.request()
+        .input("months", sql.Int, months)
+        .query(`
+            DECLARE @CurrentDate DATE =
+                (SELECT MAX(order_date) FROM OrderHistory);
+
+            SELECT TOP 3
+                item_id,
+                item_name AS item,
+                SUM(quantity) AS total_qty
+            FROM OrderHistory
+            WHERE order_date >= DATEFROMPARTS(
+                    YEAR(DATEADD(MONTH,-(@months-1),@CurrentDate)),
+                    MONTH(DATEADD(MONTH,-(@months-1),@CurrentDate)),
+                    1
+                  )
+            GROUP BY item_id,item_name
+            ORDER BY total_qty DESC;
+        `);
+
+    return result.recordset;
 }
 
 

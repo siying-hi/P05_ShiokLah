@@ -31,31 +31,47 @@ window.salesChart = new Chart(salesCtx, {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
   // KPI values from backend
-  apiFetch("/analytics/most-ordered")
-    .then(res => res.json())
-    .then(data => {
-      console.log("Popular items data:", data);
-      const items = Array.isArray(data) ? data : data.recordset || [];
-      if (items.length === 0) {
-        document.getElementById("kpiTopItem").textContent = "No orders this month";
-        document.getElementById("kpiTopItemSub").textContent = "";
-        document.getElementById("kpiTotalOrders").textContent = "0";
-        return;
+  async function loadTopItems(months) {
+
+        console.log("Loading", months);
+      const res = await apiFetch(`/analytics/most-ordered/${months}`);
+      const items = await res.json();
+
+      console.log(items);
+
+      if (!items.length) {
+          salesChart.data.labels = [];
+          salesChart.data.datasets[0].data = [];
+          salesChart.update();
+          return;
       }
 
-      const totalOrders = items.reduce((sum, i) => sum + i.total_qty, 0);
-      document.getElementById("kpiTopItem").textContent = items[0].item;
+      const totalOrders =
+          items.reduce((sum, item) => sum + item.total_qty, 0);
+
+      document.getElementById("kpiTopItem").textContent =
+          items[0].item;
+
       document.getElementById("kpiTopItemSub").textContent =
-        `Share: ${(items[0].total_qty / totalOrders * 100).toFixed(1)}%`;
+          `Share: ${(
+              items[0].total_qty /
+              totalOrders *
+              100
+          ).toFixed(1)}%`;
 
-      salesChart.data.labels = items.map(i => i.item);
-      salesChart.data.datasets[0].data = items.map(i => i.total_qty);
+      salesChart.data.labels =
+          items.map(item => item.item);
+
+      salesChart.data.datasets[0].data =
+          items.map(item => item.total_qty);
+
       salesChart.update();
+  }
 
-    })
-    .catch(err => console.error("Error loading popular items:", err));
+  
 
   apiFetch("/analytics/total-orders")
     .then(res => res.json())
@@ -64,6 +80,22 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Error loading total orders:", err));
 
+      loadTopItems(1);
+    const salesFilter = document.getElementById("salesFilter");
+
+salesFilter.addEventListener("change", () => {
+
+    let months = 1;
+
+    if (salesFilter.value === "3months") {
+        months = 3;
+    }
+    else if (salesFilter.value === "6months") {
+        months = 6;
+    }
+
+    loadTopItems(months);
+});
     
   // Feedback chart
   const feedbackCtx = document.getElementById("feedbackChart").getContext("2d");
@@ -91,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
       feedbackChart.update();
     })
 
-
+  
 
 
   // Hygiene table
