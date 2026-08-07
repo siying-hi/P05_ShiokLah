@@ -160,23 +160,3 @@ exports.updateRentalAgreement = async (req, res) => {
     }
 
 };
-
-exports.getAllRentalAgreements = async (req, res) => {
-
-    try {
-
-        const agreements = await rentalAgreementModel.getAllRentalAgreements();
-
-        res.status(200).json(agreements);
-
-    } catch(error) {
-
-        console.error(error);
-
-        res.status(500).json({
-            error: "Failed to retrieve rental agreements."
-        });
-
-    }
-
-};
